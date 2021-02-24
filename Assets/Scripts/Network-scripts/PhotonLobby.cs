@@ -42,7 +42,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.Log("Tried to join join a random game but failed. There must be no open games available");
+        Debug.Log("Tried to join a random game but failed. There must be no open games available");
         CreateRoom();
     }
 
@@ -51,6 +51,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         int randomRoomName = Random.Range(0, 10000);
         RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 10 }; //Room specifications
         PhotonNetwork.CreateRoom("Room" + randomRoomName, roomOps);
+        Debug.Log("Created room" + randomRoomName);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
