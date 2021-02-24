@@ -29,12 +29,14 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
+        PhotonNetwork.AutomaticallySyncScene = true;
         Debug.Log("Player has connected to Photon master server");
         battleButton.SetActive(true); // Player is now connected to servers, enables battlebutton to allow join a game
     }
 
     public void OnBattleButtonClicked()
     {
+        Debug.Log("Battle button was clicked");
         battleButton.SetActive(false);
         cancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom(); //picks random room
@@ -48,10 +50,16 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 
     void CreateRoom()
     {
-        int randomRoomName = Random.Range(0, 10000);
+        Debug.Log("Trying to create a new room");
+        int randomRoomName = Random.Range(0, 10);
         RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 10 }; //Room specifications
         PhotonNetwork.CreateRoom("Room" + randomRoomName, roomOps);
         Debug.Log("Created room" + randomRoomName);
+    }
+
+    public override void OnJoinedLobby()
+    {
+        Debug.Log("We are now in a room");
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
