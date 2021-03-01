@@ -81,11 +81,12 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         //Creates player network controller but not player character
         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), transform.position, Quaternion.identity, 0);
+        Debug.Log("NetworkPlayer created");
     }
 
     public void OnStartGameButtonClicked()
     {
-        Debug.Log("This should start the game, but it does not yet. Call 911-420-1337 for more info");
+        Debug.Log("Start game");
         StartGame();
     }
 
