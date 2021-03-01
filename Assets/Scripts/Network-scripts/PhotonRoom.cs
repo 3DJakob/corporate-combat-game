@@ -19,7 +19,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public int currentScene;
     public int multiplayerScene = 1;
 
-    Player info;
+    //Player info
     Player[] photonPlayers;
     public int playersInRoom;
     public int myNumberInRoom;
@@ -68,6 +68,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         //StartGame()
     }
 
+    //When Scene is ready create local player
     void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode) 
     {
         currentScene = scene.buildIndex;
@@ -77,9 +78,9 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
     }
 
+    //Creates player network controller but not player character
     private void CreatePlayer()
     {
-        //Creates player network controller but not player character
         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), transform.position, Quaternion.identity, 0);
         Debug.Log("NetworkPlayer created");
     }
@@ -90,32 +91,46 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         StartGame();
     }
 
+
     public void OnQuitButtonClicked()
     {
         Debug.Log("Quits game");
         Application.Quit();
     }
 
+
+    //If Current player is Master, Load game scene
+
     void StartGame() 
     {
         if (!PhotonNetwork.IsMasterClient)
             return;
-
         PhotonNetwork.LoadLevel(multiplayerScene);
     }
 
+    //If two players or more are in the room, set Startbutton as active
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
         Debug.Log("Someone joined!");
         if (PhotonNetwork.PlayerList.Length >= 2 && PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("I made It!!!!!");
             startButton.SetActive(true);
         }
     }
-// Start is called before the first frame update
-void Start()
+
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        if (PhotonNetwork.PlayerList.Length < 2 && PhotonNetwork.IsMasterClient)
+        {
+            startButton.SetActive(false);
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start()
     {
         PV = GetComponent<PhotonView>();
     }
