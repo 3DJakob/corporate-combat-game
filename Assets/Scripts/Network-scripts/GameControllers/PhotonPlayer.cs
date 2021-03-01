@@ -17,7 +17,7 @@ public class PhotonPlayer : MonoBehaviour
         
         PV = GetComponent<PhotonView>();
         Debug.Log(GameSetup.GS.spawnPoints);
-        Owner = PV.Owner.ActorNumber;
+        Owner = PV.Owner.ActorNumber-1;
         int spawnPicker = Owner;
         if (PV.IsMine)
         {
