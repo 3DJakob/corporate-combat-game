@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4818daf02915ad942b40f143102ecc26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpawned: {fileID: 11400000, guid: 3cf6061e241a8ec47810341b80a8b997, type: 2}
   spawnPoints:
   - {fileID: 165785056}
   - {fileID: 314100696}

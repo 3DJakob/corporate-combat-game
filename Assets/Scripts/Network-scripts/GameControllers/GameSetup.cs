@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameSetup : MonoBehaviour
 {
     public static GameSetup GS;
+    public FloatVariable playerSpawned;
 
     public Transform[] spawnPoints;
 
@@ -14,5 +15,7 @@ public class GameSetup : MonoBehaviour
         {
             GameSetup.GS = this;
         }
+
+        playerSpawned.SetValue(0);
     }
 }
