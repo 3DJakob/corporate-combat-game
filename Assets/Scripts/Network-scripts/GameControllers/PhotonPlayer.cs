@@ -9,24 +9,24 @@ public class PhotonPlayer : MonoBehaviour
     //public static int playerSpawned = 0;
     private PhotonView PV;
     public GameObject myAvatar;
-    public FloatVariable playersSpawned;
+    public int Owner;
 
     // Start is called before the first frame update
     private void Start()
     {
-        Debug.Log(playersSpawned.Value);
+        
         PV = GetComponent<PhotonView>();
         Debug.Log(GameSetup.GS.spawnPoints);
-        int spawnPicker = (int)(playersSpawned.Value);
+        Owner = PV.Owner.ActorNumber;
+        int spawnPicker = Owner;
         if (PV.IsMine)
         {
             myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), 
                 GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
             Debug.Log("Avatar spawned");
         }
-        //Debug.Log(playerSpawned);
-        playersSpawned.ApplyChange(1);
-
+        Debug.Log(Owner);
+      
     }
 
     // Update is called once per frame
