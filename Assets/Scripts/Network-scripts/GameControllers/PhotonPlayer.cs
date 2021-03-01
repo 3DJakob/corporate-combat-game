@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PhotonPlayer : MonoBehaviour
 {
+    public static int playerSpawned = 0;
     private PhotonView PV;
     public GameObject myAvatar;
 
@@ -21,6 +22,7 @@ public class PhotonPlayer : MonoBehaviour
                 GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
             Debug.Log("Avatar spawned");
         }
+        playerSpawned++;
     }
 
     // Update is called once per frame
