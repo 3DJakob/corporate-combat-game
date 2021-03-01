@@ -123,7 +123,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         base.OnPlayerLeftRoom(otherPlayer);
-        if (PhotonNetwork.PlayerList.Length < 2 && PhotonNetwork.IsMasterClient && currentScene == 0)
+        if (PhotonNetwork.PlayerList.Length < 2 && PhotonNetwork.IsMasterClient)
         {
             startButton.SetActive(false);
         }
