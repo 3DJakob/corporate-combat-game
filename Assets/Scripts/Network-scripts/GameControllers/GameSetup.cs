@@ -18,4 +18,10 @@ public class GameSetup : MonoBehaviour
 
         playerSpawned.SetValue(0);
     }
+
+    public void OnQuitButtonClicked()
+    {
+        Debug.Log("Quits game");
+        Application.Quit();
+    }
 }

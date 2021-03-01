@@ -90,6 +90,12 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         StartGame();
     }
 
+    public void OnQuitButtonClicked()
+    {
+        Debug.Log("Quits game");
+        Application.Quit();
+    }
+
     void StartGame() 
     {
         if (!PhotonNetwork.IsMasterClient)
