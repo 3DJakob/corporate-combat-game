@@ -8,6 +8,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 {
     public static PhotonLobby lobby; //singleton = template of instances
 
+    public GameObject teamPicker;
     public GameObject battleButton; //match-making system sliterio, clash royale
     public GameObject cancelButton;
 
@@ -38,6 +39,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         Debug.Log("Battle button was clicked");
         battleButton.SetActive(false);
+        teamPicker.SetActive(true);
         cancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom(); //picks random room
     }
@@ -66,6 +68,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public void OnCancelButtonClicked()
     {
         cancelButton.SetActive(false);
+        teamPicker.SetActive(false);
         battleButton.SetActive(true);
         PhotonNetwork.LeaveRoom();
     }
