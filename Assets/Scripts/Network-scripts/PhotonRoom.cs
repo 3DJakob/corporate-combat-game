@@ -73,13 +73,20 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         currentScene = scene.buildIndex;
         if (currentScene == 1) 
         {
-            //Create Player here
+            CreatePlayer();
         }
+    }
+
+    private void CreatePlayer()
+    {
+        //Creates player network controller but not player character
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), transform.position, Quaternion.identity, 0);
     }
 
     public void OnStartGameButtonClicked()
     {
         Debug.Log("This should start the game, but it does not yet. Call 911-420-1337 for more info");
+        StartGame();
     }
 
     void StartGame() 
