@@ -18,12 +18,12 @@ public class PhotonPlayer : MonoBehaviour
         Debug.Log("owner is " + Owner);
 
         //Spawn set, depending on player who owns the current instance
-        int spawnPicker = Owner;
+        //int spawnPicker = Owner;
 
         //If PV is of the current instance, instiate a player avatar
         if (PV.IsMine)
         {
-            PV.RPC("RPC_CreatePlayer", RpcTarget.All, spawnPicker);
+            PV.RPC("RPC_CreatePlayer", RpcTarget.All);
         }
     }
 
@@ -38,10 +38,10 @@ public class PhotonPlayer : MonoBehaviour
     }
 
     [PunRPC]
-    private void RPC_CreatePlayer(int spawnPicker)
+    private void RPC_CreatePlayer()
     {
         myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
-                GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
-        Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
+                GameSetup.GS.spawnPoints[Owner].position, GameSetup.GS.spawnPoints[Owner].rotation, 0);
+        Debug.Log("Avatar spawned at spawnpoint" + Owner);
     }
 }
