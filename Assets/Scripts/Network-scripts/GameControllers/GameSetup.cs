@@ -23,11 +23,7 @@ public class GameSetup : MonoBehaviour
     }
 
     public void OnChangeSyncVariable()
-    {
-        GameSync.GSync.syncVariable += 1;
+    { 
         GameSync.GSync.UpdateVariable();
-        
-
-
     }
 }

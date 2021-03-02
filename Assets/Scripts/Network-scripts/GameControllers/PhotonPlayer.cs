@@ -31,6 +31,7 @@ public class PhotonPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //T = GetComponent<Transform>();
+        transform.position = new Vector3(GameSync.GSync.syncVariable, 0 , 0);
     }
 }
