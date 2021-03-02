@@ -21,4 +21,13 @@ public class GameSetup : MonoBehaviour
         Debug.Log("Quits game");
         Application.Quit();
     }
+
+    public void OnChangeSyncVariable()
+    {
+        GameSync.GSync.syncVariable += 1;
+        GameSync.GSync.UpdateVariable();
+        
+
+
+    }
 }
