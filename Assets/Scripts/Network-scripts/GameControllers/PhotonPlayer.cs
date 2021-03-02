@@ -23,7 +23,10 @@ public class PhotonPlayer : MonoBehaviour
         //If PV is of the current instance, instiate a player avatar
         if (PV.IsMine)
         {
-            PV.RPC("RPC_CreatePlayer", RpcTarget.All);
+            //PV.RPC("RPC_CreatePlayer", RpcTarget.AllViaServer);
+            myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
+                GameSetup.GS.spawnPoints[Owner].position, GameSetup.GS.spawnPoints[Owner].rotation, 0);
+            Debug.Log("Avatar spawned at spawnpoint" + Owner);
         }
     }
 
@@ -40,8 +43,6 @@ public class PhotonPlayer : MonoBehaviour
     [PunRPC]
     private void RPC_CreatePlayer()
     {
-        myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
-                GameSetup.GS.spawnPoints[Owner].position, GameSetup.GS.spawnPoints[Owner].rotation, 0);
-        Debug.Log("Avatar spawned at spawnpoint" + Owner);
+        
     }
 }
