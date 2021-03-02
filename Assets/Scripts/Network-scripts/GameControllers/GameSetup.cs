@@ -1,6 +1,8 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSetup : MonoBehaviour
 {
@@ -14,6 +16,20 @@ public class GameSetup : MonoBehaviour
         {
             GameSetup.GS = this;
         }
+    }
+
+    public void DisconnectPlayer()
+    {
+        StartCoroutine(DisconnectAndLoad());
+    }
+
+    IEnumerator DisconnectAndLoad()
+    {
+        PhotonNetwork.Disconnect();
+        while (PhotonNetwork.IsConnected)
+            yield return null;
+
+        SceneManager.LoadScene(MultiplayerSetting.multiplayerSetting.menuScene);
     }
 
     public void OnQuitButtonClicked()

@@ -15,6 +15,7 @@ public class PhotonPlayer : MonoBehaviour
     {
         PV = GetComponent<PhotonView>();
         Owner = PV.Owner.ActorNumber-1;
+        Debug.Log("owner is " + Owner);
 
         //Spawn set, depending on player who owns the current instance
         int spawnPicker = Owner;
@@ -24,7 +25,7 @@ public class PhotonPlayer : MonoBehaviour
         {
             myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), 
                 GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
-            Debug.Log("Avatar spawned");
+            Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
         }
     }
 
@@ -32,8 +33,9 @@ public class PhotonPlayer : MonoBehaviour
     void Update()
     {
         //T = GetComponent<Transform>();
-        
-            myAvatar.transform.position = new Vector3(0, 0, GameSync.GSync.syncVariable);
-        
+        //if (PV.IsMine)
+        //{
+        //    myAvatar.transform.position = new Vector3(0, 0, GameSync.GSync.syncVariable);
+        //}
     }
 }
