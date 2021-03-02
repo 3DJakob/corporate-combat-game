@@ -34,7 +34,7 @@ public class PhotonPlayer : MonoBehaviour
         //T = GetComponent<Transform>();
         if (PV.IsMine)
         {
-            myAvatar.transform.position = new Vector3(GameSync.GSync.syncVariable, 0, 0);
+            myAvatar.transform.position = new Vector3(0, 0, -GameSync.GSync.syncVariable);
         }
     }
 }
