@@ -67,4 +67,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAvatar: {fileID: 0}
+  rightButton: {fileID: 0}
+  leftButton: {fileID: 0}
   Owner: 0
