@@ -32,7 +32,7 @@ public class PlayerInfo : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("MyTeam"))
         {
-            mySelectedTeam = PlayerPrefs.GetInt("MyCharacter");
+            mySelectedTeam = PlayerPrefs.GetInt("MyTeam");
         }
         else 
         {
