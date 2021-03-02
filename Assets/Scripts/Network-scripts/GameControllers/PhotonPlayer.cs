@@ -23,9 +23,7 @@ public class PhotonPlayer : MonoBehaviour
         //If PV is of the current instance, instiate a player avatar
         if (PV.IsMine)
         {
-            myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), 
-                GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
-            Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
+            PV.RPC("RPC_CreatePlayer", RpcTarget.All, spawnPicker);
         }
     }
 
@@ -37,5 +35,13 @@ public class PhotonPlayer : MonoBehaviour
         //{
         //    myAvatar.transform.position = new Vector3(0, 0, GameSync.GSync.syncVariable);
         //}
+    }
+
+    [PunRPC]
+    private void RPC_CreatePlayer(int spawnPicker)
+    {
+        myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
+                GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
+        Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
     }
 }

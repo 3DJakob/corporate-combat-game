@@ -30,8 +30,8 @@ public class GameSync : MonoBehaviour
     public void UpdateVariable()
     {
         
-             syncVariable += 1;
-             PV.RPC("RPC_Function", RpcTarget.AllBuffered, syncVariable);
+             //syncVariable += 1;
+             //PV.RPC("RPC_Function", RpcTarget.AllBuffered, syncVariable);
         
     }
 
@@ -39,7 +39,7 @@ public class GameSync : MonoBehaviour
     void RPC_Function(int syncIn)
     {
         syncVariable = syncIn;
-        Debug.Log("Updated variable with 1 at " + PV.ViewID);
+        //Debug.Log("Updated variable with 1 at " + PV.ViewID);
         Debug.Log(syncVariable);
     }
 }

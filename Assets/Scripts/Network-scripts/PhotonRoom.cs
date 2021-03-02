@@ -72,28 +72,30 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode) 
     {
         currentScene = scene.buildIndex;
-        if (currentScene == MultiplayerSetting.multiplayerSetting.multiplayerScene) 
+        //Debug.Log("Current scene = " + currentScene);
+        if (currentScene == 1) 
         {
-            //CreatePlayer();
-            PV.RPC("RPC_CreatePlayer", RpcTarget.All);
+            CreatePlayer();
+            //Debug.Log(PV);
+            //PV.RPC("RPC_CreatePlayer", RpcTarget.All);
         }
     }
 
-    [PunRPC]
-    private void RPC_CreatePlayer()
-    {
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), transform.position, Quaternion.identity, 0);
-        Debug.Log("NetworkPlayer created");
-    }
+    //[PunRPC]
+    //private void RPC_CreatePlayer()
+    //{
+    //    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), transform.position, Quaternion.identity, 0);
+    //    Debug.Log("NetworkPlayer created");
+    //}
 
 
     //Creates player network controller but not player character
-    //private void CreatePlayer()
-    //{
-    //    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer")
-    //        , transform.position, Quaternion.identity, 0);
-    //    Debug.Log("NetworkPlayer created");
-    //}
+    private void CreatePlayer()
+    {
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer")
+            , transform.position, Quaternion.identity, 0);
+        Debug.Log("NetworkPlayer created");
+    }
 
     public void OnStartGameButtonClicked()
     {
