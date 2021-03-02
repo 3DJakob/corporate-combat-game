@@ -29,7 +29,7 @@ public class GameSync : MonoBehaviour
 
     public void UpdateVariable()
     {
-        Debug.Log("Updated variable with 1 at" + PV.ViewID);
+        
         if (PV.IsMine)
         {
             PV.RPC("RPC_Function", RpcTarget.AllBuffered, syncVariable);
@@ -40,6 +40,7 @@ public class GameSync : MonoBehaviour
     void RPC_Function(int syncIn)
     {
         syncVariable = syncIn;
+        Debug.Log("Updated variable with 1 at " + PV.ViewID);
         Debug.Log(syncVariable);
     }
 }
