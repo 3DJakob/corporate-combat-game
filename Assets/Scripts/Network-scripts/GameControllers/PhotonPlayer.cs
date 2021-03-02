@@ -9,28 +9,28 @@ public class PhotonPlayer : MonoBehaviour
 {
     private PhotonView PV;
     public GameObject myAvatar;
+
     public Button rightButton;
     public Button leftButton;
 
-    public int Owner;
+    public int spawnPicker;
 
     // Start is called before the first frame update
     private void Start()
     {
         PV = GetComponent<PhotonView>();
-        Owner = PlayerInfo.PI.mySelectedTeam;
-        Debug.Log("owner is " + Owner);
 
-        //Spawn set, depending on player who owns the current instance
-        //int spawnPicker = Owner;
+        //Spawn set, depending on player who owns the current instance 
+        //---Selected based on teams for now-----
+        spawnPicker = PlayerInfo.PI.mySelectedTeam;
+        Debug.Log("Spawn is at " + spawnPicker);
 
-        //If PV is of the current instance, instiate a player avatar
+        //If PV is of the current instance, instantiate a player avatar and add onClick-events to the UI-buttons
         if (PV.IsMine)
         {
-            //PV.RPC("RPC_CreatePlayer", RpcTarget.AllViaServer);
             myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
-                GameSetup.GS.spawnPoints[Owner].position, GameSetup.GS.spawnPoints[Owner].rotation, 0);
-            Debug.Log("Avatar spawned at spawnpoint" + Owner);
+                GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
+            Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
 
             rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
             rightButton.onClick.AddListener(OnRightButtonClicked);
@@ -42,25 +42,18 @@ public class PhotonPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //T = GetComponent<Transform>();
-        //if (PV.IsMine)
-        //{
-        //    myAvatar.transform.position = new Vector3(0, 0, GameSync.GSync.syncVariable);
-        //}
+       
     }
 
+    //When MoveRight/MoveLeft is clicked, move "myAvatar" to the right/left
     public void OnRightButtonClicked()
     {
-        
         Debug.Log("Moves right");
-        myAvatar.transform.position += new Vector3(0.2f, 0, 0);
-        
+        myAvatar.transform.position += new Vector3(0.2f, 0, 0);  
     }
     public void OnLeftButtonClicked()
     {
-        
-        Debug.Log("Moves right");
+        Debug.Log("Moves left");
         myAvatar.transform.position += new Vector3(-0.2f, 0, 0);
-
     }
 }

@@ -5,6 +5,8 @@ using Photon.Pun;
 
 public class GameSync : MonoBehaviour
 {
+    //-----This class is not currently used-----
+
     private PhotonView PV;
     public static GameSync GSync;
     public int syncVariable;

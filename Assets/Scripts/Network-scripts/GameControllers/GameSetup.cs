@@ -19,6 +19,7 @@ public class GameSetup : MonoBehaviour
         }
     }
     
+    //If a player is disconnected load menu-scene
     public void DisconnectPlayer()
     {
         StartCoroutine(DisconnectAndLoad());
@@ -39,12 +40,4 @@ public class GameSetup : MonoBehaviour
         Application.Quit();
     }
 
-    public void OnRightButtonClicked()
-    {
-        
-    }
-    public void OnLeftButtonClicked()
-    {
-        
-    }
 }

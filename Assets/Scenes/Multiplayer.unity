@@ -772,19 +772,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 445496018}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 025d6b1f6f8fa9d42bd187244c70b4e7, type: 3}
-        m_TargetAssemblyTypeName: GameSetup, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &445496018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1614,19 +1602,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1933480567}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1765639951}
-        m_TargetAssemblyTypeName: GameSetup, Assembly-CSharp
-        m_MethodName: OnLeftButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1933480567
 MonoBehaviour:
   m_ObjectHideFlags: 0
