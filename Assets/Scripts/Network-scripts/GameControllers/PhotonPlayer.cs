@@ -14,7 +14,7 @@ public class PhotonPlayer : MonoBehaviour
     private void Start()
     {
         PV = GetComponent<PhotonView>();
-        Owner = PV.Owner.ActorNumber-1;
+        Owner = PlayerInfo.PI.mySelectedTeam;
         Debug.Log("owner is " + Owner);
 
         //Spawn set, depending on player who owns the current instance
