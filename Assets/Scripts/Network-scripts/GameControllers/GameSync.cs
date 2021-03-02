@@ -29,8 +29,9 @@ public class GameSync : MonoBehaviour
 
     public void UpdateVariable()
     {
-        syncVariable += 1;
-        PV.RPC("RPC_Function", RpcTarget.AllBuffered, syncVariable);
+        
+             syncVariable += 1;
+             PV.RPC("RPC_Function", RpcTarget.AllBuffered, syncVariable);
         
     }
 
