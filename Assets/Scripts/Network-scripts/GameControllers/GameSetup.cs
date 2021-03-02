@@ -18,19 +18,19 @@ public class GameSetup : MonoBehaviour
         }
     }
 
-    public void DisconnectPlayer()
-    {
-        StartCoroutine(DisconnectAndLoad());
-    }
+    //public void DisconnectPlayer()
+    //{
+    //    StartCoroutine(DisconnectAndLoad());
+    //}
 
-    IEnumerator DisconnectAndLoad()
-    {
-        PhotonNetwork.Disconnect();
-        while (PhotonNetwork.IsConnected)
-            yield return null;
+    //IEnumerator DisconnectAndLoad()
+    //{
+    //    PhotonNetwork.Disconnect();
+    //    while (PhotonNetwork.IsConnected)
+    //        yield return null;
 
-        SceneManager.LoadScene(MultiplayerSetting.multiplayerSetting.menuScene);
-    }
+    //    SceneManager.LoadScene(MultiplayerSetting.multiplayerSetting.menuScene);
+    //}
 
     public void OnQuitButtonClicked()
     {
