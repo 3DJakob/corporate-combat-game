@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
-    public GameObject startButton;
+    public GameObject loadARSetupButton;
+    public Button startButton;
 
     //Room info
     public static PhotonRoom room;
@@ -17,7 +19,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     //public bool isGameLoaded;
     public int currentScene;
-    public int multiplayerScene = 1;
+    //public int multiplayerScene = 1;
 
     //Player info
     Player[] photonPlayers;
@@ -74,8 +76,12 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         currentScene = scene.buildIndex;
         if (currentScene == MultiplayerSetting.multiplayerSetting.multiplayerScene) 
         {
-            CreatePlayer();
-            
+            CreatePlayer();  
+        }
+        if(currentScene == MultiplayerSetting.multiplayerSetting.ARScene)
+        {
+            startButton = GameObject.Find("StartGame").GetComponent<Button>();
+            startButton.onClick.AddListener(OnStartGameButtonClicked);
         }
     }
 
@@ -85,6 +91,11 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer")
             , transform.position, Quaternion.identity, 0);
         Debug.Log("NetworkPlayer created");
+    }
+    public void OnARSetupButtonClicked()
+    {
+        Debug.Log("AR setup");
+        LoadARSetup();
     }
 
     public void OnStartGameButtonClicked()
@@ -106,7 +117,14 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         if (!PhotonNetwork.IsMasterClient)
             return;
-        PhotonNetwork.LoadLevel(multiplayerScene);
+        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.multiplayerScene);
+    }
+
+    void LoadARSetup()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.ARScene);
     }
 
     //If two players or more are in the room, set Startbutton as active
@@ -116,7 +134,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         Debug.Log("Someone joined!");
         if (PhotonNetwork.PlayerList.Length >= 2 && PhotonNetwork.IsMasterClient)
         {
-            startButton.SetActive(true);
+            loadARSetupButton.SetActive(true);
         }
     }
 
@@ -126,7 +144,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         base.OnPlayerLeftRoom(otherPlayer);
         if (PhotonNetwork.PlayerList.Length < 2 && PhotonNetwork.IsMasterClient && currentScene == 0)
         {
-            startButton.SetActive(false);
+            loadARSetupButton.SetActive(false);
         }
         Debug.Log(otherPlayer.NickName + " has left the game");
         playersInRoom--;

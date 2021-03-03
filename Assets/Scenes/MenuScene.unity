@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -569,7 +569,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start Game
+  m_Text: Load AR Setup
 --- !u!222 &547426629
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1367,7 +1367,7 @@ GameObject:
   - component: {fileID: 823043326}
   - component: {fileID: 823043325}
   m_Layer: 5
-  m_Name: Start Game
+  m_Name: LoadARSetup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1439,7 +1439,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1738218986}
         m_TargetAssemblyTypeName: PhotonRoom, Assembly-CSharp
-        m_MethodName: OnStartGameButtonClicked
+        m_MethodName: OnARSetupButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2159,10 +2159,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78df816b0f171dd489f118e733bf48bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 823043323}
+  loadARSetupButton: {fileID: 823043323}
+  startButton: {fileID: 0}
   readyToStart: 0
   currentScene: 0
-  multiplayerScene: 1
   playersInRoom: 0
   myNumberInRoom: 0
 --- !u!4 &1738218987
@@ -2374,7 +2374,8 @@ MonoBehaviour:
   delayStart: 0
   maxPlayers: 4
   menuScene: 0
-  multiplayerScene: 1
+  ARScene: 1
+  multiplayerScene: 2
 --- !u!4 &2061699757
 Transform:
   m_ObjectHideFlags: 0
