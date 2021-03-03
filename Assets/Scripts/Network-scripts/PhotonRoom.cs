@@ -127,6 +127,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.ARScene);
     }
 
+    //Temporary function, puts us in ARsetup scene
     public void LoadARSetupDebug()
     {
         PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.ARScene);
