@@ -13,9 +13,12 @@ public class ARTapToPlaceObject : MonoBehaviour
     private GameObject spawnedObject;
     private ARRaycastManager _arRaycastManager;
     private Vector2 touchPosition;
-    private float initalScale = 1.0f;
+    private float initialScale = 1.0f;
     private float startPinchScale = 0.0f;
+    private float initalAngle = 0.0f;
+    private float startPinchAngle = 0.0f;
     private bool isPinching = false;
+    private bool newPinchGrip = true;
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     private void Awake() {
@@ -30,14 +33,26 @@ public class ARTapToPlaceObject : MonoBehaviour
         touch1 = Input.GetTouch(1).position;
         distance = Vector2.Distance(touch0, touch1);
 
+
+
+        float angle = -Vector2.SignedAngle(new Vector2(1.0f, 0.0f), touch1 - touch0);
         float scale = distance / 859;
 
-        if (!isPinching) {
+        if (newPinchGrip) {
             startPinchScale = scale;
+            startPinchAngle = angle;
+            newPinchGrip = false;
         }
 
-        scale = (scale / startPinchScale) * initalScale;
+        scale = (scale / startPinchScale) * initialScale;
+        angle = initalAngle + (angle - startPinchAngle);
         spawnedObject.transform.localScale = new Vector3(scale,scale,scale);
+
+        spawnedObject.transform.eulerAngles = new Vector3(
+            spawnedObject.transform.eulerAngles.x,
+            angle,
+            spawnedObject.transform.eulerAngles.z
+        );
     }
 
     bool TryGetTouchPosition(out Vector2 touchPosition) {
@@ -54,7 +69,9 @@ public class ARTapToPlaceObject : MonoBehaviour
     void Update() {
         if (!TryGetTouchPosition(out Vector2 touchPosition)) {
             isPinching = false;
-            initalScale = spawnedObject.transform.localScale.x;
+            initialScale = spawnedObject.transform.localScale.x;
+            initalAngle = spawnedObject.transform.eulerAngles.y;
+            newPinchGrip = true;
             return;
         }
 
@@ -69,6 +86,11 @@ public class ARTapToPlaceObject : MonoBehaviour
 
             // Prevent moving if user is releasing pinch grip
             if (isPinching) {
+                if (spawnedObject != null) {
+                    initialScale = spawnedObject.transform.localScale.x;
+                    initalAngle = spawnedObject.transform.eulerAngles.y;
+                    newPinchGrip = true;
+                }
                 return;
             }
 
