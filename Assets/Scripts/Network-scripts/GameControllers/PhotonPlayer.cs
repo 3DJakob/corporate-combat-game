@@ -33,7 +33,8 @@ public class PhotonPlayer : MonoBehaviour
                 GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
             Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
 
-            rightButton = GameObject.Find("Spawn cube").GetComponent<Button>();
+            tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
+            tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
             rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
             rightButton.onClick.AddListener(OnRightButtonClicked);
             leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
