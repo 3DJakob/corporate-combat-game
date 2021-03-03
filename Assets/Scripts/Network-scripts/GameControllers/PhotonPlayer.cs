@@ -10,6 +10,7 @@ public class PhotonPlayer : MonoBehaviour
     private PhotonView PV;
     public GameObject myAvatar;
 
+    public Button tankSpawnButton;
     public Button rightButton;
     public Button leftButton;
 
@@ -32,6 +33,7 @@ public class PhotonPlayer : MonoBehaviour
                 GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
             Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
 
+            rightButton = GameObject.Find("Spawn cube").GetComponent<Button>();
             rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
             rightButton.onClick.AddListener(OnRightButtonClicked);
             leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
@@ -55,5 +57,17 @@ public class PhotonPlayer : MonoBehaviour
     {
         Debug.Log("Moves left");
         myAvatar.transform.position += new Vector3(-0.2f, 0, 0);
+    }
+
+    public void OnTankSpawnButtonClicked()
+    {
+        Debug.Log("Spawns Tank");
+        PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient);
+    }
+
+    [PunRPC]
+    void RPC_SpawnTank() {
+        PhotonNetwork.InstantiateRoomObject(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
+                new Vector3(0, 0, -5), new Quaternion(0, 0, 0, 0), 0);
     }
 }
