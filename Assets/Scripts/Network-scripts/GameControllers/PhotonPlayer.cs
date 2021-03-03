@@ -69,6 +69,6 @@ public class PhotonPlayer : MonoBehaviour
     [PunRPC]
     void RPC_SpawnTank() {
         PhotonNetwork.InstantiateRoomObject(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
-                new Vector3(0, 0, -5), new Quaternion(0, 0, 0, 0), 0);
+                new Vector3(0, 0, 5), new Quaternion(0, 0, 0, 0), 0);
     }
 }

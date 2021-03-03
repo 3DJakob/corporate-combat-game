@@ -127,6 +127,12 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.ARScene);
     }
 
+    public void LoadARSetupDebug()
+    {
+        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.ARScene);
+    }
+
+
     //If two players or more are in the room, set Startbutton as active
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
