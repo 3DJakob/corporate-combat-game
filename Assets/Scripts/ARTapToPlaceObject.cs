@@ -10,7 +10,7 @@ public class ARTapToPlaceObject : MonoBehaviour
 {
     public GameObject gameObjectToInstantiate;
 
-    private GameObject spawnedObject;
+    public GameObject spawnedObject;
     private ARRaycastManager _arRaycastManager;
     private Vector2 touchPosition;
     private float initialScale = 1.0f;

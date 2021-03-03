@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfo : MonoBehaviour
 {
     public static PlayerInfo PI;
     public int mySelectedTeam;
+    public Vector3 positionOfTable;
+    public Quaternion rotationOfTable;
 
     public int[] teams;
 
@@ -39,5 +42,17 @@ public class PlayerInfo : MonoBehaviour
             mySelectedTeam = 0;
             PlayerPrefs.SetInt("MyTeam", mySelectedTeam);
         }
+    }
+
+    private void Update()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == MultiplayerSetting.multiplayerSetting.ARScene)
+        {
+            //-----This might work, check with Jakob----
+            positionOfTable = GameObject.Find("spawnedObject").GetComponent<GameObject>().transform.position;
+            rotationOfTable = GameObject.Find("spawnedObject").GetComponent<GameObject>().transform.rotation;
+            //Debug.Log(positionOfTable);
+        }
+              
     }
 }

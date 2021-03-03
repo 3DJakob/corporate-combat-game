@@ -60,6 +60,8 @@ public class PhotonPlayer : MonoBehaviour
         myAvatar.transform.position += new Vector3(-0.2f, 0, 0);
     }
 
+    //If tankSpawnButton is clicked then and RPC call is sent to master client
+    //who instantitates an object at a certain position
     public void OnTankSpawnButtonClicked()
     {
         Debug.Log("Spawns Tank");
