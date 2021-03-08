@@ -9,6 +9,7 @@ public class PlayerInfo : MonoBehaviour
     public int mySelectedTeam;
     public Vector3 positionOfTable;
     public Quaternion rotationOfTable;
+    public Vector3 scaleOfTable;
 
     public int[] teams;
 
@@ -27,6 +28,15 @@ public class PlayerInfo : MonoBehaviour
             }
         }
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void updateOrigin(Vector3 pos, Quaternion rot, Vector3 scale)
+    {
+        positionOfTable = pos;
+        rotationOfTable = rot;
+        scaleOfTable = scale;
+        Debug.Log("X POS");
+        Debug.Log(pos.x);
     }
 
 

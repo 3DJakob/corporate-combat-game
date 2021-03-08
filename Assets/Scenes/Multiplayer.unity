@@ -1707,6 +1707,8 @@ MonoBehaviour:
   - {fileID: 165785056}
   - {fileID: 314100696}
   player: {fileID: 0}
+  adjustedScene: {fileID: 667543511}
+  ARSO: {fileID: 1692393114}
 --- !u!4 &1765639952
 Transform:
   m_ObjectHideFlags: 0

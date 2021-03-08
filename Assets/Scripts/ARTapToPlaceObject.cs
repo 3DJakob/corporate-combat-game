@@ -105,5 +105,10 @@ public class ARTapToPlaceObject : MonoBehaviour
                 }
             }
         }
+
+        if (spawnedObject != null) {
+            PlayerInfo.PI.updateOrigin(spawnedObject.transform.position, spawnedObject.transform.rotation, spawnedObject.transform.localScale);
+        }
+
     }
 }

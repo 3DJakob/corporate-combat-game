@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 public class GameSetup : MonoBehaviour
 {
     public static GameSetup GS;
     public Transform[] spawnPoints;
     public PhotonPlayer player;
+    public GameObject adjustedScene;
+    public ARSessionOrigin ARSO;
 
     //Create GameSetup OnEnable (When switching to the game scene)
     private void OnEnable()
@@ -40,4 +44,12 @@ public class GameSetup : MonoBehaviour
         Application.Quit();
     }
 
+    private void Start()
+    {
+        //adjustedScene.transform.position = PlayerInfo.PI.positionOfTable;
+        //adjustedScene.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
+        //adjustedScene.transform.localScale = PlayerInfo.PI.scaleOfTable;
+
+        ARSO.MakeContentAppearAt(adjustedScene.transform, PlayerInfo.PI.positionOfTable);
+    }
 }
