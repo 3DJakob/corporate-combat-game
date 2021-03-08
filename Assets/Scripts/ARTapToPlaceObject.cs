@@ -69,8 +69,10 @@ public class ARTapToPlaceObject : MonoBehaviour
     void Update() {
         if (!TryGetTouchPosition(out Vector2 touchPosition)) {
             isPinching = false;
-            initialScale = spawnedObject.transform.localScale.x;
-            initalAngle = spawnedObject.transform.eulerAngles.y;
+            if (spawnedObject != null) {
+                initialScale = spawnedObject.transform.localScale.x;
+                initalAngle = spawnedObject.transform.eulerAngles.y;
+            }
             newPinchGrip = true;
             return;
         }
@@ -107,8 +109,6 @@ public class ARTapToPlaceObject : MonoBehaviour
         }
 
         if (spawnedObject != null) {
-            Debug.Log("Spawn is at " + spawnPicker);
-            Debug.Log("Spawn is at " + spawnPicker);
             PlayerInfo.PI.updateOrigin(spawnedObject.transform.position, spawnedObject.transform.eulerAngles, spawnedObject.transform.localScale);
         }
 
