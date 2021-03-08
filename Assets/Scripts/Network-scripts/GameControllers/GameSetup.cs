@@ -44,9 +44,13 @@ public class GameSetup : MonoBehaviour
 
     private void Start()
     {
-        adjustedScene.transform.position = PlayerInfo.PI.positionOfTable;
-        adjustedScene.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
-        adjustedScene.transform.localScale = PlayerInfo.PI.scaleOfTable;
+        //adjustedScene.transform.position = PlayerInfo.PI.positionOfTable;
+        //adjustedScene.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
+        //adjustedScene.transform.localScale = PlayerInfo.PI.scaleOfTable;
+
+        adjustedScene.transform.localPosition = PlayerInfo.PI.T.localPosition;
+        adjustedScene.transform.localRotation = PlayerInfo.PI.T.rotation;
+        adjustedScene.transform.localPosition = PlayerInfo.PI.T.localScale;
     }
 
     //internal void setActive(bool v)

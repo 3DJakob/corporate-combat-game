@@ -7,6 +7,9 @@ public class PlayerInfo : MonoBehaviour
 {
     public static PlayerInfo PI;
     public int mySelectedTeam;
+
+    public Transform T;
+
     public Vector3 positionOfTable;
     public Vector3 rotationOfTable;
     public Vector3 scaleOfTable;
@@ -30,13 +33,17 @@ public class PlayerInfo : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void updateOrigin(Vector3 pos, Vector3 rot, Vector3 scale)
+    public void updateOrigin(Transform transform)
     {
+        T = transform;
+
+        /*
         positionOfTable = pos;
         rotationOfTable = rot;
         scaleOfTable = scale;
         Debug.Log("X POS");
         Debug.Log(pos.x);
+        */
     }
 
 

@@ -122,7 +122,7 @@ public class ARTapToPlaceObject : MonoBehaviour
         }
 
         if (spawnedObject != null) {
-            PlayerInfo.PI.updateOrigin(spawnedObject.transform.position, spawnedObject.transform.eulerAngles, spawnedObject.transform.localScale);
+            PlayerInfo.PI.updateOrigin(spawnedObject.transform);
         }
 
     }
