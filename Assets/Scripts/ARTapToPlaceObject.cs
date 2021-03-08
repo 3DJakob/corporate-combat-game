@@ -19,11 +19,24 @@ public class ARTapToPlaceObject : MonoBehaviour
     private float startPinchAngle = 0.0f;
     private bool isPinching = false;
     private bool newPinchGrip = true;
+    private float tableHeight = 1.0f;
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     private void Awake() {
         _arRaycastManager = GetComponent<ARRaycastManager>();
 
+    }
+
+    public void updateHeight(float value) {
+        Debug.Log(value);
+        tableHeight = value;
+        if (spawnedObject != null) {
+            spawnedObject.transform.localScale = new Vector3(
+                spawnedObject.transform.localScale.x,
+                tableHeight,
+                spawnedObject.transform.localScale.z
+            );
+        }
     }
 
     void pinchZoom() {
@@ -46,7 +59,7 @@ public class ARTapToPlaceObject : MonoBehaviour
 
         scale = (scale / startPinchScale) * initialScale;
         angle = initalAngle + (angle - startPinchAngle);
-        spawnedObject.transform.localScale = new Vector3(scale,scale,scale);
+        spawnedObject.transform.localScale = new Vector3(scale,tableHeight,scale);
 
         spawnedObject.transform.eulerAngles = new Vector3(
             spawnedObject.transform.eulerAngles.x,
