@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 public class GameSetup : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class GameSetup : MonoBehaviour
     public Transform[] spawnPoints;
     public PhotonPlayer player;
     public GameObject adjustedScene;
+    public ARSessionOrigin ARSO;
 
     //Create GameSetup OnEnable (When switching to the game scene)
     private void OnEnable()
@@ -48,9 +51,11 @@ public class GameSetup : MonoBehaviour
         //adjustedScene.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
         //adjustedScene.transform.localScale = PlayerInfo.PI.scaleOfTable;
 
-        adjustedScene.transform.localPosition = PlayerInfo.PI.T.localPosition;
-        adjustedScene.transform.localRotation = PlayerInfo.PI.T.rotation;
-        adjustedScene.transform.localPosition = PlayerInfo.PI.T.localScale;
+        //adjustedScene.transform.localPosition = PlayerInfo.PI.T.localPosition;
+        //adjustedScene.transform.localRotation = PlayerInfo.PI.T.rotation;
+        //adjustedScene.transform.localPosition = PlayerInfo.PI.T.localScale;
+
+        ARSO.MakeContentAppearAt(adjustedScene.transform, PlayerInfo.PI.T.position, PlayerInfo.PI.T.rotation);
     }
 
     //internal void setActive(bool v)
