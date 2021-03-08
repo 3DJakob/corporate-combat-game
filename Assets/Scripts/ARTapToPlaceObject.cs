@@ -105,5 +105,12 @@ public class ARTapToPlaceObject : MonoBehaviour
                 }
             }
         }
+
+        if (spawnedObject != null) {
+            Debug.Log("Spawn is at " + spawnPicker);
+            Debug.Log("Spawn is at " + spawnPicker);
+            PlayerInfo.PI.updateOrigin(spawnedObject.transform.position, spawnedObject.transform.eulerAngles, spawnedObject.transform.localScale);
+        }
+
     }
 }
