@@ -11,6 +11,7 @@ public class PhotonPlayer : MonoBehaviour
     public GameObject myAvatar;
 
     public Button tankSpawnButton;
+    public Button startButton;
     public Button rightButton;
     public Button leftButton;
 
@@ -32,13 +33,11 @@ public class PhotonPlayer : MonoBehaviour
             myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
                 GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
             Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
+            Debug.Log("Player created");
 
-            tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
-            tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
-            rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
-            rightButton.onClick.AddListener(OnRightButtonClicked);
-            leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
-            leftButton.onClick.AddListener(OnLeftButtonClicked);
+            startButton = GameObject.Find("StartGame").GetComponent<Button>();
+            startButton.onClick.AddListener(OnStartGameButtonClicked);
+
         }
     }
 
@@ -58,6 +57,19 @@ public class PhotonPlayer : MonoBehaviour
     {
         Debug.Log("Moves left");
         myAvatar.transform.position += new Vector3(-0.2f, 0, 0);
+    }
+
+    public void OnStartGameButtonClicked()
+    {
+        if (PV.IsMine)
+        {
+            tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
+            tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
+            rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
+            rightButton.onClick.AddListener(OnRightButtonClicked);
+            leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
+            leftButton.onClick.AddListener(OnLeftButtonClicked);
+        }
     }
 
     //If tankSpawnButton is clicked then and RPC call is sent to master client

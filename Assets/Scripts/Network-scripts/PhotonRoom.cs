@@ -10,7 +10,9 @@ using UnityEngine.UI;
 public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
     public GameObject loadARSetupButton;
+    public GameSetup gameSetup;
     public Button startButton;
+    public Canvas gameCanvas;
 
     //Room info
     public static PhotonRoom room;
@@ -71,20 +73,22 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     }
 
     //When Scene is ready create local player
-    void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode) 
+    void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         currentScene = scene.buildIndex;
-        if (currentScene == MultiplayerSetting.multiplayerSetting.multiplayerScene) 
-        {
-            CreatePlayer();  
-        }
-        if(currentScene == MultiplayerSetting.multiplayerSetting.ARScene)
+        if (currentScene == MultiplayerSetting.multiplayerSetting.gameScene)
         {
             startButton = GameObject.Find("StartGame").GetComponent<Button>();
             startButton.onClick.AddListener(OnStartGameButtonClicked);
-        }
-    }
 
+            //gameCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            //Canvas.
+
+            CreatePlayer();
+        }
+       
+    }
+    
     //Creates player network controller but not player character
     private void CreatePlayer()
     {
@@ -102,6 +106,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         Debug.Log("Start game");
         StartGame();
+
     }
 
 
@@ -115,22 +120,30 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     //If Current player is Master, Load game scene
     void StartGame() 
     {
+        gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
+        
+
         if (!PhotonNetwork.IsMasterClient)
             return;
-        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.multiplayerScene);
+        //PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.multiplayerScene);
+        //Instead of loading new scene run GameSetup
+        //startButton.SetActive(false);
+        
+        //setActive UI
+
     }
 
     void LoadARSetup()
     {
         if (!PhotonNetwork.IsMasterClient)
             return;
-        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.ARScene);
+        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.gameScene);
     }
 
     //Temporary function, puts us in ARsetup scene
     public void LoadARSetupDebug()
     {
-        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.ARScene);
+        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.gameScene);
     }
 
 

@@ -56,8 +56,8 @@ public class PlayerInfo : MonoBehaviour
 
     private void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex == MultiplayerSetting.multiplayerSetting.ARScene)
-        {
+        //if(SceneManager.GetActiveScene().buildIndex == MultiplayerSetting.multiplayerSetting.ARScene)
+        //{
             //-----This might work, check with Jakob----
             // if (GameObject.Find("Simple-table") != null) {
             //     Debug.Log("Simple table exists!");
@@ -67,7 +67,7 @@ public class PlayerInfo : MonoBehaviour
             //     Debug.Log(positionOfTable.x);
             //     // Debug.Log(positionOfTable.y);
             // }
-        }
+        //}
               
     }
 }

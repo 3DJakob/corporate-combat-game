@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,4 +48,9 @@ public class GameSetup : MonoBehaviour
         adjustedScene.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
         adjustedScene.transform.localScale = PlayerInfo.PI.scaleOfTable;
     }
+
+    //internal void setActive(bool v)
+    //{
+    //    throw new NotImplementedException();
+    //}
 }

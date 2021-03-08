@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myAvatar: {fileID: 0}
   tankSpawnButton: {fileID: 0}
+  startButton: {fileID: 0}
   rightButton: {fileID: 0}
   leftButton: {fileID: 0}
   spawnPicker: 0
