@@ -9,6 +9,7 @@ public class GameSetup : MonoBehaviour
     public static GameSetup GS;
     public Transform[] spawnPoints;
     public PhotonPlayer player;
+    public GameObject adjustedScene;
 
     //Create GameSetup OnEnable (When switching to the game scene)
     private void OnEnable()
@@ -40,4 +41,10 @@ public class GameSetup : MonoBehaviour
         Application.Quit();
     }
 
+    private void Start()
+    {
+        adjustedScene.transform.position = PlayerInfo.PI.positionOfTable;
+        adjustedScene.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
+        adjustedScene.transform.localScale = PlayerInfo.PI.scaleOfTable;
+    }
 }
