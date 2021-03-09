@@ -12,7 +12,8 @@ public class GameSetup : MonoBehaviour
     public static GameSetup GS;
     public Transform[] spawnPoints;
     public PhotonPlayer player;
-    public GameObject adjustedScene;
+    public GameObject gameMap;
+    public GameObject instanceOfMap;
     public ARSessionOrigin ARSO;
 
     //Create GameSetup OnEnable (When switching to the game scene)
@@ -47,6 +48,7 @@ public class GameSetup : MonoBehaviour
 
     private void Start()
     {
+        instanceOfMap = Instantiate(gameMap, PlayerInfo.PI.T.position, PlayerInfo.PI.T.rotation);
         //adjustedScene.transform.position = PlayerInfo.PI.positionOfTable;
         //adjustedScene.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
         //adjustedScene.transform.localScale = PlayerInfo.PI.scaleOfTable;
@@ -55,7 +57,17 @@ public class GameSetup : MonoBehaviour
         //adjustedScene.transform.localRotation = PlayerInfo.PI.T.rotation;
         //adjustedScene.transform.localPosition = PlayerInfo.PI.T.localScale;
 
-        ARSO.MakeContentAppearAt(adjustedScene.transform, PlayerInfo.PI.T.position, PlayerInfo.PI.T.rotation);
+        //ARSO.MakeContentAppearAt(adjustedScene.transform, PlayerInfo.PI.T.position, PlayerInfo.PI.T.rotation);
+    }
+
+    private void Update()
+    {
+        if (PlayerInfo.PI.T != null && instanceOfMap != null) 
+        {
+            instanceOfMap.transform.position = PlayerInfo.PI.positionOfTable;
+            instanceOfMap.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
+            instanceOfMap.transform.localScale = PlayerInfo.PI.scaleOfTable;
+        }
     }
 
     //internal void setActive(bool v)
