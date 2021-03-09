@@ -9,11 +9,6 @@ public class PlayerInfo : MonoBehaviour
     public int mySelectedTeam;
 
     public Transform T;
-
-    public Vector3 positionOfTable;
-    public Vector3 rotationOfTable;
-    public Vector3 scaleOfTable;
-
     public int[] teams;
 
     private void OnEnable()

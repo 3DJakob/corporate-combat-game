@@ -13,6 +13,7 @@ public class GameSetup : MonoBehaviour
     public Transform[] spawnPoints;
     public PhotonPlayer player;
     public GameObject gameMap;
+   
     public GameObject instanceOfMap;
     public ARSessionOrigin ARSO;
 
@@ -64,12 +65,17 @@ public class GameSetup : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInfo.PI.T != null && instanceOfMap != null) 
+        if (PlayerInfo.PI.T != null && instanceOfMap != null && UIElements.UI.startButton.IsActive()) 
         {
+
+            float yOffset = 2 * PlayerInfo.PI.T.localScale.y;
+            float scale = PlayerInfo.PI.T.localScale.x;
+
             instanceOfMap.SetActive(true);
-            instanceOfMap.transform.position = PlayerInfo.PI.T.position;
+            instanceOfMap.transform.position = new Vector3(PlayerInfo.PI.T.position.x, PlayerInfo.PI.T.position.y + yOffset, PlayerInfo.PI.T.position.z);
             instanceOfMap.transform.eulerAngles = PlayerInfo.PI.T.eulerAngles;
-            instanceOfMap.transform.localScale = PlayerInfo.PI.T.localScale;
+
+            instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
         }
     }
 
