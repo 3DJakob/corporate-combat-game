@@ -10,10 +10,10 @@ public class PhotonPlayer : MonoBehaviour
     private PhotonView PV;
     public GameObject myAvatar;
 
-    public Button tankSpawnButton;
-    public Button startButton;
-    public Button rightButton;
-    public Button leftButton;
+    //public Button tankSpawnButton;
+    //public Button startButton;
+    //public Button rightButton;
+    //public Button leftButton;
 
     public int spawnPicker;
 
@@ -35,8 +35,8 @@ public class PhotonPlayer : MonoBehaviour
             Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
             Debug.Log("Player created");
 
-            startButton = GameObject.Find("StartGame").GetComponent<Button>();
-            startButton.onClick.AddListener(OnStartGameButtonClicked);
+            //startButton = GameObject.Find("StartGame").GetComponent<Button>();
+            UIElements.UI.startButton.onClick.AddListener(OnStartGameButtonClicked);
 
         }
     }
@@ -63,12 +63,12 @@ public class PhotonPlayer : MonoBehaviour
     {
         if (PV.IsMine)
         {
-            tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
-            tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
-            rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
-            rightButton.onClick.AddListener(OnRightButtonClicked);
-            leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
-            leftButton.onClick.AddListener(OnLeftButtonClicked);
+            //tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
+            UIElements.UI.tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
+            //rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
+            UIElements.UI.rightButton.onClick.AddListener(OnRightButtonClicked);
+            //leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
+            UIElements.UI.leftButton.onClick.AddListener(OnLeftButtonClicked);
         }
     }
 

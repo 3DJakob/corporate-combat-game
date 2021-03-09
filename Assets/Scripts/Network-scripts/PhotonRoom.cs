@@ -11,7 +11,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
     public GameObject loadARSetupButton;
     public GameSetup gameSetup;
-    public Button startButton;
+    //public Button startButton;
     public Canvas gameCanvas;
 
     //Room info
@@ -78,8 +78,8 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         currentScene = scene.buildIndex;
         if (currentScene == MultiplayerSetting.multiplayerSetting.gameScene)
         {
-            startButton = GameObject.Find("StartGame").GetComponent<Button>();
-            startButton.onClick.AddListener(OnStartGameButtonClicked);
+            //startButton = GameObject.Find("StartGame").GetComponent<Button>();
+            UIElements.UI.startButton.onClick.AddListener(OnStartGameButtonClicked);
 
             //gameCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             //Canvas.
@@ -109,7 +109,6 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     }
 
-
     public void OnQuitButtonClicked()
     {
         Debug.Log("Quits game");
@@ -120,7 +119,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     //If Current player is Master, Load game scene
     void StartGame() 
     {
-        gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
+        //gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
         
 
         if (!PhotonNetwork.IsMasterClient)

@@ -24,7 +24,7 @@ public class GameSetup : MonoBehaviour
         }
     }
     
-    //If a player is disconnected load menu-scene
+    //If a player is disconnected load menu-scene (could be in UIElements)
     public void DisconnectPlayer()
     {
         StartCoroutine(DisconnectAndLoad());
