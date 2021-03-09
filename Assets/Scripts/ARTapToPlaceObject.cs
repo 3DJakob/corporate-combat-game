@@ -11,7 +11,9 @@ public class ARTapToPlaceObject : MonoBehaviour
     public GameObject gameObjectToInstantiate;
 
     public GameObject spawnedObject;
-    public bool enabled;
+    public bool running;
+
+    
 
     private ARRaycastManager _arRaycastManager;
     private Vector2 touchPosition;
@@ -82,8 +84,10 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        if (!UIElements.UI.startButton.IsActive())
+            running = false;
 
-        if(enabled){
+            if (running){
             if (!TryGetTouchPosition(out Vector2 touchPosition)) {
                 isPinching = false;
                 if (spawnedObject != null) {

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 
 public class UIElements : MonoBehaviour
 {
@@ -64,7 +65,15 @@ public class UIElements : MonoBehaviour
         tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
         rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
         leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
-        
+
+        var planeManager = GameObject.Find("AR Session Origin").GetComponent<ARPlaneManager>();
+        Debug.Log(planeManager);
+        foreach (var plane in planeManager.trackables)
+        {
+            plane.gameObject.SetActive(false);
+        }
+
+
     }
 }
 
