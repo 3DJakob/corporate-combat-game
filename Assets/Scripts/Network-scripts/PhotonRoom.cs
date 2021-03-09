@@ -122,8 +122,8 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         //gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
         
 
-        if (!PhotonNetwork.IsMasterClient)
-            return;
+        //if (!PhotonNetwork.IsMasterClient)
+        //    return;
         //PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.multiplayerScene);
         //Instead of loading new scene run GameSetup
         //startButton.SetActive(false);

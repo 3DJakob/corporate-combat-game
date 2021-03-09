@@ -46,12 +46,9 @@ public class UIElements : MonoBehaviour
 
     public void OnStartGameButtonClicked()
     {
+        if(PhotonNetwork.IsMasterClient)
+            PV.RPC("RPC_EnableUI", RpcTarget.All);
 
-        PV.RPC("RPC_EnableUI", RpcTarget.All);
-
-        tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
-        rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
-        leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
     }
 
     
@@ -63,7 +60,11 @@ public class UIElements : MonoBehaviour
         Debug.Log("Enabling UI");
         canvasGame.enabled = true;
         canvasAR.enabled = false;
-        //Debug.Log(canvasGame.enabled); 
+
+        tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
+        rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
+        leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
+        
     }
 }
 
