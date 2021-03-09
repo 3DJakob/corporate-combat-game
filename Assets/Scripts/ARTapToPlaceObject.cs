@@ -11,6 +11,8 @@ public class ARTapToPlaceObject : MonoBehaviour
     public GameObject gameObjectToInstantiate;
 
     public GameObject spawnedObject;
+    public bool enabled;
+
     private ARRaycastManager _arRaycastManager;
     private Vector2 touchPosition;
     private float initialScale = 1.0f;
@@ -80,50 +82,52 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (!TryGetTouchPosition(out Vector2 touchPosition)) {
-            isPinching = false;
-            if (spawnedObject != null) {
-                initialScale = spawnedObject.transform.localScale.x;
-                initalAngle = spawnedObject.transform.eulerAngles.y;
-            }
-            newPinchGrip = true;
-            return;
-        }
 
-        if (Input.touchCount > 1) {
-            // SCALE OBJECT
-            if (spawnedObject != null) {
-                pinchZoom();
-                isPinching = true;
-            }
-        } else {
-            // MOVE OBJECT
-
-            // Prevent moving if user is releasing pinch grip
-            if (isPinching) {
+        if(enabled){
+            if (!TryGetTouchPosition(out Vector2 touchPosition)) {
+                isPinching = false;
                 if (spawnedObject != null) {
                     initialScale = spawnedObject.transform.localScale.x;
                     initalAngle = spawnedObject.transform.eulerAngles.y;
-                    newPinchGrip = true;
                 }
+                newPinchGrip = true;
                 return;
             }
 
-            // TrackableType.PlaneWithinPolygon = the type we're looking for
-            if (_arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon)) {
-                var hitPose = hits[0].pose;
+            if (Input.touchCount > 1) {
+                // SCALE OBJECT
+                if (spawnedObject != null) {
+                    pinchZoom();
+                    isPinching = true;
+                }
+            } else {
+                // MOVE OBJECT
 
-                if (spawnedObject == null) {
-                    spawnedObject = Instantiate(gameObjectToInstantiate, hitPose.position, hitPose.rotation);
-                } else {
-                    spawnedObject.transform.position = hitPose.position;
+                // Prevent moving if user is releasing pinch grip
+                if (isPinching) {
+                    if (spawnedObject != null) {
+                        initialScale = spawnedObject.transform.localScale.x;
+                        initalAngle = spawnedObject.transform.eulerAngles.y;
+                        newPinchGrip = true;
+                    }
+                    return;
+                }
+
+                // TrackableType.PlaneWithinPolygon = the type we're looking for
+                if (_arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon)) {
+                    var hitPose = hits[0].pose;
+
+                    if (spawnedObject == null) {
+                        spawnedObject = Instantiate(gameObjectToInstantiate, hitPose.position, hitPose.rotation);
+                    } else {
+                        spawnedObject.transform.position = hitPose.position;
+                    }
                 }
             }
-        }
 
-        if (spawnedObject != null) {
-            PlayerInfo.PI.updateOrigin(spawnedObject.transform);
+            if (spawnedObject != null) {
+                PlayerInfo.PI.updateOrigin(spawnedObject.transform);
+            }
         }
-
     }
 }

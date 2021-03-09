@@ -67,14 +67,13 @@ public class GameSetup : MonoBehaviour
     {
         if (PlayerInfo.PI.T != null && instanceOfMap != null && UIElements.UI.startButton.IsActive()) 
         {
-
+            //Calculate offset and Scale for gameMap
             float yOffset = 2.11f * PlayerInfo.PI.T.localScale.y;
             float scale = PlayerInfo.PI.T.localScale.x;
 
             instanceOfMap.SetActive(true);
             instanceOfMap.transform.position = new Vector3(PlayerInfo.PI.T.position.x, PlayerInfo.PI.T.position.y + yOffset, PlayerInfo.PI.T.position.z);
             instanceOfMap.transform.eulerAngles = PlayerInfo.PI.T.eulerAngles;
-
             instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
         }
     }
