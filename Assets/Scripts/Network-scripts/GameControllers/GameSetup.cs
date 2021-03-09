@@ -48,7 +48,9 @@ public class GameSetup : MonoBehaviour
 
     private void Start()
     {
-        instanceOfMap = Instantiate(gameMap, PlayerInfo.PI.T.position, PlayerInfo.PI.T.rotation);
+        instanceOfMap = Instantiate(gameMap);
+        instanceOfMap.SetActive(false);
+        Debug.Log("Game map is" + instanceOfMap != null);
         //adjustedScene.transform.position = PlayerInfo.PI.positionOfTable;
         //adjustedScene.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
         //adjustedScene.transform.localScale = PlayerInfo.PI.scaleOfTable;
@@ -64,9 +66,10 @@ public class GameSetup : MonoBehaviour
     {
         if (PlayerInfo.PI.T != null && instanceOfMap != null) 
         {
-            instanceOfMap.transform.position = PlayerInfo.PI.positionOfTable;
-            instanceOfMap.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
-            instanceOfMap.transform.localScale = PlayerInfo.PI.scaleOfTable;
+            instanceOfMap.SetActive(true);
+            instanceOfMap.transform.position = PlayerInfo.PI.T.position;
+            instanceOfMap.transform.eulerAngles = PlayerInfo.PI.T.eulerAngles;
+            instanceOfMap.transform.localScale = PlayerInfo.PI.T.localScale;
         }
     }
 
