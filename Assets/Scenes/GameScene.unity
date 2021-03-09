@@ -237,7 +237,8 @@ MonoBehaviour:
   tankSpawnButton: {fileID: 1745545005}
   rightButton: {fileID: 445496017}
   leftButton: {fileID: 1933480566}
-  canvas: {fileID: 415667268}
+  canvasGame: {fileID: 415667268}
+  canvasAR: {fileID: 50530292}
 --- !u!4 &28713723
 Transform:
   m_ObjectHideFlags: 0
