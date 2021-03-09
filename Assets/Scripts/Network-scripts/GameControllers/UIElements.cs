@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.UI;
 public class UIElements : MonoBehaviour
 {
     public static UIElements UI;
+    private PhotonView PV;
 
     public Button startButton;
     public Button readyButton;
@@ -14,7 +16,8 @@ public class UIElements : MonoBehaviour
     public Button rightButton;
     public Button leftButton;
 
-    public GameObject canvas;
+    public Canvas canvasGame;
+    public Canvas canvasAR;
 
     private void Awake()
     {
@@ -30,21 +33,37 @@ public class UIElements : MonoBehaviour
             }
         }
         DontDestroyOnLoad(this.gameObject);
+        canvasGame.enabled = false;
     }
 
     private void Start()
     {
+        PV = GetComponent<PhotonView>();
+        //Debug.Log(PV.IsMine);
         startButton = GameObject.Find("StartGame").GetComponent<Button>();
         
     }
 
     public void OnStartGameButtonClicked()
     {
+
+        PV.RPC("RPC_EnableUI", RpcTarget.All);
+
         tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
         rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
         leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
+    }
 
-        //canvas.
+    
+    
+
+    [PunRPC]
+    void RPC_EnableUI()
+    {
+        Debug.Log("Enabling UI");
+        canvasGame.enabled = true;
+        canvasAR.enabled = false;
+        //Debug.Log(canvasGame.enabled); 
     }
 }
 

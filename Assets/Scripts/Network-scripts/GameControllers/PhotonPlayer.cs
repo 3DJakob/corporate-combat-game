@@ -63,11 +63,9 @@ public class PhotonPlayer : MonoBehaviour
     {
         if (PV.IsMine)
         {
-            //tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
+            
             UIElements.UI.tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
-            //rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
             UIElements.UI.rightButton.onClick.AddListener(OnRightButtonClicked);
-            //leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
             UIElements.UI.leftButton.onClick.AddListener(OnLeftButtonClicked);
         }
     }
