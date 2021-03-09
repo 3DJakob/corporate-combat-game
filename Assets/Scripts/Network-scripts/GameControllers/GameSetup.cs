@@ -68,7 +68,7 @@ public class GameSetup : MonoBehaviour
         if (PlayerInfo.PI.T != null && instanceOfMap != null && UIElements.UI.startButton.IsActive()) 
         {
 
-            float yOffset = 2 * PlayerInfo.PI.T.localScale.y;
+            float yOffset = 2.11f * PlayerInfo.PI.T.localScale.y;
             float scale = PlayerInfo.PI.T.localScale.x;
 
             instanceOfMap.SetActive(true);
