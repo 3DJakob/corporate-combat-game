@@ -17,7 +17,7 @@ public class ARTapToPlaceObject : MonoBehaviour
     public GameObject spawnedTableLeg3;
     public GameObject spawnedTableLeg4;
 
-    private bool running = true;
+    public bool running;
 
     private ARRaycastManager _arRaycastManager;
     private Vector2 touchPosition;
@@ -124,7 +124,6 @@ public class ARTapToPlaceObject : MonoBehaviour
             }
 
             if (Input.touchCount > 1) {
-                Debug.Log("MANY FINGERS!!!");
                 // SCALE OBJECT
                 if (parentObject != null) {
                     pinchZoom();
@@ -140,18 +139,14 @@ public class ARTapToPlaceObject : MonoBehaviour
                         initalAngle = parentObject.transform.eulerAngles.y;
                         newPinchGrip = true;
                     }
-                    Debug.Log("returning!");
                     return;
                 }
 
-                Debug.Log("checking raycaster...");
                 // TrackableType.PlaneWithinPolygon = the type we're looking for
                 if (_arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon)) {
-                    Debug.Log("SUCESSSSS!");
                     var hitPose = hits[0].pose;
 
                     if (parentObject == null) {
-                        Debug.Log("CREATING TABLE");
                         parentObject = Instantiate(new GameObject(), hitPose.position, hitPose.rotation);
 
                         spawnedTableLeg1 = Instantiate(tableLeg, parentObject.transform, false);
