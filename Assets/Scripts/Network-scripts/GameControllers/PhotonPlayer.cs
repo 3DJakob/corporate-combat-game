@@ -50,8 +50,11 @@ public class PhotonPlayer : MonoBehaviour
     //When MoveRight/MoveLeft is clicked, move "myAvatar" to the right/left
     public void OnRightButtonClicked()
     {
-        Debug.Log("Moves right");
-        myAvatar.transform.position += new Vector3(0.2f, 0, 0);  
+        if (PV.IsMine)
+        {
+            Debug.Log("Moves right");
+            myAvatar.transform.position += new Vector3(0.2f, 0, 0);
+        }
     }
     public void OnLeftButtonClicked()
     {
@@ -84,8 +87,12 @@ public class PhotonPlayer : MonoBehaviour
     [PunRPC]
     void RPC_ActivateGameUI()
     {
-        UIElements.UI.tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
-        UIElements.UI.rightButton.onClick.AddListener(OnRightButtonClicked);
-        UIElements.UI.leftButton.onClick.AddListener(OnLeftButtonClicked);
+        if (PV.IsMine)
+        {
+            UIElements.UI.tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
+            UIElements.UI.rightButton.onClick.AddListener(OnRightButtonClicked);
+            UIElements.UI.leftButton.onClick.AddListener(OnLeftButtonClicked);
+        }
+        
     }
 }

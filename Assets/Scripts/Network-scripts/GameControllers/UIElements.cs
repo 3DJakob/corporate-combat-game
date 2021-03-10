@@ -26,7 +26,15 @@ public class UIElements : MonoBehaviour
         {
             UIElements.UI = this;
         }
-        
+        else
+        {
+            if (UIElements.UI != this)
+            {
+                Destroy(UIElements.UI.gameObject);
+                UIElements.UI = this;
+            }
+        }
+
         //DontDestroyOnLoad(this.gameObject);
         canvasGame = GameObject.Find("InGameUI").GetComponent<Canvas>();
         canvasAR = GameObject.Find("ARSetup").GetComponent<Canvas>();
