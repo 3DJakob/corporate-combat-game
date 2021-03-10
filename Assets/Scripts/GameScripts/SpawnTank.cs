@@ -6,8 +6,8 @@ public class SpawnTank : MonoBehaviour
 {
     Ray myRay;      // initializing the ray
     RaycastHit hit; // initializing the raycasthit
-    Vector3 spawnPoint = new Vector3(0f, 14f, 144f);
-    Vector3 spawnPoint_p2 = new Vector3(0f, 14f, -144f);
+    Vector3 spawnPoint = new Vector3(-22f, -12f, 42f);
+    Vector3 spawnPoint_p2 = new Vector3(-22f, -11f, -231f);
     void Update()
     {
         myRay = Camera.main.ScreenPointToRay(Input.mousePosition);

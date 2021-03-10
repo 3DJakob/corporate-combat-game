@@ -36,6 +36,7 @@ public class NavTank : MonoBehaviour
     {
         if (collider.gameObject.tag == "Tank")
         {
+            
             stopMove();
                        
             //DestroyGameObject();
@@ -49,10 +50,9 @@ public class NavTank : MonoBehaviour
     }
     void stopMove()
     {
-        //meshAgent.speed = 0;
+        meshAgent.speed = 0;
 
-        rb.constraints = RigidbodyConstraints.FreezePosition;
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     void DestroyGameObject()
@@ -65,6 +65,7 @@ public class NavTank : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezePosition;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         
-        //meshAgent.speed = 50f;
+        meshAgent.speed = 50f;
     }
+
 }
