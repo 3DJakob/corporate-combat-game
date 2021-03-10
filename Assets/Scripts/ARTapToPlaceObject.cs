@@ -111,9 +111,6 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (true)
-            running = false;
-
         if(running){
             if (!TryGetTouchPosition(out Vector2 touchPosition)) {
                 isPinching = false;
