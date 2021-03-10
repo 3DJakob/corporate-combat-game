@@ -81,7 +81,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         if (currentScene == MultiplayerSetting.multiplayerSetting.gameScene)
         {
             
-            UIElements.UI.startButton.onClick.AddListener(OnStartGameButtonClicked);
+            //UIElements.UI.startButton.onClick.AddListener(OnStartGameButtonClicked);
             menuCanvas.enabled = false;
 
             Debug.Log("GameScene loaded");

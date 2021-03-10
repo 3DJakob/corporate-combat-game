@@ -84,7 +84,7 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (!UIElements.UI.startButton.IsActive())
+        if (true)
             running = false;
 
             if (running){

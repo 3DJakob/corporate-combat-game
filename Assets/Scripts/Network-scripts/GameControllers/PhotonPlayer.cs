@@ -4,16 +4,21 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 
 public class PhotonPlayer : MonoBehaviour
 {
     private PhotonView PV;
     public GameObject myAvatar;
+    //private UIElements myUI;
 
-    //public Button tankSpawnButton;
-    //public Button startButton;
-    //public Button rightButton;
-    //public Button leftButton;
+    public Button tankSpawnButton;
+    public Button startButton;
+    public Button rightButton;
+    public Button leftButton;
+
+    public Canvas canvasGame;
+    public Canvas canvasAR;
 
     public int spawnPicker;
 
@@ -30,14 +35,20 @@ public class PhotonPlayer : MonoBehaviour
         //If PV is of the current instance, instantiate a player avatar and add onClick-events to the UI-buttons
         if (PV.IsMine)
         {
+            //myUI = new UIElements();
             myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
                 GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
             Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
             Debug.Log("Player created");
 
-            //startButton = GameObject.Find("StartGame").GetComponent<Button>();
-            UIElements.UI.startButton.onClick.AddListener(OnStartGameButtonClicked);
+            canvasGame = GameObject.Find("InGameUI").GetComponent<Canvas>();
+            canvasAR = GameObject.Find("ARSetup").GetComponent<Canvas>();
+            startButton = GameObject.Find("StartGame").GetComponent<Button>();
+   
+            startButton.onClick.AddListener(OnStartGameButtonClicked);
 
+            canvasGame.enabled = false;
+            canvasAR.enabled = true;
         }
     }
 
@@ -50,11 +61,10 @@ public class PhotonPlayer : MonoBehaviour
     //When MoveRight/MoveLeft is clicked, move "myAvatar" to the right/left
     public void OnRightButtonClicked()
     {
-        if (PV.IsMine)
-        {
-            Debug.Log("Moves right");
-            myAvatar.transform.position += new Vector3(0.2f, 0, 0);
-        }
+        
+        Debug.Log("Moves right");
+        myAvatar.transform.position += new Vector3(0.2f, 0, 0);
+        
     }
     public void OnLeftButtonClicked()
     {
@@ -64,9 +74,11 @@ public class PhotonPlayer : MonoBehaviour
 
     public void OnStartGameButtonClicked()
     {
-        if (PV.IsMine)
+
+        if (PhotonNetwork.IsMasterClient)
         {
-            PV.RPC("RPC_ActivateGameUI", RpcTarget.AllBuffered);
+            PV.RPC("RPC_EnableUI", RpcTarget.All);
+            //PV.RPC("RPC_ActivateGameUI", RpcTarget.All);
         }
     }
 
@@ -87,12 +99,34 @@ public class PhotonPlayer : MonoBehaviour
     [PunRPC]
     void RPC_ActivateGameUI()
     {
-        if (PV.IsMine)
-        {
-            UIElements.UI.tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
-            UIElements.UI.rightButton.onClick.AddListener(OnRightButtonClicked);
-            UIElements.UI.leftButton.onClick.AddListener(OnLeftButtonClicked);
-        }
+        Debug.Log("Activating UI");
         
+        
+        
+    }
+
+    [PunRPC]
+    void RPC_EnableUI()
+    {
+        Debug.Log("Enabling UI");
+        canvasGame.enabled = true;
+        canvasAR.enabled = false;
+
+        tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
+        rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
+        leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
+
+        tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
+        rightButton.onClick.AddListener(OnRightButtonClicked);
+        leftButton.onClick.AddListener(OnLeftButtonClicked);
+
+        var planeManager = GameObject.Find("AR Session Origin").GetComponent<ARPlaneManager>();
+        Debug.Log(planeManager);
+        foreach (var plane in planeManager.trackables)
+        {
+            plane.gameObject.SetActive(false);
+        }
+
+
     }
 }

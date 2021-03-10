@@ -7,7 +7,7 @@ using UnityEngine.XR.ARFoundation;
 
 public class UIElements : MonoBehaviour
 {
-    public static UIElements UI;
+    //public static UIElements UI;
     private PhotonView PV;
 
     public Button startButton;
@@ -22,22 +22,23 @@ public class UIElements : MonoBehaviour
 
     private void Awake()
     {
-        if (UIElements.UI == null)
-        {
-            UIElements.UI = this;
-        }
-        else
-        {
-            if (UIElements.UI != this)
-            {
-                Destroy(UIElements.UI.gameObject);
-                UIElements.UI = this;
-            }
-        }
+        //if (UIElements.UI == null)
+        //{
+        //    UIElements.UI = this;
+        //}
+        //else
+        //{
+        //    if (UIElements.UI != this)
+        //    {
+        //        Destroy(UIElements.UI.gameObject);
+        //        UIElements.UI = this;
+        //    }
+        //}
 
         //DontDestroyOnLoad(this.gameObject);
         canvasGame = GameObject.Find("InGameUI").GetComponent<Canvas>();
         canvasAR = GameObject.Find("ARSetup").GetComponent<Canvas>();
+        startButton = GameObject.Find("StartGame").GetComponent<Button>();
         canvasGame.enabled = false;
         canvasAR.enabled = true;
     }
@@ -46,7 +47,7 @@ public class UIElements : MonoBehaviour
     {
         PV = GetComponent<PhotonView>();
         //Debug.Log(PV.IsMine);
-        startButton = GameObject.Find("StartGame").GetComponent<Button>();
+        
         
     }
 
