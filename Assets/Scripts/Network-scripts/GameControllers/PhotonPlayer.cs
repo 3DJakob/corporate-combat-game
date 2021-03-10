@@ -63,10 +63,7 @@ public class PhotonPlayer : MonoBehaviour
     {
         if (PV.IsMine)
         {
-            
-            UIElements.UI.tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
-            UIElements.UI.rightButton.onClick.AddListener(OnRightButtonClicked);
-            UIElements.UI.leftButton.onClick.AddListener(OnLeftButtonClicked);
+            PV.RPC("RPC_ActivateGameUI", RpcTarget.AllBuffered);
         }
     }
 
@@ -82,5 +79,13 @@ public class PhotonPlayer : MonoBehaviour
     void RPC_SpawnTank() {
         PhotonNetwork.InstantiateRoomObject(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
                 new Vector3(0, 0, 5), new Quaternion(0, 0, 0, 0), 0);
+    }
+
+    [PunRPC]
+    void RPC_ActivateGameUI()
+    {
+        UIElements.UI.tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
+        UIElements.UI.rightButton.onClick.AddListener(OnRightButtonClicked);
+        UIElements.UI.leftButton.onClick.AddListener(OnLeftButtonClicked);
     }
 }
