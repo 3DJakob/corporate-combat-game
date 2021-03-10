@@ -27,7 +27,9 @@ public class UIElements : MonoBehaviour
             UIElements.UI = this;
         }
         
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
+        canvasGame = GameObject.Find("InGameUI").GetComponent<Canvas>();
+        canvasAR = GameObject.Find("ARSetup").GetComponent<Canvas>();
         canvasGame.enabled = false;
         canvasAR.enabled = true;
     }
