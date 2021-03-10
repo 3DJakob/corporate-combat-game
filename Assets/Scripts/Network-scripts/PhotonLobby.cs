@@ -71,6 +71,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         teamPicker.SetActive(false);
         battleButton.SetActive(true);
         PhotonNetwork.LeaveRoom();
+        //PhotonNetwork.Disconnect(); //Vet ej om denna behövs
     }
 
     // Update is called once per frame

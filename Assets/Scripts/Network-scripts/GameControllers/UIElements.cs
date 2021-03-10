@@ -26,15 +26,10 @@ public class UIElements : MonoBehaviour
         {
             UIElements.UI = this;
         }
-        else
-        {
-            if (UIElements.UI != this)
-            {
-                Destroy(this.gameObject);
-            }
-        }
+        
         DontDestroyOnLoad(this.gameObject);
         canvasGame.enabled = false;
+        canvasAR.enabled = true;
     }
 
     private void Start()
