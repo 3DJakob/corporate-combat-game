@@ -1,4 +1,6 @@
+using ExitGames.Client.Photon;
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +8,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 
-public class PhotonPlayer : MonoBehaviour
+
+public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 {
     private PhotonView PV;
     public GameObject myAvatar;
@@ -44,20 +47,16 @@ public class PhotonPlayer : MonoBehaviour
             canvasGame = GameObject.Find("InGameUI").GetComponent<Canvas>();
             canvasAR = GameObject.Find("ARSetup").GetComponent<Canvas>();
             startButton = GameObject.Find("StartGame").GetComponent<Button>();
-   
             startButton.onClick.AddListener(OnStartGameButtonClicked);
-
             canvasGame.enabled = false;
             canvasAR.enabled = true;
         }
     }
-
     // Update is called once per frame
     void Update()
     {
        
     }
-
     //When MoveRight/MoveLeft is clicked, move "myAvatar" to the right/left
     public void OnRightButtonClicked()
     {
@@ -74,14 +73,55 @@ public class PhotonPlayer : MonoBehaviour
 
     public void OnStartGameButtonClicked()
     {
-
         if (PhotonNetwork.IsMasterClient)
         {
-            PV.RPC("RPC_EnableUI", RpcTarget.All);
+            byte eventId = 1;
+
+            bool startGame = true;
+            RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+            PhotonNetwork.RaiseEvent(eventId, startGame, raiseEventOptions, SendOptions.SendReliable);
+
+            //PV.RPC("RPC_EnableUI", RpcTarget.All);
             //PV.RPC("RPC_ActivateGameUI", RpcTarget.All);
         }
     }
+    private void OnEnable()
+    {
+        PhotonNetwork.AddCallbackTarget(this);
+    }
 
+    private void OnDisable()
+    {
+        PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
+    public void OnEvent(EventData photonEvent)
+    {
+        if (PV != null && PV.IsMine) { 
+            byte eventCode = photonEvent.Code;
+            if (eventCode == 1)
+            {
+                Debug.Log("Enabling UI");
+                canvasGame.enabled = true;
+                canvasAR.enabled = false;
+
+                tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
+                rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
+                leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
+
+                tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
+                rightButton.onClick.AddListener(OnRightButtonClicked);
+                leftButton.onClick.AddListener(OnLeftButtonClicked);
+
+                var planeManager = GameObject.Find("AR Session Origin").GetComponent<ARPlaneManager>();
+                Debug.Log(planeManager);
+                foreach (var plane in planeManager.trackables)
+                {
+                    plane.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
     //If tankSpawnButton is clicked then and RPC call is sent to master client
     //who instantitates an object at a certain position
     public void OnTankSpawnButtonClicked()
@@ -100,9 +140,6 @@ public class PhotonPlayer : MonoBehaviour
     void RPC_ActivateGameUI()
     {
         Debug.Log("Activating UI");
-        
-        
-        
     }
 
     [PunRPC]
