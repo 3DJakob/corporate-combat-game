@@ -10,9 +10,10 @@ public class PhotonPlayer : MonoBehaviour
     private PhotonView PV;
     public GameObject myAvatar;
 
-    public Button tankSpawnButton;
-    public Button rightButton;
-    public Button leftButton;
+    //public Button tankSpawnButton;
+    //public Button startButton;
+    //public Button rightButton;
+    //public Button leftButton;
 
     public int spawnPicker;
 
@@ -32,13 +33,11 @@ public class PhotonPlayer : MonoBehaviour
             myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
                 GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
             Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
+            Debug.Log("Player created");
 
-            tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
-            tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
-            rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
-            rightButton.onClick.AddListener(OnRightButtonClicked);
-            leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
-            leftButton.onClick.AddListener(OnLeftButtonClicked);
+            //startButton = GameObject.Find("StartGame").GetComponent<Button>();
+            UIElements.UI.startButton.onClick.AddListener(OnStartGameButtonClicked);
+
         }
     }
 
@@ -58,6 +57,17 @@ public class PhotonPlayer : MonoBehaviour
     {
         Debug.Log("Moves left");
         myAvatar.transform.position += new Vector3(-0.2f, 0, 0);
+    }
+
+    public void OnStartGameButtonClicked()
+    {
+        if (PV.IsMine)
+        {
+            
+            UIElements.UI.tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
+            UIElements.UI.rightButton.onClick.AddListener(OnRightButtonClicked);
+            UIElements.UI.leftButton.onClick.AddListener(OnLeftButtonClicked);
+        }
     }
 
     //If tankSpawnButton is clicked then and RPC call is sent to master client

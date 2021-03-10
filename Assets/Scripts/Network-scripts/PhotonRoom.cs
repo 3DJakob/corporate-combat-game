@@ -9,8 +9,10 @@ using UnityEngine.UI;
 
 public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
-    public GameObject loadARSetupButton;
-    public Button startButton;
+    public Button loadARSetupButton;
+    public GameSetup gameSetup;
+    public Canvas gameCanvas;
+    public Canvas menuCanvas;
 
     //Room info
     public static PhotonRoom room;
@@ -19,7 +21,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     //public bool isGameLoaded;
     public int currentScene;
-    //public int multiplayerScene = 1;
+    
 
     //Player info
     Player[] photonPlayers;
@@ -41,6 +43,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
             }
         }
         DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(menuCanvas);
     }
 
     public override void OnEnable()
@@ -48,7 +51,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         base.OnEnable();
         PhotonNetwork.AddCallbackTarget(this);
         SceneManager.sceneLoaded += OnSceneFinishedLoading;
-
+        
     }
 
     public override void OnDisable()
@@ -65,26 +68,35 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         Debug.Log("We are now in a room");
 
         photonPlayers = PhotonNetwork.PlayerList;
-
+        playersInRoom++;
         
         //StartGame()
     }
 
     //When Scene is ready create local player
-    void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode) 
+    void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         currentScene = scene.buildIndex;
-        if (currentScene == MultiplayerSetting.multiplayerSetting.multiplayerScene) 
-        {
-            CreatePlayer();  
-        }
-        if(currentScene == MultiplayerSetting.multiplayerSetting.ARScene)
-        {
-            startButton = GameObject.Find("StartGame").GetComponent<Button>();
-            startButton.onClick.AddListener(OnStartGameButtonClicked);
-        }
-    }
 
+        if (currentScene == MultiplayerSetting.multiplayerSetting.gameScene)
+        {
+            
+            UIElements.UI.startButton.onClick.AddListener(OnStartGameButtonClicked);
+            menuCanvas.enabled = false;
+
+            Debug.Log("GameScene loaded");
+
+            CreatePlayer();
+        }
+        else if (currentScene == MultiplayerSetting.multiplayerSetting.gameScene)
+        {
+            menuCanvas.enabled = true;
+            Debug.Log("MenuScene loaded");
+        }
+
+
+    }
+    
     //Creates player network controller but not player character
     private void CreatePlayer()
     {
@@ -95,15 +107,18 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public void OnARSetupButtonClicked()
     {
         Debug.Log("AR setup");
+        loadARSetupButton.gameObject.SetActive(false);
+
         LoadARSetup();
+        PhotonNetwork.CurrentRoom.IsVisible = false;
     }
 
     public void OnStartGameButtonClicked()
     {
         Debug.Log("Start game");
         StartGame();
-    }
 
+    }
 
     public void OnQuitButtonClicked()
     {
@@ -115,22 +130,22 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     //If Current player is Master, Load game scene
     void StartGame() 
     {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.multiplayerScene);
+        
+        //setActive UI
+
     }
 
     void LoadARSetup()
     {
         if (!PhotonNetwork.IsMasterClient)
             return;
-        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.ARScene);
+        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.gameScene);
     }
 
     //Temporary function, puts us in ARsetup scene
     public void LoadARSetupDebug()
     {
-        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.ARScene);
+        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.gameScene);
     }
 
 
@@ -138,10 +153,11 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
-        Debug.Log("Someone joined!");
+        Debug.Log(newPlayer.ActorNumber + " has joined the game");
+        playersInRoom++;
         if (PhotonNetwork.PlayerList.Length >= 2 && PhotonNetwork.IsMasterClient)
-        {
-            loadARSetupButton.SetActive(true);
+        {  
+            loadARSetupButton.gameObject.SetActive(true);
         }
     }
 
@@ -151,9 +167,9 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         base.OnPlayerLeftRoom(otherPlayer);
         if (PhotonNetwork.PlayerList.Length < 2 && PhotonNetwork.IsMasterClient && currentScene == 0)
         {
-            loadARSetupButton.SetActive(false);
+            //loadARSetupButton.gameObject.SetActive(false);
         }
-        Debug.Log(otherPlayer.NickName + " has left the game");
+        Debug.Log(otherPlayer.ActorNumber + " has left the game");
         playersInRoom--;
     }
 
@@ -161,11 +177,16 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     void Start()
     {
         PV = GetComponent<PhotonView>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //if(SceneManager.activeSceneChanged)
+        //if (SceneManager.GetActiveScene().buildIndex == MultiplayerSetting.multiplayerSetting.menuScene)
+        //    menuCanvas.enabled = true;
+        //else if (SceneManager.GetActiveScene().buildIndex == MultiplayerSetting.multiplayerSetting.gameScene)
+        //    menuCanvas.enabled = false;
     }
 }

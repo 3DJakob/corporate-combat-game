@@ -7,9 +7,8 @@ public class PlayerInfo : MonoBehaviour
 {
     public static PlayerInfo PI;
     public int mySelectedTeam;
-    public Vector3 positionOfTable;
-    public Quaternion rotationOfTable;
 
+    public Transform T;
     public int[] teams;
 
     private void OnEnable()
@@ -29,6 +28,19 @@ public class PlayerInfo : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    public void updateOrigin(Transform transform)
+    {
+        T = transform;
+
+        /*
+        positionOfTable = pos;
+        rotationOfTable = rot;
+        scaleOfTable = scale;
+        Debug.Log("X POS");
+        Debug.Log(pos.x);
+        */
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,13 +58,18 @@ public class PlayerInfo : MonoBehaviour
 
     private void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex == MultiplayerSetting.multiplayerSetting.ARScene)
-        {
+        //if(SceneManager.GetActiveScene().buildIndex == MultiplayerSetting.multiplayerSetting.ARScene)
+        //{
             //-----This might work, check with Jakob----
-            positionOfTable = GameObject.Find("spawnedObject").GetComponent<GameObject>().transform.position;
-            rotationOfTable = GameObject.Find("spawnedObject").GetComponent<GameObject>().transform.rotation;
-            //Debug.Log(positionOfTable);
-        }
+            // if (GameObject.Find("Simple-table") != null) {
+            //     Debug.Log("Simple table exists!");
+            //     positionOfTable = GameObject.Find("Simple-table").GetComponent<GameObject>().transform.position;
+            //     rotationOfTable = GameObject.Find("Simple-table").GetComponent<GameObject>().transform.rotation;
+            
+            //     Debug.Log(positionOfTable.x);
+            //     // Debug.Log(positionOfTable.y);
+            // }
+        //}
               
     }
 }

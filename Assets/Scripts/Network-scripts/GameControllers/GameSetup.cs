@@ -1,14 +1,21 @@
 using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 public class GameSetup : MonoBehaviour
 {
     public static GameSetup GS;
     public Transform[] spawnPoints;
     public PhotonPlayer player;
+    public GameObject gameMap;
+   
+    public GameObject instanceOfMap;
+    public ARSessionOrigin ARSO;
 
     //Create GameSetup OnEnable (When switching to the game scene)
     private void OnEnable()
@@ -19,7 +26,7 @@ public class GameSetup : MonoBehaviour
         }
     }
     
-    //If a player is disconnected load menu-scene
+    //If a player is disconnected load menu-scene (could be in UIElements)
     public void DisconnectPlayer()
     {
         StartCoroutine(DisconnectAndLoad());
@@ -40,4 +47,39 @@ public class GameSetup : MonoBehaviour
         Application.Quit();
     }
 
+    private void Start()
+    {
+        instanceOfMap = Instantiate(gameMap);
+        instanceOfMap.SetActive(false);
+        Debug.Log("Game map is" + instanceOfMap != null);
+        //adjustedScene.transform.position = PlayerInfo.PI.positionOfTable;
+        //adjustedScene.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
+        //adjustedScene.transform.localScale = PlayerInfo.PI.scaleOfTable;
+
+        //adjustedScene.transform.localPosition = PlayerInfo.PI.T.localPosition;
+        //adjustedScene.transform.localRotation = PlayerInfo.PI.T.rotation;
+        //adjustedScene.transform.localPosition = PlayerInfo.PI.T.localScale;
+
+        //ARSO.MakeContentAppearAt(adjustedScene.transform, PlayerInfo.PI.T.position, PlayerInfo.PI.T.rotation);
+    }
+
+    private void Update()
+    {
+        if (PlayerInfo.PI.T != null && instanceOfMap != null && UIElements.UI.startButton.IsActive()) 
+        {
+            //Calculate offset and Scale for gameMap
+            float yOffset = 2.11f * PlayerInfo.PI.T.localScale.y;
+            float scale = PlayerInfo.PI.T.localScale.x;
+
+            instanceOfMap.SetActive(true);
+            instanceOfMap.transform.position = new Vector3(PlayerInfo.PI.T.position.x, PlayerInfo.PI.T.position.y + yOffset, PlayerInfo.PI.T.position.z);
+            instanceOfMap.transform.eulerAngles = PlayerInfo.PI.T.eulerAngles;
+            instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
+        }
+    }
+
+    //internal void setActive(bool v)
+    //{
+    //    throw new NotImplementedException();
+    //}
 }

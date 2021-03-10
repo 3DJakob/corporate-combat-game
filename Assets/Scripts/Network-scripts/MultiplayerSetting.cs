@@ -10,8 +10,8 @@ public class MultiplayerSetting : MonoBehaviour
     public int maxPlayers;
 
     public int menuScene;
-    public int ARScene;
-    public int multiplayerScene;
+    public int gameScene;
+    //public int multiplayerScene;
 
     private void Awake()
     {
