@@ -494,9 +494,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4187bdecd5ebc49788ef3659f25df3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjectToInstantiate: {fileID: 919132149155446097, guid: e652f3b8516284451ab88a46259ed4be,
-    type: 3}
-  spawnedObject: {fileID: 0}
+  tableTop: {fileID: 919132149155446097, guid: 1d73d16a6b35449cc85a53d59dd860f8, type: 3}
+  tableLeg: {fileID: 919132149155446097, guid: b34624a3cfe324bf19d0bc227fd81874, type: 3}
+  spawnedTableTop: {fileID: 0}
+  spawnedTableLeg1: {fileID: 0}
+  spawnedTableLeg2: {fileID: 0}
+  spawnedTableLeg3: {fileID: 0}
+  spawnedTableLeg4: {fileID: 0}
   running: 1
 --- !u!114 &81357332
 MonoBehaviour:
