@@ -591,7 +591,7 @@ GameObject:
   - component: {fileID: 557127173}
   - component: {fileID: 557127172}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2239,8 +2239,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78df816b0f171dd489f118e733bf48bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadARSetupButton: {fileID: 823043323}
-  startButton: {fileID: 0}
+  loadARSetupButton: {fileID: 823043325}
+  gameSetup: {fileID: 0}
+  gameCanvas: {fileID: 0}
+  menuCanvas: {fileID: 557127174}
   readyToStart: 0
   currentScene: 0
   playersInRoom: 0
@@ -2587,8 +2589,7 @@ MonoBehaviour:
   delayStart: 0
   maxPlayers: 4
   menuScene: 0
-  ARScene: 1
-  multiplayerScene: 2
+  gameScene: 1
 --- !u!4 &2061699757
 Transform:
   m_ObjectHideFlags: 0
@@ -2633,6 +2634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySelectedTeam: 0
+  T: {fileID: 0}
   teams: 0000000001000000
 --- !u!4 &2090399287
 Transform:

@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,9 @@ public class GameSetup : MonoBehaviour
     public static GameSetup GS;
     public Transform[] spawnPoints;
     public PhotonPlayer player;
-    public GameObject adjustedScene;
-    public ARSessionOrigin ARSO;
+    public GameObject gameMap;
+  
+    public GameObject instanceOfMap;
 
     //Create GameSetup OnEnable (When switching to the game scene)
     private void OnEnable()
@@ -23,7 +25,7 @@ public class GameSetup : MonoBehaviour
         }
     }
     
-    //If a player is disconnected load menu-scene
+    //If a player is disconnected load menu-scene (could be in UIElements)
     public void DisconnectPlayer()
     {
         StartCoroutine(DisconnectAndLoad());
@@ -46,10 +48,26 @@ public class GameSetup : MonoBehaviour
 
     private void Start()
     {
-        //adjustedScene.transform.position = PlayerInfo.PI.positionOfTable;
-        //adjustedScene.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
-        //adjustedScene.transform.localScale = PlayerInfo.PI.scaleOfTable;
-
-        ARSO.MakeContentAppearAt(adjustedScene.transform, PlayerInfo.PI.positionOfTable);
+        instanceOfMap = Instantiate(gameMap);
+        instanceOfMap.SetActive(false);
+        Debug.Log("Game map is" + instanceOfMap != null);
     }
+
+    private void Update()
+    {
+        if (PlayerInfo.PI.T != null && instanceOfMap != null) 
+        {
+            //Calculate offset and Scale for gameMap
+            float scale = PlayerInfo.PI.T.localScale.x;
+            instanceOfMap.SetActive(true);
+            instanceOfMap.transform.position = new Vector3(PlayerInfo.PI.T.position.x, PlayerInfo.PI.T.position.y, PlayerInfo.PI.T.position.z);
+            instanceOfMap.transform.eulerAngles = PlayerInfo.PI.T.eulerAngles;
+            instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
+        }
+    }
+
+    //internal void setActive(bool v)
+    //{
+    //    throw new NotImplementedException();
+    //}
 }

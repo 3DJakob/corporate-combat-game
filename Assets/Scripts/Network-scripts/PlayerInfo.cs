@@ -7,10 +7,8 @@ public class PlayerInfo : MonoBehaviour
 {
     public static PlayerInfo PI;
     public int mySelectedTeam;
-    public Vector3 positionOfTable;
-    public Quaternion rotationOfTable;
-    public Vector3 scaleOfTable;
 
+    public Transform T;
     public int[] teams;
 
     private void OnEnable()
@@ -30,13 +28,9 @@ public class PlayerInfo : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void updateOrigin(Vector3 pos, Quaternion rot, Vector3 scale)
+    public void updateOrigin(Transform transform)
     {
-        positionOfTable = pos;
-        rotationOfTable = rot;
-        scaleOfTable = scale;
-        Debug.Log("X POS");
-        Debug.Log(pos.x);
+        T = transform;
     }
 
 
@@ -56,13 +50,6 @@ public class PlayerInfo : MonoBehaviour
 
     private void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex == MultiplayerSetting.multiplayerSetting.ARScene)
-        {
-            //-----This might work, check with Jakob----
-            positionOfTable = GameObject.Find("spawnedObject").GetComponent<GameObject>().transform.position;
-            rotationOfTable = GameObject.Find("spawnedObject").GetComponent<GameObject>().transform.rotation;
-            //Debug.Log(positionOfTable);
-        }
-              
+     
     }
 }
