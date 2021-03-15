@@ -40,12 +40,17 @@ public class PlayerInfo : MonoBehaviour
         if (PlayerPrefs.HasKey("MyTeam"))
         {
             mySelectedTeam = PlayerPrefs.GetInt("MyTeam");
+            
         }
         else 
         {
             mySelectedTeam = 0;
             PlayerPrefs.SetInt("MyTeam", mySelectedTeam);
         }
+
+        T = new GameObject().transform;
+        Debug.Log("Transform för banan vid pos.x: " + T.position.x);
+
     }
 
     private void Update()

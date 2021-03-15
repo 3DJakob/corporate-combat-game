@@ -55,7 +55,7 @@ public class GameSetup : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInfo.PI.T != null && instanceOfMap != null) 
+        if (PlayerInfo.PI.T != null && instanceOfMap != null)
         {
             //Calculate offset and Scale for gameMap
             float scale = PlayerInfo.PI.T.localScale.x;

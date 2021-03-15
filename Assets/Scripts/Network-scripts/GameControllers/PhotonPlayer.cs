@@ -113,6 +113,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 rightButton.onClick.AddListener(OnRightButtonClicked);
                 leftButton.onClick.AddListener(OnLeftButtonClicked);
 
+                GameSetup.GS.instanceOfMap.SetActive(true);
+
                 var planeManager = GameObject.Find("AR Session Origin").GetComponent<ARPlaneManager>();
                 Debug.Log(planeManager);
                 foreach (var plane in planeManager.trackables)
