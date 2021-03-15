@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1193,12 +1193,12 @@ GameObject:
   - component: {fileID: 625301053}
   - component: {fileID: 625301052}
   - component: {fileID: 625301051}
+  - component: {fileID: 625301057}
   - component: {fileID: 625301056}
   - component: {fileID: 625301049}
-  - component: {fileID: 625301055}
   - component: {fileID: 625301054}
   - component: {fileID: 625301050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tank
   m_TagString: Tank
   m_Icon: {fileID: 0}
@@ -1216,7 +1216,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &625301050
 MonoBehaviour:
@@ -1287,7 +1287,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625301048}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -21.95462, y: -12.4, z: 42.5}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
@@ -1310,19 +1310,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &625301055
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 625301048}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &625301056
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1345,6 +1332,27 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &625301057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625301048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6584047fc7d8a4a51aa5b6dd2b146d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 120
+  viewAngle: 35
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 128
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  visibleTargets: []
 --- !u!1 &637589373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,12 +1545,12 @@ GameObject:
   - component: {fileID: 786310625}
   - component: {fileID: 786310624}
   - component: {fileID: 786310623}
+  - component: {fileID: 786310629}
   - component: {fileID: 786310628}
   - component: {fileID: 786310622}
-  - component: {fileID: 786310627}
   - component: {fileID: 786310626}
   - component: {fileID: 786310621}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tank_p2
   m_TagString: Tank
   m_Icon: {fileID: 0}
@@ -1573,7 +1581,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &786310623
 MeshRenderer:
@@ -1654,19 +1662,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &786310627
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786310620}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &786310628
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1689,6 +1684,27 @@ NavMeshAgent:
   m_BaseOffset: 0.50000024
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &786310629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786310620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6584047fc7d8a4a51aa5b6dd2b146d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 120
+  viewAngle: 35
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  visibleTargets: []
 --- !u!4 &833071427 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5701599212391798841, guid: 8cb09808f14d24b44878bfb8d64c02f4,

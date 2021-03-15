@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class NavTank : MonoBehaviour
 {
-    NavMeshAgent meshAgent;
+    public static NavMeshAgent meshAgent;
     private Rigidbody rb;
 
     [SerializeField] Transform destination;
@@ -36,11 +36,11 @@ public class NavTank : MonoBehaviour
     {
         if (collider.gameObject.tag == "Tank")
         {
-            
+
             stopMove();
-                       
+
             //DestroyGameObject();
-            
+
         }
 
     }
@@ -64,7 +64,7 @@ public class NavTank : MonoBehaviour
     {
         rb.constraints = RigidbodyConstraints.FreezePosition;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-        
+
         meshAgent.speed = 50f;
     }
 
