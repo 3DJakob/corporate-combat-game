@@ -8,12 +8,16 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARTapToPlaceObject : MonoBehaviour
 {
-    public GameObject gameObjectToInstantiate;
+    public GameObject tableTop;
+    public GameObject tableLeg;
 
-    public GameObject spawnedObject;
+    public GameObject spawnedTableTop;
+    public GameObject spawnedTableLeg1;
+    public GameObject spawnedTableLeg2;
+    public GameObject spawnedTableLeg3;
+    public GameObject spawnedTableLeg4;
+
     public bool running;
-
-    
 
     private ARRaycastManager _arRaycastManager;
     private Vector2 touchPosition;
@@ -23,23 +27,31 @@ public class ARTapToPlaceObject : MonoBehaviour
     private float startPinchAngle = 0.0f;
     private bool isPinching = false;
     private bool newPinchGrip = true;
-    private float tableHeight = 1.0f;
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
+
+    private GameObject parentObject;
+    
+    // 3D Model config
+    private static float legHeight = 1.0f;
+    private static float tableWidth = 3.0f;
+    private static float tableLenght = 4.0f;
+    private static float woodThickness = 0.05f;
+
+    private float tableHeight = legHeight;
 
     private void Awake() {
         _arRaycastManager = GetComponent<ARRaycastManager>();
-
     }
 
     public void updateHeight(float value) {
         Debug.Log(value);
         tableHeight = value;
-        if (spawnedObject != null) {
-            spawnedObject.transform.localScale = new Vector3(
-                spawnedObject.transform.localScale.x,
-                tableHeight,
-                spawnedObject.transform.localScale.z
-            );
+        if (spawnedTableTop != null) {
+            spawnedTableTop.transform.localPosition = new Vector3(0, tableHeight, 0);
+            spawnedTableLeg1.transform.localScale = new Vector3(1.0f, tableHeight/legHeight, 1.0f);
+            spawnedTableLeg2.transform.localScale = new Vector3(1.0f, tableHeight/legHeight, 1.0f);
+            spawnedTableLeg3.transform.localScale = new Vector3(1.0f, tableHeight/legHeight, 1.0f);
+            spawnedTableLeg4.transform.localScale = new Vector3(1.0f, tableHeight/legHeight, 1.0f);
         }
     }
 
@@ -63,13 +75,15 @@ public class ARTapToPlaceObject : MonoBehaviour
 
         scale = (scale / startPinchScale) * initialScale;
         angle = initalAngle + (angle - startPinchAngle);
-        spawnedObject.transform.localScale = new Vector3(scale,tableHeight,scale);
+        spawnedTableTop.transform.localScale = new Vector3(scale, 1.0f,scale);
 
-        spawnedObject.transform.eulerAngles = new Vector3(
-            spawnedObject.transform.eulerAngles.x,
+        parentObject.transform.eulerAngles = new Vector3(
+            parentObject.transform.eulerAngles.x,
             angle,
-            spawnedObject.transform.eulerAngles.z
+            parentObject.transform.eulerAngles.z
         );
+
+        UpdateTableLegsPositions();
     }
 
     bool TryGetTouchPosition(out Vector2 touchPosition) {
@@ -82,17 +96,23 @@ public class ARTapToPlaceObject : MonoBehaviour
         return false;
     }
 
+    void UpdateTableLegsPositions() {
+        float scaleFactor = spawnedTableTop.transform.localScale.x;
+        spawnedTableLeg1.transform.localPosition = new Vector3((tableWidth * scaleFactor - woodThickness) / 2, 0, (tableLenght * scaleFactor - woodThickness) / 2);
+        spawnedTableLeg2.transform.localPosition = new Vector3((-tableWidth * scaleFactor + woodThickness) / 2, 0, (tableLenght * scaleFactor - woodThickness) / 2);
+        spawnedTableLeg3.transform.localPosition = new Vector3((tableWidth * scaleFactor - woodThickness) / 2, 0, (-tableLenght * scaleFactor + woodThickness) / 2);
+        spawnedTableLeg4.transform.localPosition = new Vector3((-tableWidth * scaleFactor + woodThickness) / 2, 0, (-tableLenght * scaleFactor + woodThickness) / 2);
+    }
+
     // Update is called once per frame
     void Update() {
-        if (!UIElements.UI.startButton.IsActive())
-            running = false;
-
-            if (running){
+        if(running){
+            // Debug.Log("looping");
             if (!TryGetTouchPosition(out Vector2 touchPosition)) {
                 isPinching = false;
-                if (spawnedObject != null) {
-                    initialScale = spawnedObject.transform.localScale.x;
-                    initalAngle = spawnedObject.transform.eulerAngles.y;
+                if (parentObject != null) {
+                    initialScale = spawnedTableTop.transform.localScale.x;
+                    initalAngle = parentObject.transform.eulerAngles.y;
                 }
                 newPinchGrip = true;
                 return;
@@ -100,7 +120,7 @@ public class ARTapToPlaceObject : MonoBehaviour
 
             if (Input.touchCount > 1) {
                 // SCALE OBJECT
-                if (spawnedObject != null) {
+                if (parentObject != null) {
                     pinchZoom();
                     isPinching = true;
                 }
@@ -109,9 +129,9 @@ public class ARTapToPlaceObject : MonoBehaviour
 
                 // Prevent moving if user is releasing pinch grip
                 if (isPinching) {
-                    if (spawnedObject != null) {
-                        initialScale = spawnedObject.transform.localScale.x;
-                        initalAngle = spawnedObject.transform.eulerAngles.y;
+                    if (parentObject != null) {
+                        initialScale = spawnedTableTop.transform.localScale.x;
+                        initalAngle = parentObject.transform.eulerAngles.y;
                         newPinchGrip = true;
                     }
                     return;
@@ -121,16 +141,24 @@ public class ARTapToPlaceObject : MonoBehaviour
                 if (_arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon)) {
                     var hitPose = hits[0].pose;
 
-                    if (spawnedObject == null) {
-                        spawnedObject = Instantiate(gameObjectToInstantiate, hitPose.position, hitPose.rotation);
+                    if (parentObject == null) {
+                        parentObject = Instantiate(new GameObject(), hitPose.position, hitPose.rotation);
+
+                        spawnedTableLeg1 = Instantiate(tableLeg, parentObject.transform, false);
+                        spawnedTableLeg2 = Instantiate(tableLeg, parentObject.transform, false);
+                        spawnedTableLeg3 = Instantiate(tableLeg, parentObject.transform, false);
+                        spawnedTableLeg4 = Instantiate(tableLeg, parentObject.transform, false);
+                        spawnedTableTop = Instantiate(tableTop, parentObject.transform, false);
+                        UpdateTableLegsPositions();
+                        spawnedTableTop.transform.localPosition = new Vector3(0, legHeight, 0);
                     } else {
-                        spawnedObject.transform.position = hitPose.position;
+                        parentObject.transform.position = new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z);
                     }
                 }
             }
 
-            if (spawnedObject != null) {
-                PlayerInfo.PI.updateOrigin(spawnedObject.transform);
+            if (spawnedTableTop != null) {
+                PlayerInfo.PI.updateOrigin(spawnedTableTop.transform);
             }
         }
     }

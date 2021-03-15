@@ -13,9 +13,8 @@ public class GameSetup : MonoBehaviour
     public Transform[] spawnPoints;
     public PhotonPlayer player;
     public GameObject gameMap;
-   
+  
     public GameObject instanceOfMap;
-    public ARSessionOrigin ARSO;
 
     //Create GameSetup OnEnable (When switching to the game scene)
     private void OnEnable()
@@ -52,27 +51,16 @@ public class GameSetup : MonoBehaviour
         instanceOfMap = Instantiate(gameMap);
         instanceOfMap.SetActive(false);
         Debug.Log("Game map is" + instanceOfMap != null);
-        //adjustedScene.transform.position = PlayerInfo.PI.positionOfTable;
-        //adjustedScene.transform.eulerAngles = PlayerInfo.PI.rotationOfTable;
-        //adjustedScene.transform.localScale = PlayerInfo.PI.scaleOfTable;
-
-        //adjustedScene.transform.localPosition = PlayerInfo.PI.T.localPosition;
-        //adjustedScene.transform.localRotation = PlayerInfo.PI.T.rotation;
-        //adjustedScene.transform.localPosition = PlayerInfo.PI.T.localScale;
-
-        //ARSO.MakeContentAppearAt(adjustedScene.transform, PlayerInfo.PI.T.position, PlayerInfo.PI.T.rotation);
     }
 
     private void Update()
     {
-        if (PlayerInfo.PI.T != null && instanceOfMap != null && UIElements.UI.startButton.IsActive()) 
+        if (PlayerInfo.PI.T != null && instanceOfMap != null) 
         {
             //Calculate offset and Scale for gameMap
-            float yOffset = 2.11f * PlayerInfo.PI.T.localScale.y;
             float scale = PlayerInfo.PI.T.localScale.x;
-
             instanceOfMap.SetActive(true);
-            instanceOfMap.transform.position = new Vector3(PlayerInfo.PI.T.position.x, PlayerInfo.PI.T.position.y + yOffset, PlayerInfo.PI.T.position.z);
+            instanceOfMap.transform.position = new Vector3(PlayerInfo.PI.T.position.x, PlayerInfo.PI.T.position.y, PlayerInfo.PI.T.position.z);
             instanceOfMap.transform.eulerAngles = PlayerInfo.PI.T.eulerAngles;
             instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
         }
