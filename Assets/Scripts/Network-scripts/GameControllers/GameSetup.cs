@@ -65,7 +65,6 @@ public class GameSetup : MonoBehaviour
             instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
         }
     }
-
     //internal void setActive(bool v)
     //{
     //    throw new NotImplementedException();

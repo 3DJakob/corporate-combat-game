@@ -39,9 +39,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         if (PV.IsMine)
         {
             //myUI = new UIElements();
-            myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
-                GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
-            Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
+            //myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
+            //    GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
+            //Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
             Debug.Log("Player created");
 
             canvasGame = GameObject.Find("InGameUI").GetComponent<Canvas>();
@@ -123,17 +123,26 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         }
     }
     //If tankSpawnButton is clicked then and RPC call is sent to master client
-    //who instantitates an object at a certain position
+    //who instantitates an object at a certain position depending on which team a player belongs to
+
     public void OnTankSpawnButtonClicked()
     {
         Debug.Log("Spawns Tank");
-        PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient);
+        PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam], PlayerInfo.PI.mySelectedTeam);
     }
 
+
     [PunRPC]
-    void RPC_SpawnTank() {
-        PhotonNetwork.InstantiateRoomObject(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
-                new Vector3(0, 0, 5), new Quaternion(0, 0, 0, 0), 0);
+    void RPC_SpawnTank(Vector3 pos, int team)
+    {
+        GameObject tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("Resources", "GamePrefabs", "Tank"),
+                pos, PlayerInfo.PI.T.rotation, 0);
+        tank.transform.parent = PlayerInfo.PI.T.transform;
+
+        if (team == 0)
+            tank.GetComponent<NavTank>().SetDestination(GameObject.Find("Factory1").GetComponent<Transform>().position);
+        else
+            tank.GetComponent<NavTank>().SetDestination(GameObject.Find("Factory2").GetComponent<Transform>().position);
     }
 
     [PunRPC]

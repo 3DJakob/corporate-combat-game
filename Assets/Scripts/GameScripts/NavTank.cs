@@ -21,13 +21,18 @@ public class NavTank : MonoBehaviour
         }
         else
         {
-            SetDestination();
+            //SetDestination();
         }
     }
 
     private void SetDestination()
     {
         Vector3 target = destination.transform.position;
+        meshAgent.SetDestination(target);
+    }
+
+    public void SetDestination(Vector3 target)
+    {
         meshAgent.SetDestination(target);
     }
 
