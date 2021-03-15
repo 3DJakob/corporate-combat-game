@@ -32,26 +32,21 @@ public class ARTapToPlaceObject : MonoBehaviour
     private GameObject parentObject;
     
     // 3D Model config
-    private static float legHeight = 2.0f;
+    private static float legHeight = 1.0f;
     private static float tableWidth = 3.0f;
     private static float tableLenght = 4.0f;
+    private static float woodThickness = 0.05f;
 
     private float tableHeight = legHeight;
 
     private void Awake() {
         _arRaycastManager = GetComponent<ARRaycastManager>();
-
     }
 
     public void updateHeight(float value) {
         Debug.Log(value);
         tableHeight = value;
         if (spawnedTableTop != null) {
-            // spawnedTableTop.transform.localScale = new Vector3(
-            //     spawnedTableTop.transform.localScale.x,
-            //     tableHeight,
-            //     spawnedTableTop.transform.localScale.z
-            // );
             spawnedTableTop.transform.localPosition = new Vector3(0, tableHeight, 0);
             spawnedTableLeg1.transform.localScale = new Vector3(1.0f, tableHeight/legHeight, 1.0f);
             spawnedTableLeg2.transform.localScale = new Vector3(1.0f, tableHeight/legHeight, 1.0f);
@@ -103,10 +98,10 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     void UpdateTableLegsPositions() {
         float scaleFactor = spawnedTableTop.transform.localScale.x;
-        spawnedTableLeg1.transform.localPosition = new Vector3(tableWidth * scaleFactor / 2, 0, tableLenght * scaleFactor / 2);
-        spawnedTableLeg2.transform.localPosition = new Vector3(-tableWidth * scaleFactor / 2, 0, tableLenght * scaleFactor / 2);
-        spawnedTableLeg3.transform.localPosition = new Vector3(tableWidth * scaleFactor / 2, 0, -tableLenght * scaleFactor / 2);
-        spawnedTableLeg4.transform.localPosition = new Vector3(-tableWidth * scaleFactor / 2, 0, -tableLenght * scaleFactor / 2);
+        spawnedTableLeg1.transform.localPosition = new Vector3((tableWidth * scaleFactor - woodThickness) / 2, 0, (tableLenght * scaleFactor - woodThickness) / 2);
+        spawnedTableLeg2.transform.localPosition = new Vector3((-tableWidth * scaleFactor + woodThickness) / 2, 0, (tableLenght * scaleFactor - woodThickness) / 2);
+        spawnedTableLeg3.transform.localPosition = new Vector3((tableWidth * scaleFactor - woodThickness) / 2, 0, (-tableLenght * scaleFactor + woodThickness) / 2);
+        spawnedTableLeg4.transform.localPosition = new Vector3((-tableWidth * scaleFactor + woodThickness) / 2, 0, (-tableLenght * scaleFactor + woodThickness) / 2);
     }
 
     // Update is called once per frame
@@ -156,9 +151,6 @@ public class ARTapToPlaceObject : MonoBehaviour
                         spawnedTableTop = Instantiate(tableTop, parentObject.transform, false);
                         UpdateTableLegsPositions();
                         spawnedTableTop.transform.localPosition = new Vector3(0, legHeight, 0);
-
-                        // spawnedTableTop.transform.parent = parentObject.transform;
-                        // spawnedTableTop.transform.position = new Vector3(spawnedTableTop.transform.position.x, spawnedTableTop.transform.position.y, spawnedTableTop.transform.position.z);
                     } else {
                         parentObject.transform.position = new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z);
                     }
