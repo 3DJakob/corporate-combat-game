@@ -21,7 +21,7 @@ public class PlayerInfo : MonoBehaviour
         {
             if (PlayerInfo.PI != this) 
             {
-                Destroy(PlayerInfo.PI.gameObject);
+              Destroy(PlayerInfo.PI.gameObject);
                 PlayerInfo.PI = this;
             }
         }
@@ -40,7 +40,7 @@ public class PlayerInfo : MonoBehaviour
         if (PlayerPrefs.HasKey("MyTeam"))
         {
             mySelectedTeam = PlayerPrefs.GetInt("MyTeam");
-            
+      
         }
         else 
         {
@@ -48,13 +48,13 @@ public class PlayerInfo : MonoBehaviour
             PlayerPrefs.SetInt("MyTeam", mySelectedTeam);
         }
 
-        T = new GameObject().transform;
-        Debug.Log("Transform för banan vid pos.x: " + T.position.x);
-
+        
     }
 
     private void Update()
     {
-     
+        if (T == null) {
+            T = new GameObject().transform;
+        }
     }
 }

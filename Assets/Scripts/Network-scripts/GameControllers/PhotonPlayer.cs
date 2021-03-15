@@ -1,6 +1,7 @@
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -112,7 +113,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
                 rightButton.onClick.AddListener(OnRightButtonClicked);
                 leftButton.onClick.AddListener(OnLeftButtonClicked);
-
+                
+      
                 GameSetup.GS.instanceOfMap.SetActive(true);
 
                 var planeManager = GameObject.Find("AR Session Origin").GetComponent<ARPlaneManager>();
@@ -129,17 +131,37 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
     public void OnTankSpawnButtonClicked()
     {
-        Debug.Log("Spawns Tank");
-        PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam], PlayerInfo.PI.mySelectedTeam);
+        Debug.Log(GameSetup.GS);
+        Debug.Log(GameSetup.GS.spawnPoints);
+        Debug.Log(GameSetup.GS.spawnPoints[0]);
+        Debug.Log(GameObject.Find("SpawnPoint t1").GetComponent<Transform>());
+        Debug.Log(PlayerInfo.PI.mySelectedTeam);
+        Debug.Log(GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position);
+        Debug.Log(PlayerInfo.PI.T);
+
+        //GameSetup.GS.spawnPoints[0] = GameObject.Find("SpawnPoint t1").GetComponent<Transform>();
+        //GameSetup.GS.spawnPoints[1] = GameObject.Find("SpawnPoint t2").GetComponent<Transform>();
+        if (PV.IsMine)
+        {
+            PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, PlayerInfo.PI.T);
+            Debug.Log("Spawns Tank");
+        }
     }
 
-
     [PunRPC]
-    void RPC_SpawnTank(Vector3 pos, int team)
+    void RPC_SpawnTank(int team, Vector3 pos, Transform T)
     {
+        Debug.Log(T);
+        Debug.Log(Path.Combine("Resources", "GamePrefabs", "Tank"));
+        Debug.Log(pos);
+
+        //Assets / Resources / GamePrefabs / Tank.prefab
+
         GameObject tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("Resources", "GamePrefabs", "Tank"),
-                pos, PlayerInfo.PI.T.rotation, 0);
-        tank.transform.parent = PlayerInfo.PI.T.transform;
+                pos, T.rotation, 0);
+        tank.transform.parent = T;
+
+        //int team = 0;
 
         if (team == 0)
             tank.GetComponent<NavTank>().SetDestination(GameObject.Find("Factory1").GetComponent<Transform>().position);
