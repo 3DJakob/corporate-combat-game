@@ -152,12 +152,12 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     void RPC_SpawnTank(int team, Vector3 pos, Transform T)
     {
 
-        GameObject tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
+        GameObject tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"),
                 new Vector3(0,0,0), T.rotation, 0);
         tank.transform.parent = T;
         //tank.transform.localPosition = pos;
 
-        Debug.Log(tank.transform.position);
+        Debug.Log(tank.transform.localPosition);
 
         //int team = 0;
 
