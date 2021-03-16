@@ -53,8 +53,8 @@ public class PlayerInfo : MonoBehaviour
 
     private void Update()
     {
-        if (T == null) {
-            T = new GameObject().transform;
+        if (T == null && GameSetup.GS != null) {
+            T = GameSetup.GS.instanceOfMap.transform;
         }
     }
 }

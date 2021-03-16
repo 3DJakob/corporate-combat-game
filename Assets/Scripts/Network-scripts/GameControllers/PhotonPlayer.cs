@@ -131,13 +131,13 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
     public void OnTankSpawnButtonClicked()
     {
-        Debug.Log(GameSetup.GS);
-        Debug.Log(GameSetup.GS.spawnPoints);
-        Debug.Log(GameSetup.GS.spawnPoints[0]);
-        Debug.Log(GameObject.Find("SpawnPoint t1").GetComponent<Transform>());
-        Debug.Log(PlayerInfo.PI.mySelectedTeam);
-        Debug.Log(GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position);
-        Debug.Log(PlayerInfo.PI.T);
+        //Debug.Log(GameSetup.GS);
+        //Debug.Log(GameSetup.GS.spawnPoints);
+        //Debug.Log(GameSetup.GS.spawnPoints[0]);
+        //Debug.Log(GameObject.Find("SpawnPoint t1").GetComponent<Transform>());
+        //Debug.Log(PlayerInfo.PI.mySelectedTeam);
+        //Debug.Log(GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position);
+        //Debug.Log(PlayerInfo.PI.T);
 
         //GameSetup.GS.spawnPoints[0] = GameObject.Find("SpawnPoint t1").GetComponent<Transform>();
         //GameSetup.GS.spawnPoints[1] = GameObject.Find("SpawnPoint t2").GetComponent<Transform>();
@@ -151,22 +151,25 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     [PunRPC]
     void RPC_SpawnTank(int team, Vector3 pos, Transform T)
     {
-        Debug.Log(T);
-        Debug.Log(Path.Combine("Resources", "GamePrefabs", "Tank"));
-        Debug.Log(pos);
 
-        //Assets / Resources / GamePrefabs / Tank.prefab
-
-        GameObject tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("Resources", "GamePrefabs", "Tank"),
-                pos, T.rotation, 0);
+        GameObject tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
+                new Vector3(0,0,0), T.rotation, 0);
         tank.transform.parent = T;
+        //tank.transform.localPosition = pos;
+
+        Debug.Log(tank.transform.position);
 
         //int team = 0;
 
+        //Debug.Log(tank.GetComponent<NavTank>());
+        //Debug.Log(T.Find("Spelplan 1"));
+        //Transform temp = T.Find("Spelplan 1");
+        //Debug.Log(temp.Find("Factory 1"));
+
         if (team == 0)
-            tank.GetComponent<NavTank>().SetDestination(GameObject.Find("Factory1").GetComponent<Transform>().position);
+            tank.GetComponent<NavTank>().SetDestination(T.Find("Spelplan 1").Find("Factory 1").position);
         else
-            tank.GetComponent<NavTank>().SetDestination(GameObject.Find("Factory2").GetComponent<Transform>().position);
+            tank.GetComponent<NavTank>().SetDestination(GameObject.Find("Factory 2").GetComponent<Transform>().position);
     }
 
     [PunRPC]
