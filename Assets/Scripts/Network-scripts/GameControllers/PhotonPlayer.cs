@@ -146,12 +146,12 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         if (PV.IsMine)
         {
             tank = PhotonNetwork.Instantiate(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
-            
             Debug.Log("Spawns Tank");
         }
 
         if (tank != null) {
-            tank.transform.parent = localT;
+            //tank.transform.parent = localT;
+            PV.RPC("RPC_SpawnTank", RpcTarget.All, tank);
         }
         
     }
