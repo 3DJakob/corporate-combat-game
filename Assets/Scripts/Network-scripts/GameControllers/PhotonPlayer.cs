@@ -141,29 +141,41 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
         //GameSetup.GS.spawnPoints[0] = GameObject.Find("SpawnPoint t1").GetComponent<Transform>();
         //GameSetup.GS.spawnPoints[1] = GameObject.Find("SpawnPoint t2").GetComponent<Transform>();
+        Transform localT = PlayerInfo.PI.T;
+        GameObject tank = null;
         if (PV.IsMine)
         {
-            PV.RPC("RPC_SpawnTank", RpcTarget.All, PlayerInfo.PI.mySelectedTeam);
+            tank = PhotonNetwork.Instantiate(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
+            
             Debug.Log("Spawns Tank");
         }
+
+        if (tank != null) {
+            tank.transform.parent = localT;
+        }
+        
     }
+
+    //PV.RPC("RPC_SpawnTank", RpcTarget.All, PlayerInfo.PI.mySelectedTeam);
 
     [PunRPC]
     void RPC_SpawnTank(int team)
     {
 
-        Transform localT = PlayerInfo.PI.T;
+       
 
-        GameObject tank = PhotonNetwork.Instantiate(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, localT.rotation, 0);
-        tank.transform.parent = localT;
+        //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, localT.rotation, 0);
+        
+
+        //tank.transform.parent = localT;
 
         //tank.transform.localPosition = pos;
-        if (team == 0)
-            tank.GetComponent<NavTank>().SetDestination(localT.Find("Spelplan 1").Find("Factory 1").position);
-        else
-            tank.GetComponent<NavTank>().SetDestination(localT.Find("Spelplan 1").Find("Factory 2").position);
+        //if (team == 0)
+          //  tank.GetComponent<NavTank>().SetDestination(localT.Find("Spelplan 1").Find("Factory 1").position);
+        //else
+          //  tank.GetComponent<NavTank>().SetDestination(localT.Find("Spelplan 1").Find("Factory 2").position);
 
-        //PV.RPC("RPC_LocalizeTank", RpcTarget.All, tank);
+            //PV.RPC("RPC_LocalizeTank", RpcTarget.All, tank);
     }
 
     [PunRPC]
