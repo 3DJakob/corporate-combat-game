@@ -143,34 +143,36 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         //GameSetup.GS.spawnPoints[1] = GameObject.Find("SpawnPoint t2").GetComponent<Transform>();
         if (PV.IsMine)
         {
-            PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, PlayerInfo.PI.T);
+            PV.RPC("RPC_SpawnTank", RpcTarget.All, PlayerInfo.PI.mySelectedTeam);
             Debug.Log("Spawns Tank");
         }
     }
 
     [PunRPC]
-    void RPC_SpawnTank(int team, Vector3 pos, Transform T)
+    void RPC_SpawnTank(int team)
     {
 
-        GameObject tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"),
-                new Vector3(0,0,0), T.rotation, 0);
-        tank.transform.parent = T;
+        Transform localT = PlayerInfo.PI.T;
+
+        GameObject tank = PhotonNetwork.Instantiate(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, localT.rotation, 0);
+        tank.transform.parent = localT;
+
         //tank.transform.localPosition = pos;
-
-        Debug.Log(tank.transform.localPosition);
-
-        //int team = 0;
-
-        //Debug.Log(tank.GetComponent<NavTank>());
-        //Debug.Log(T.Find("Spelplan 1"));
-        //Transform temp = T.Find("Spelplan 1");
-        //Debug.Log(temp.Find("Factory 1"));
-
         if (team == 0)
-            tank.GetComponent<NavTank>().SetDestination(T.Find("Spelplan 1").Find("Factory 1").position);
+            tank.GetComponent<NavTank>().SetDestination(localT.Find("Spelplan 1").Find("Factory 1").position);
         else
-            tank.GetComponent<NavTank>().SetDestination(T.Find("Spelplan 1").Find("Factory 2").position);
+            tank.GetComponent<NavTank>().SetDestination(localT.Find("Spelplan 1").Find("Factory 2").position);
+
+        //PV.RPC("RPC_LocalizeTank", RpcTarget.All, tank);
     }
+
+    [PunRPC]
+    void RPC_LocalizeTank(GameObject gObject)
+    {
+        gObject.transform.parent = GameSetup.GS.instanceOfMap.transform;
+    }
+
+
 
     [PunRPC]
     void RPC_ActivateGameUI()
