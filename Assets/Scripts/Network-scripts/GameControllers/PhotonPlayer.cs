@@ -169,7 +169,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         if (team == 0)
             tank.GetComponent<NavTank>().SetDestination(T.Find("Spelplan 1").Find("Factory 1").position);
         else
-            tank.GetComponent<NavTank>().SetDestination(GameObject.Find("Factory 2").GetComponent<Transform>().position);
+            tank.GetComponent<NavTank>().SetDestination(T.Find("Spelplan 1").Find("Factory 2").position);
     }
 
     [PunRPC]
