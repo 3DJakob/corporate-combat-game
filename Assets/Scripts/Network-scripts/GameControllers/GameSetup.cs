@@ -13,7 +13,8 @@ public class GameSetup : MonoBehaviour
     public Transform[] spawnPoints;
     public PhotonPlayer player;
     public GameObject gameMap;
-  
+    public GameObject tankToSpawn;
+
     public GameObject instanceOfMap;
 
     //Create GameSetup OnEnable (When switching to the game scene)
