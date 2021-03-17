@@ -15,7 +15,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public GameObject joinButton;
     public GameObject cancelButton;
     public GameObject inputField;
-    public GameObject submitButton;
+    public GameObject lobbyText;
+    public GameObject errorJoinRoom;
 
     private bool inLobby;
 
@@ -51,6 +52,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         joinButton.SetActive(!inLobby);
         teamPicker.SetActive(inLobby);
         cancelButton.SetActive(inLobby);
+        lobbyText.SetActive(inLobby);
 
         inLobby = !inLobby; //Toggles bool, works like a light switch
     }
@@ -83,13 +85,16 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         if(PhotonNetwork.InRoom)
             PhotonNetwork.LeaveRoom();
         inputField.SetActive(false);
+        lobbyText.SetActive(false);
         ToggleButtons(); 
     }
 
     public override void OnJoinedRoom()
     {
         inputField.SetActive(false);
+        
         ToggleButtons();
+        lobbyText.GetComponent<Text>().text = "You are in " + PhotonNetwork.CurrentRoom.Name;
     }
 
     void CreateRoom()

@@ -51,6 +51,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             startButton.onClick.AddListener(OnStartGameButtonClicked);
             canvasGame.enabled = false;
             canvasAR.enabled = true;
+
+            if (!PhotonNetwork.IsMasterClient)
+                startButton.gameObject.SetActive(false);
         }
     }
     // Update is called once per frame
