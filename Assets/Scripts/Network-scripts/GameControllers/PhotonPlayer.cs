@@ -138,9 +138,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         {
             //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
             Debug.Log("Spawns Tank");
-            PhotonNetwork.Instantiate(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
+            
 
-            //PV.RPC("RPC_SpawnTank", RpcTarget.All, PlayerInfo.PI.mySelectedTeam);
+            PV.RPC("RPC_SpawnTank", RpcTarget.All, PlayerInfo.PI.mySelectedTeam);
         }
         
     }
@@ -150,12 +150,10 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     {
         Transform localT = PlayerInfo.PI.T;
 
-        GameObject tank = (GameObject)Instantiate(GameSetup.GS.tankToSpawn, GameSetup.GS.spawnPoints[team].position, localT.rotation);
-        tank.transform.parent = localT;
-
+        //GameObject tank = (GameObject)Instantiate(GameSetup.GS.tankToSpawn, GameSetup.GS.spawnPoints[team].position, localT.rotation);
+        //tank.transform.parent = localT;
+        PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, localT.rotation, 0);
         //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, localT.rotation, 0);
-        
-
         //if (team == 0)
         //    tank.GetComponent<NavTank>().GetComponent<NavMeshAgent>().SetDestination(localT.Find("Spelplan 1").Find("Factory 1").position);
         //else
