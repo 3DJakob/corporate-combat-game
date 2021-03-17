@@ -13,7 +13,8 @@ public class GameSetup : MonoBehaviour
     public Transform[] spawnPoints;
     public PhotonPlayer player;
     public GameObject gameMap;
-  
+    public GameObject tankToSpawn;
+
     public GameObject instanceOfMap;
 
     //Create GameSetup OnEnable (When switching to the game scene)
@@ -49,13 +50,22 @@ public class GameSetup : MonoBehaviour
     private void Start()
     {
         instanceOfMap = Instantiate(gameMap);
-        instanceOfMap.SetActive(false);
+        
+        //temp.Find("SpawnPoint t1");
+        spawnPoints = new Transform[2];
+
+        Transform temp = instanceOfMap.transform;
+        GameSetup.GS.spawnPoints[0] = temp.Find("SpawnPoint t1");
+        GameSetup.GS.spawnPoints[1] = temp.Find("SpawnPoint t2");
+
+        //instanceOfMap.SetActive(false);
         Debug.Log("Game map is" + instanceOfMap != null);
+        
     }
 
     private void Update()
     {
-        if (PlayerInfo.PI.T != null && instanceOfMap != null) 
+        if (PlayerInfo.PI.T != null && instanceOfMap != null)
         {
             //Calculate offset and Scale for gameMap
             float scale = PlayerInfo.PI.T.localScale.x;
@@ -63,11 +73,10 @@ public class GameSetup : MonoBehaviour
             instanceOfMap.transform.position = new Vector3(PlayerInfo.PI.T.position.x, PlayerInfo.PI.T.position.y, PlayerInfo.PI.T.position.z);
             instanceOfMap.transform.eulerAngles = PlayerInfo.PI.T.eulerAngles;
             instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
+            //Debug.Log(GameObject.Find("SpawnPoint t1").GetComponent<Transform>());
         }
     }
-
-    //internal void setActive(bool v)
-    //{
-    //    throw new NotImplementedException();
-    //}
+ 
 }
+//spawnPoints[0] = GameObject.Find("SpawnPoint t1").GetComponent<Transform>();
+//spawnPoints[1] = GameObject.Find("SpawnPoint t2").GetComponent<Transform>();

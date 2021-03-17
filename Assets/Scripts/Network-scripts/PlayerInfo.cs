@@ -21,7 +21,7 @@ public class PlayerInfo : MonoBehaviour
         {
             if (PlayerInfo.PI != this) 
             {
-                Destroy(PlayerInfo.PI.gameObject);
+              Destroy(PlayerInfo.PI.gameObject);
                 PlayerInfo.PI = this;
             }
         }
@@ -40,16 +40,21 @@ public class PlayerInfo : MonoBehaviour
         if (PlayerPrefs.HasKey("MyTeam"))
         {
             mySelectedTeam = PlayerPrefs.GetInt("MyTeam");
+      
         }
         else 
         {
             mySelectedTeam = 0;
             PlayerPrefs.SetInt("MyTeam", mySelectedTeam);
         }
+
+        
     }
 
     private void Update()
     {
-     
+        if (T == null && GameSetup.GS != null) {
+            T = GameSetup.GS.instanceOfMap.transform;
+        }
     }
 }
