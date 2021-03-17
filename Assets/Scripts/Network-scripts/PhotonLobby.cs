@@ -15,8 +15,10 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public GameObject joinButton;
     public GameObject cancelButton;
     public GameObject inputField;
+    public GameObject inputFieldNick;
     public GameObject lobbyText;
     public GameObject errorJoinRoom;
+    public GameObject playerNameText;
 
     private bool inLobby;
 
@@ -73,12 +75,25 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         //submitButton.SetActive(true);
     }
 
-    public void OnSubmitButtonClicked()
+    public void OnRoomCodeEntered()
     {
         string input = inputField.GetComponent<InputField>().text;
         Debug.Log("Searching for game with name: Room" + input);
         PhotonNetwork.JoinRoom("Room" + input);
     }
+
+    public void OnNicknameEntered()
+    {
+        string input = inputFieldNick.GetComponent<InputField>().text;
+        PhotonNetwork.NickName = input;
+        Debug.Log("Your name is " + PhotonNetwork.NickName);
+
+        joinButton.GetComponent<Button>().interactable = true;
+        createButton.GetComponent<Button>().interactable = true;
+        playerNameText.GetComponent<Text>().text = PhotonNetwork.NickName;
+        playerNameText.SetActive(true);
+    }
+
 
     public void OnCancelButtonClicked()
     {

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerInfo : MonoBehaviour
 {
     public static PlayerInfo PI;
+    public string nickname;
     public int mySelectedTeam;
 
     public Transform T;
