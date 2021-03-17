@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 
@@ -14,8 +15,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 {
     private PhotonView PV;
     public GameObject myAvatar;
-    
-    //private UIElements myUI;
 
     public Button tankSpawnButton;
     public Button startButton;
@@ -82,9 +81,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             bool startGame = true;
             RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
             PhotonNetwork.RaiseEvent(eventId, startGame, raiseEventOptions, SendOptions.SendReliable);
-
-            //PV.RPC("RPC_EnableUI", RpcTarget.All);
-            //PV.RPC("RPC_ActivateGameUI", RpcTarget.All);
         }
     }
     private void OnEnable()
@@ -127,18 +123,12 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             }
         }
     }
-    //If tankSpawnButton is clicked then and RPC call is sent to master client
-    //who instantitates an object at a certain position depending on which team a player belongs to
 
+    //If tankSpawnButton is clicked then and RPC call is sent to all clients
+    //who instantitates an object at a certain position depending on which team a player belongs to.
+    //All clients have their own instance of the spawned tank
     public void OnTankSpawnButtonClicked()
     {
-        //Debug.Log(GameSetup.GS);
-        //Debug.Log(GameSetup.GS.spawnPoints);
-        //Debug.Log(GameSetup.GS.spawnPoints[0]);
-        //Debug.Log(GameObject.Find("SpawnPoint t1").GetComponent<Transform>());
-        //Debug.Log(PlayerInfo.PI.mySelectedTeam);
-        //Debug.Log(GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position);
-        //Debug.Log(PlayerInfo.PI.T);
 
         //GameSetup.GS.spawnPoints[0] = GameObject.Find("SpawnPoint t1").GetComponent<Transform>();
         //GameSetup.GS.spawnPoints[1] = GameObject.Find("SpawnPoint t2").GetComponent<Transform>();
@@ -147,13 +137,11 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         if (PV.IsMine)
         {
             //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
-            //Debug.Log("Spawns Tank");
+            Debug.Log("Spawns Tank");
             PV.RPC("RPC_SpawnTank", RpcTarget.All, PlayerInfo.PI.mySelectedTeam);
         }
         
     }
-
-    //PV.RPC("RPC_SpawnTank", RpcTarget.All, PlayerInfo.PI.mySelectedTeam);
 
     [PunRPC]
     void RPC_SpawnTank(int team)
@@ -166,60 +154,22 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, localT.rotation, 0);
         
 
-        //tank.transform.parent = localT;
-
-        //tank.transform.localPosition = pos;
         //if (team == 0)
-          //  tank.GetComponent<NavTank>().SetDestination(localT.Find("Spelplan 1").Find("Factory 1").position);
+        //    tank.GetComponent<NavTank>().GetComponent<NavMeshAgent>().SetDestination(localT.Find("Spelplan 1").Find("Factory 1").position);
         //else
-          //  tank.GetComponent<NavTank>().SetDestination(localT.Find("Spelplan 1").Find("Factory 2").position);
-
-            //PV.RPC("RPC_LocalizeTank", RpcTarget.All, tank);
-
+        //    tank.GetComponent<NavTank>().GetComponent<NavMeshAgent>().SetDestination(localT.Find("Spelplan 1").Find("Factory 2").position);
 
     }
 
-    [PunRPC]
-    void RPC_LocalizeTank(GameObject gObject)
-    {
-        Transform temp = PlayerInfo.PI.T;
+    //[PunRPC]
+    //void RPC_LocalizeTank(GameObject gObject)
+    //{
+    //    Transform temp = PlayerInfo.PI.T;
 
-        GameObject myTank = GameObject.Find("PlayerAvatar(Clone)");
-        Debug.Log(myTank);
+    //    GameObject myTank = GameObject.Find("PlayerAvatar(Clone)");
+    //    Debug.Log(myTank);
 
-        myTank.transform.parent = PlayerInfo.PI.T;
-    }
+    //    myTank.transform.parent = PlayerInfo.PI.T;
+    //}
 
-
-
-    [PunRPC]
-    void RPC_ActivateGameUI()
-    {
-        Debug.Log("Activating UI");
-    }
-
-    [PunRPC]
-    void RPC_EnableUI()
-    {
-        Debug.Log("Enabling UI");
-        canvasGame.enabled = true;
-        canvasAR.enabled = false;
-
-        tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
-        rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
-        leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
-
-        tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
-        rightButton.onClick.AddListener(OnRightButtonClicked);
-        leftButton.onClick.AddListener(OnLeftButtonClicked);
-
-        var planeManager = GameObject.Find("AR Session Origin").GetComponent<ARPlaneManager>();
-        Debug.Log(planeManager);
-        foreach (var plane in planeManager.trackables)
-        {
-            plane.gameObject.SetActive(false);
-        }
-
-
-    }
 }
