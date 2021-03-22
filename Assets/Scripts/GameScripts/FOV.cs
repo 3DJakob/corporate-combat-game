@@ -91,5 +91,10 @@ public class FOV : MonoBehaviour
                 Debug.Log("Damaged: " + hit.transform.name);
             }
         }
+        else{
+            Debug.Log(NavTank.meshAgent.isStopped);
+            NavTank.meshAgent.isStopped = false;
+            Debug.Log(NavTank.meshAgent.isStopped);
+        }
     }
 }

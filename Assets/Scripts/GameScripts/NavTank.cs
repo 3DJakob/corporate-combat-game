@@ -37,7 +37,7 @@ public class NavTank : MonoBehaviour
     {
         if (collider.gameObject.tag == "Tank")
         {
-
+            
             //StopMove();
 
             //DestroyGameObject();
@@ -45,15 +45,15 @@ public class NavTank : MonoBehaviour
         }
 
     }
-    private void OnCollisionExit(Collision collider)
-    {
-        //StartMove();
-    }
 
     public void StopMove()
     {
-        rb.constraints = RigidbodyConstraints.FreezeAll;
+        
+        Debug.Log("Stop");
+       // rb.constraints = RigidbodyConstraints.FreezeAll;
         meshAgent.isStopped = true;
+        //meshAgent.SetDestination(gameObject.transform.position);
+        //meshAgent.velocity = Vector3.zero;
         //Debug.Log("Stopped!");
         //shoot();
 

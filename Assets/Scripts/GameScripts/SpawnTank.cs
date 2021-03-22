@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpawnTank : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class SpawnTank : MonoBehaviour
 
     public GameObject SpawnPoint1;
     public GameObject SpawnPoint2;
+    public NavMeshAgent surface;
+   
     void Update()
     {
         myRay = Camera.main.ScreenPointToRay(Input.mousePosition);

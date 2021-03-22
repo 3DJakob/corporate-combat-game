@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Player2
   - Tank
+  - Road
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Road
   - Water
   - UI
   - Player_1
