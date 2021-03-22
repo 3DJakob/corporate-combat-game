@@ -19,6 +19,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public GameObject lobbyText;
     public GameObject errorJoinRoom;
     public GameObject playerNameText;
+    public GameObject players;
 
     private bool inLobby;
 
@@ -52,9 +53,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         //Debug.Log("ToggleButtons is " + inLobby);
         createButton.SetActive(!inLobby);
         joinButton.SetActive(!inLobby);
+        playerNameText.SetActive(!inLobby);
         teamPicker.SetActive(inLobby);
         cancelButton.SetActive(inLobby);
-        lobbyText.SetActive(inLobby);
 
         inLobby = !inLobby; //Toggles bool, works like a light switch
     }
@@ -85,13 +86,18 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public void OnNicknameEntered()
     {
         string input = inputFieldNick.GetComponent<InputField>().text;
-        PhotonNetwork.NickName = input;
-        Debug.Log("Your name is " + PhotonNetwork.NickName);
 
-        joinButton.GetComponent<Button>().interactable = true;
-        createButton.GetComponent<Button>().interactable = true;
-        playerNameText.GetComponent<Text>().text = PhotonNetwork.NickName;
-        playerNameText.SetActive(true);
+        if (!string.IsNullOrEmpty(input))
+        {
+            PhotonNetwork.NickName = input;
+            Debug.Log("Your name is " + PhotonNetwork.NickName);
+
+            joinButton.GetComponent<Button>().interactable = true;
+            createButton.GetComponent<Button>().interactable = true;
+            playerNameText.GetComponent<Text>().text = PhotonNetwork.NickName;
+            playerNameText.SetActive(true);
+            inputFieldNick.SetActive(false);
+        } 
     }
 
 
@@ -110,6 +116,10 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         
         ToggleButtons();
         lobbyText.GetComponent<Text>().text = "You are in " + PhotonNetwork.CurrentRoom.Name;
+
+        
+        
+        //PhotonNetwork.MasterClient.NickName
     }
 
     void CreateRoom()
@@ -125,7 +135,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         Debug.Log("Tried to create a new room, there must already be room with the same name");
         CreateRoom();
-    }   
+    }  
+    
+    
 
     // Update is called once per frame
     void Update()

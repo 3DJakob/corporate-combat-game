@@ -12,6 +12,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     //UI elements
     public Button loadARSetupButton;
     public GameSetup gameSetup;
+    public GameObject players;
     public Canvas gameCanvas;
     public Canvas menuCanvas;
 
@@ -79,6 +80,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
         if (gameDebug == true)
             PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.gameScene);
+        updatePlayersInLobby();
     }
 
     //When Scene is ready create local player
@@ -138,6 +140,8 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         {  
             loadARSetupButton.gameObject.SetActive(true);
         }
+
+        updatePlayersInLobby();
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -149,6 +153,16 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
         Debug.Log(otherPlayer.ActorNumber + " has left the game");
         playersInRoom--;
+    }
+
+    void updatePlayersInLobby()
+    {
+        players.GetComponent<Text>().text = "Players in Lobby: \n";
+
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
+        {
+            players.GetComponent<Text>().text += PhotonNetwork.PlayerList[i].NickName + "\n";
+        }
     }
 
     //------Debug starts here ----

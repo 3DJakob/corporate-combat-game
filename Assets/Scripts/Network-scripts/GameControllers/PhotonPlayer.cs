@@ -113,8 +113,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
                 rightButton.onClick.AddListener(OnRightButtonClicked);
                 leftButton.onClick.AddListener(OnLeftButtonClicked);
-                
-      
+
+                GameSetup.GS.ARSetup = false;
                 GameSetup.GS.instanceOfMap.SetActive(true);
 
                 var planeManager = GameObject.Find("AR Session Origin").GetComponent<ARPlaneManager>();

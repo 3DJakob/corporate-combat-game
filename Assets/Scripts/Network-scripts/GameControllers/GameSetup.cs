@@ -15,6 +15,8 @@ public class GameSetup : MonoBehaviour
     public GameObject gameMap;
     public GameObject tankToSpawn;
 
+    public bool ARSetup = true;
+
     public GameObject instanceOfMap;
 
     //Create GameSetup OnEnable (When switching to the game scene)
