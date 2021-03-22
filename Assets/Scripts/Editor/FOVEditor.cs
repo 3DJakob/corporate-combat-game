@@ -18,9 +18,9 @@ public class FOVEditor : Editor
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngleB * fov.viewRadius);
 
         Handles.color = Color.red;
-        foreach (Transform visableTargets in fov.visibleTargets)
+        foreach (Transform visibleTargets in fov.visibleTargets)
         {
-            Handles.DrawLine(fov.transform.position, visableTargets.position);
+            Handles.DrawLine(fov.transform.position, visibleTargets.position);
         }
     }
 

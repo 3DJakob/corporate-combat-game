@@ -6,8 +6,9 @@ public class SpawnTank : MonoBehaviour
 {
     Ray myRay;      // initializing the ray
     RaycastHit hit; // initializing the raycasthit
-    Vector3 spawnPoint = new Vector3(-22f, -12f, 42f);
-    Vector3 spawnPoint_p2 = new Vector3(-22f, -11f, -231f);
+
+    public GameObject SpawnPoint1;
+    public GameObject SpawnPoint2;
     void Update()
     {
         myRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -23,13 +24,13 @@ public class SpawnTank : MonoBehaviour
                 {
                     if (PickCard.playerTag == "Player")
                     {
-                        Instantiate(PickCard.tank, spawnPoint, Quaternion.identity);
+                        Instantiate(PickCard.tank, SpawnPoint1.gameObject.transform.position, Quaternion.identity);
                         PickCard.cardSelected = false;
 
                     }
                     else if (PickCard.playerTag == "Player2")
                     {
-                        Instantiate(PickCard.tank, spawnPoint_p2, Quaternion.identity);
+                        Instantiate(PickCard.tank, SpawnPoint2.gameObject.transform.position, Quaternion.identity);
                         PickCard.cardSelected = false;
 
                     }

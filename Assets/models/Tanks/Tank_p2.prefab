@@ -12,11 +12,12 @@ GameObject:
   - component: {fileID: 9123020755843596839}
   - component: {fileID: 9123020755843596824}
   - component: {fileID: 9123020755843596835}
+  - component: {fileID: 704895139143099823}
   - component: {fileID: 9123020755843596825}
   - component: {fileID: 9123020755843596836}
   - component: {fileID: 9123020755843596837}
   - component: {fileID: 9123020755843596826}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tank_p2
   m_TagString: Tank
   m_Icon: {fileID: 0}
@@ -95,9 +96,9 @@ NavMeshAgent:
   m_GameObject: {fileID: 9123020755843596827}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 5
-  m_Speed: 50
-  m_Acceleration: 8
+  m_Radius: 3
+  m_Speed: 25
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -105,9 +106,31 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.0000005
-  m_BaseOffset: 0.50000024
+  m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &704895139143099823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123020755843596827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6584047fc7d8a4a51aa5b6dd2b146d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 75
+  viewAngle: 66
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  navTank: {fileID: 0}
+  visibleTargets: []
 --- !u!65 &9123020755843596825
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -119,7 +142,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &9123020755843596836
 BoxCollider:
@@ -132,7 +155,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &9123020755843596837
 Rigidbody:
@@ -162,4 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4a7c54c2600a64cb03ec2d8576846a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 0}
+  fov: {fileID: 0}
+  destination: {fileID: -7567717808231273243, guid: 7b5822806f6974b49a7d3c725280e10c,
+    type: 3}

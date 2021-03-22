@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class NavTank : MonoBehaviour
 {
+    public float tankHealth = 50f;
     public static NavMeshAgent meshAgent;
     private Rigidbody rb;
 
@@ -37,7 +38,7 @@ public class NavTank : MonoBehaviour
         if (collider.gameObject.tag == "Tank")
         {
 
-            stopMove();
+            //StopMove();
 
             //DestroyGameObject();
 
@@ -46,13 +47,18 @@ public class NavTank : MonoBehaviour
     }
     private void OnCollisionExit(Collision collider)
     {
-        startMove();
+        //StartMove();
     }
-    void stopMove()
-    {
-        meshAgent.speed = 0;
 
+    public void StopMove()
+    {
         rb.constraints = RigidbodyConstraints.FreezeAll;
+        meshAgent.isStopped = true;
+        //Debug.Log("Stopped!");
+        //shoot();
+
+
+
     }
 
     void DestroyGameObject()
@@ -60,12 +66,27 @@ public class NavTank : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void startMove()
+    public void StartMove()
     {
-        rb.constraints = RigidbodyConstraints.FreezePosition;
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
 
-        meshAgent.speed = 50f;
+        //rb.constraints = RigidbodyConstraints.FreezePosition;
+        //rb.constraints = RigidbodyConstraints.FreezeRotation;
+        meshAgent.isStopped = false;
+        Debug.Log("Moving");
+    }
+
+    public void TakeDamage(float amount)
+    {
+        tankHealth -= amount;
+        if (tankHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 
 }
