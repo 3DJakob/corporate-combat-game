@@ -27,7 +27,15 @@ public class NavTank : MonoBehaviour
 
     private void SetDestination()
     {
-        Vector3 target = destination.transform.position;
+        Vector3 target = new Vector3(0, 0, 0);
+        meshAgent.SetDestination(target);
+    }
+
+    public void SetDestination(Vector3 target)
+    {
+        meshAgent = this.GetComponent<NavMeshAgent>(); //Don't know why this is needed here aswell but did not work without it
+        //Debug.Log(meshAgent);
+
         meshAgent.SetDestination(target);
     }
 
