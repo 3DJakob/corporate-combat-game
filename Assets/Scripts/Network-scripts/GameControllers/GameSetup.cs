@@ -11,6 +11,7 @@ public class GameSetup : MonoBehaviour
 {
     public static GameSetup GS;
     public Transform[] spawnPoints;
+    public Transform[] cardPoints;
     public PhotonPlayer player;
     public GameObject gameMap;
     public GameObject tankToSpawn;
@@ -60,9 +61,8 @@ public class GameSetup : MonoBehaviour
         GameSetup.GS.spawnPoints[0] = temp.Find("SpawnPoint t1");
         GameSetup.GS.spawnPoints[1] = temp.Find("SpawnPoint t2");
 
-        //instanceOfMap.SetActive(false);
-        Debug.Log("Game map is" + instanceOfMap != null);
-        
+        GameSetup.GS.cardPoints[0] = temp.Find("CardPoint t1");
+        GameSetup.GS.cardPoints[1] = temp.Find("CardPoint t2");
     }
 
     private void Update()

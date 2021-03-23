@@ -23,8 +23,11 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
     public Canvas canvasGame;
     public Canvas canvasAR;
+    public GameObject CardController;
 
     public int spawnPicker;
+
+    // public UnityEvent onGameStart;
 
     // Start is called before the first frame update
     private void Start()
@@ -35,6 +38,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         //---Selected based on teams for now-----
         spawnPicker = PlayerInfo.PI.mySelectedTeam;
         Debug.Log("Spawn is at " + spawnPicker);
+        CardController = GameObject.Find("CardController");
+        // Debug.Log(CardController);
 
         //If PV is of the current instance, instantiate a player avatar and add onClick-events to the UI-buttons
         if (PV.IsMine)
@@ -77,6 +82,13 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
     public void OnStartGameButtonClicked()
     {
+
+        Debug.Log("LOOKING FOR THE POINTS!");
+
+        string[] selectedCards = {"FastTank", "FastTank", "FastTank", "FastTank", "FastTank"}; // TODO set from card rooster
+
+        CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[spawnPicker], selectedCards);
+
         if (PhotonNetwork.IsMasterClient)
         {
             byte eventId = 1;
