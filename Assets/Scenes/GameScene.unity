@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 6
-    agentHeight: 6
+    agentRadius: 0.1
+    agentHeight: 0.1
     agentSlope: 45.1
-    agentClimb: 10
+    agentClimb: 0.1
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
-    minRegionArea: 2
+    minRegionArea: 1
     manualCellSize: 0
-    cellSize: 2
+    cellSize: 0.033333335
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 819aa0cf2694f4d4e8eba73d9a7f279a, type: 2}
 --- !u!1 &14015564
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,6 +2390,7 @@ MonoBehaviour:
   gameMap: {fileID: 7896412431965812592, guid: bb34ed32817a74347ae4cc34473c593c, type: 3}
   tankToSpawn: {fileID: 4786126056533401518, guid: 1c1f724c8fb7c5143a251c0c2c949c2d,
     type: 3}
+  ARSetup: 1
   instanceOfMap: {fileID: 0}
 --- !u!4 &1765639952
 Transform:
