@@ -3388,7 +3388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadARSetupButton: {fileID: 823043325}
   gameSetup: {fileID: 0}
-  players: {fileID: 1212741205}
+  players: {fileID: 0}
   gameCanvas: {fileID: 0}
   menuCanvas: {fileID: 557127174}
   currentScene: 0
