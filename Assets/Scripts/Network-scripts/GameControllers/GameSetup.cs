@@ -61,13 +61,6 @@ public class GameSetup : MonoBehaviour
         GameSetup.GS.spawnPoints[0] = temp.Find("SpawnPoint t1");
         GameSetup.GS.spawnPoints[1] = temp.Find("SpawnPoint t2");
 
-        //instanceOfMap.SetActive(false);
-        Debug.Log("Game map is" + instanceOfMap != null);
-
-        Transform temp = instanceOfMap.transform;
-        GameSetup.GS.spawnPoints[0] = temp.Find("SpawnPoint t1");
-        GameSetup.GS.spawnPoints[1] = temp.Find("SpawnPoint t2");
-
         GameSetup.GS.cardPoints[0] = temp.Find("CardPoint t1");
         GameSetup.GS.cardPoints[1] = temp.Find("CardPoint t2");
     }
