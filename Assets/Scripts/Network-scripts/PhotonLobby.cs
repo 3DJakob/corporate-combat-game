@@ -22,6 +22,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public GameObject players;
 
     private bool inLobby;
+    private static readonly string[] roomCodes = { "abc", "tank", "vip", "mvp", "ggwp" };
 
     //public int roomNumber;
     //RoomInfo[] rooms;
@@ -79,8 +80,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public void OnRoomCodeEntered()
     {
         string input = inputField.GetComponent<InputField>().text;
-        Debug.Log("Searching for game with name: Room" + input);
-        PhotonNetwork.JoinRoom("Room" + input);
+        Debug.Log("Searching for game with name: " + input);
+        PhotonNetwork.JoinRoom(input);
     }
 
     public void OnNicknameEntered()
@@ -114,17 +115,17 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         inputField.SetActive(false); 
         ToggleButtons();
-        lobbyText.GetComponent<Text>().text = "You are in " + PhotonNetwork.CurrentRoom.Name;
-        //PhotonNetwork.MasterClient.NickName
+        lobbyText.GetComponent<Text>().text = "Room Code: " + PhotonNetwork.CurrentRoom.Name;
     }
 
     void CreateRoom()
     {
         Debug.Log("Trying to create a new room");
-        int randomRoomName = Random.Range(0, 10);
+        int randomInt = Random.Range(0, 5);
         RoomOptions roomOps = new RoomOptions() { IsVisible = false, IsOpen = true, MaxPlayers = (byte)MultiplayerSetting.multiplayerSetting.maxPlayers }; //Room specifications
-        PhotonNetwork.CreateRoom("Room" + randomRoomName, roomOps);
-        Debug.Log("Created Room" + randomRoomName);
+        //PhotonNetwork.CreateRoom("Room" + randomInt, roomOps);
+        PhotonNetwork.CreateRoom(roomCodes[randomInt], roomOps);
+        Debug.Log("Created Room: " + roomCodes[randomInt]);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)

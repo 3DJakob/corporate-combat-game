@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -17,9 +18,10 @@ public class ARTapToPlaceObject : MonoBehaviour
     public GameObject spawnedTableLeg3;
     public GameObject spawnedTableLeg4;
 
-    public bool running;
+    private bool running;
 
     private ARRaycastManager _arRaycastManager;
+    private ARPlaneManager _arPlaneManager;
     private Vector2 touchPosition;
     private float initialScale = 1.0f;
     private float startPinchScale = 0.0f;
@@ -41,6 +43,7 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     private void Awake() {
         _arRaycastManager = GetComponent<ARRaycastManager>();
+        _arPlaneManager = GetComponent<ARPlaneManager>();
     }
 
     public void updateHeight(float value) {
@@ -104,8 +107,31 @@ public class ARTapToPlaceObject : MonoBehaviour
         spawnedTableLeg4.transform.localPosition = new Vector3((-tableWidth * scaleFactor + woodThickness) / 2, 0, (-tableLenght * scaleFactor + woodThickness) / 2);
     }
 
+    bool IsPointerOverUIObject(Vector2 pos)
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return false;
+        }
+
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        pointerEventData.position = new Vector2(pos.x, pos.y);
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+
+        EventSystem.current.RaycastAll(pointerEventData, raycastResults);
+
+        return raycastResults.Count > 0;
+    }
+
     // Update is called once per frame
     void Update() {
+        if (GameSetup.GS.ARSetup == false)
+        {
+            _arPlaneManager.enabled = false;
+            foreach (var plane in _arPlaneManager.trackables)
+                plane.gameObject.SetActive(false);
+        }
+            
         if(GameSetup.GS.ARSetup){
             // Debug.Log("looping");
             if (!TryGetTouchPosition(out Vector2 touchPosition)) {
@@ -137,8 +163,7 @@ public class ARTapToPlaceObject : MonoBehaviour
                     return;
                 }
 
-                // TrackableType.PlaneWithinPolygon = the type we're looking for
-                if (_arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon)) {
+                if(!IsPointerOverUIObject(touchPosition) && _arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon)){ 
                     var hitPose = hits[0].pose;
 
                     if (parentObject == null) {

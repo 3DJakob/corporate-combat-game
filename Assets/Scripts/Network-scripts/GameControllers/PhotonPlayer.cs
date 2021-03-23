@@ -16,16 +16,19 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     private PhotonView PV;
     public GameObject myAvatar;
 
-    public Button tankSpawnButton;
     public Button startButton;
-    public Button rightButton;
-    public Button leftButton;
+    public Button readyButton;
+    public Button tankSpawnButton;
+    
+    //public Button rightButton;
+    //public Button leftButton;
 
     public Canvas canvasGame;
     public Canvas canvasAR;
     public GameObject CardController;
 
     public int spawnPicker;
+    public static int playersReady;
 
     // public UnityEvent onGameStart;
 
@@ -33,6 +36,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     private void Start()
     {
         PV = GetComponent<PhotonView>();
+
+        playersReady = 0;
 
         //Spawn set, depending on player who owns the current instance 
         //---Selected based on teams for now-----
@@ -44,23 +49,24 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         //If PV is of the current instance, instantiate a player avatar and add onClick-events to the UI-buttons
         if (PV.IsMine)
         {
-            //myUI = new UIElements();
             //myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
             //    GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
-            //Debug.Log("Avatar spawned at spawnpoint" + spawnPicker);
             Debug.Log("Player created");
 
             canvasGame = GameObject.Find("InGameUI").GetComponent<Canvas>();
             canvasAR = GameObject.Find("ARSetup").GetComponent<Canvas>();
             startButton = GameObject.Find("StartGame").GetComponent<Button>();
-           
+            readyButton = GameObject.Find("Ready").GetComponent<Button>();
+
             startButton.onClick.AddListener(OnStartGameButtonClicked);
-            
+            readyButton.onClick.AddListener(OnReadyButtonClicked);
+            startButton.gameObject.SetActive(false);
+
             canvasGame.enabled = false;
             canvasAR.enabled = true;
 
-            if (!PhotonNetwork.IsMasterClient)
-                startButton.gameObject.SetActive(false);
+            //if (!PhotonNetwork.IsMasterClient)
+            //    startButton.gameObject.SetActive(false);
         }
     }
     // Update is called once per frame
@@ -69,17 +75,32 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
        
     }
     //When MoveRight/MoveLeft is clicked, move "myAvatar" to the right/left
-    public void OnRightButtonClicked()
-    {
+    //public void OnRightButtonClicked()
+    //{
         
-        Debug.Log("Moves right");
-        myAvatar.transform.position += new Vector3(0.2f, 0, 0);
+    //    Debug.Log("Moves right");
+    //    myAvatar.transform.position += new Vector3(0.2f, 0, 0);
         
-    }
-    public void OnLeftButtonClicked()
+    //}
+    //public void OnLeftButtonClicked()
+    //{
+    //    Debug.Log("Moves left");
+    //    myAvatar.transform.position += new Vector3(-0.2f, 0, 0);
+    //}
+    public void OnReadyButtonClicked()
     {
-        Debug.Log("Moves left");
-        myAvatar.transform.position += new Vector3(-0.2f, 0, 0);
+        GameSetup.GS.ARSetup = false;
+        if (PV.IsMine)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                startButton.gameObject.SetActive(true);
+                startButton.interactable = false;
+            }
+
+            PV.RPC("RPC_UpdateReady", RpcTarget.MasterClient);
+        }     
+            
     }
 
     public void OnStartGameButtonClicked()
@@ -118,25 +139,17 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 canvasAR.enabled = false;
 
                 tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
-                Debug.Log("Listener added to Spawn Cube");
-
-                rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
-                leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
-
                 tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
-                rightButton.onClick.AddListener(OnRightButtonClicked);
-                leftButton.onClick.AddListener(OnLeftButtonClicked);
 
-                GameSetup.GS.ARSetup = false;
+                //rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
+                //leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
+                //rightButton.onClick.AddListener(OnRightButtonClicked);
+                //leftButton.onClick.AddListener(OnLeftButtonClicked);
+
+                
                 GameSetup.GS.instanceOfMap.SetActive(true);
                 GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").GetComponent<NavMeshBaker>().Bake();
 
-                var planeManager = GameObject.Find("AR Session Origin").GetComponent<ARPlaneManager>();
-                Debug.Log(planeManager);
-                foreach (var plane in planeManager.trackables)
-                {
-                    plane.gameObject.SetActive(false);
-                }
             }
         }
     }
@@ -146,17 +159,12 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     //All clients have their own instance of the spawned tank
     public void OnTankSpawnButtonClicked()
     {
-
-        //GameSetup.GS.spawnPoints[0] = GameObject.Find("SpawnPoint t1").GetComponent<Transform>();
-        //GameSetup.GS.spawnPoints[1] = GameObject.Find("SpawnPoint t2").GetComponent<Transform>();
         Transform localT = PlayerInfo.PI.T;
         
         if (PV.IsMine)
         {
             //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
             Debug.Log("Spawns Tank");
-            
-
             PV.RPC("RPC_SpawnTank", RpcTarget.All, PlayerInfo.PI.mySelectedTeam);
         }
         
@@ -178,15 +186,18 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
     }
 
-    //[PunRPC]
-    //void RPC_LocalizeTank(GameObject gObject)
-    //{
-    //    Transform temp = PlayerInfo.PI.T;
-
-    //    GameObject myTank = GameObject.Find("PlayerAvatar(Clone)");
-    //    Debug.Log(myTank);
-
-    //    myTank.transform.parent = PlayerInfo.PI.T;
-    //}
+    [PunRPC]
+    void RPC_UpdateReady()
+    {
+        playersReady++;
+        Debug.Log(PhotonNetwork.IsMasterClient + "Players ready = " + playersReady);
+        if (playersReady == PhotonNetwork.PlayerList.Length)
+        {
+            startButton = GameObject.Find("StartGame").GetComponent<Button>();
+            startButton.interactable = true;
+        }
+            
+    }
+ 
 
 }
