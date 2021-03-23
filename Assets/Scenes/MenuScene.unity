@@ -497,7 +497,7 @@ MonoBehaviour:
   lobbyText: {fileID: 168224234}
   errorJoinRoom: {fileID: 83179472}
   playerNameText: {fileID: 321428999}
-  players: {fileID: 0}
+  players: {fileID: 168224234}
 --- !u!4 &112736534
 Transform:
   m_ObjectHideFlags: 0

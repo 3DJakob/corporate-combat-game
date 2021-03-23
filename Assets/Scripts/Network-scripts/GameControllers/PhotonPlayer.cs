@@ -92,7 +92,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         if (PhotonNetwork.IsMasterClient)
         {
             byte eventId = 1;
-
             bool startGame = true;
             RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
             PhotonNetwork.RaiseEvent(eventId, startGame, raiseEventOptions, SendOptions.SendReliable);
@@ -128,8 +127,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
                 GameSetup.GS.ARSetup = false;
                 GameSetup.GS.instanceOfMap.SetActive(true);
-
-                
                 GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").GetComponent<NavMeshBaker>().Bake();
 
                 var planeManager = GameObject.Find("AR Session Origin").GetComponent<ARPlaneManager>();
