@@ -14,7 +14,6 @@ public class NavTank : MonoBehaviour
     {
         meshAgent = this.GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
-
         if (meshAgent == null)
         {
             Debug.LogError("The nav mesh agent is not attached to " + gameObject.name);
@@ -22,20 +21,21 @@ public class NavTank : MonoBehaviour
         else
         {
             SetDestination();
+ 
         }
     }
 
     private void SetDestination()
     {
         Vector3 target = new Vector3(0, 0, 0);
-        meshAgent.SetDestination(target);
+        this.gameObject.GetComponent<NavMeshAgent>().destination = target;
+        //meshAgent.SetDestination(target);
     }
 
     public void SetDestination(Vector3 target)
     {
         meshAgent = this.GetComponent<NavMeshAgent>(); //Don't know why this is needed here aswell but did not work without it
         //Debug.Log(meshAgent);
-
         meshAgent.SetDestination(target);
     }
 
@@ -44,18 +44,16 @@ public class NavTank : MonoBehaviour
     {
         if (collider.gameObject.tag == "Tank")
         {
-
             stopMove();
-
             //DestroyGameObject();
-
         }
-
     }
+
     private void OnCollisionExit(Collision collider)
     {
         startMove();
     }
+
     void stopMove()
     {
         meshAgent.speed = 0;
