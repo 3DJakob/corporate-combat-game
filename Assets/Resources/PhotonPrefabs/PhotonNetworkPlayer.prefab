@@ -73,4 +73,5 @@ MonoBehaviour:
   leftButton: {fileID: 0}
   canvasGame: {fileID: 0}
   canvasAR: {fileID: 0}
+  CardController: {fileID: 0}
   spawnPicker: 0
