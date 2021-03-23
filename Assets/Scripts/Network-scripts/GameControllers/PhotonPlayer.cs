@@ -53,7 +53,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             canvasGame = GameObject.Find("InGameUI").GetComponent<Canvas>();
             canvasAR = GameObject.Find("ARSetup").GetComponent<Canvas>();
             startButton = GameObject.Find("StartGame").GetComponent<Button>();
+           
             startButton.onClick.AddListener(OnStartGameButtonClicked);
+            
             canvasGame.enabled = false;
             canvasAR.enabled = true;
 
@@ -82,13 +84,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
     public void OnStartGameButtonClicked()
     {
-
-        Debug.Log("LOOKING FOR THE POINTS!");
-
-        string[] selectedCards = {"FastTank", "FastTank", "FastTank", "FastTank", "FastTank"}; // TODO set from card rooster
-
-        CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[spawnPicker], selectedCards);
-
+        
         if (PhotonNetwork.IsMasterClient)
         {
             byte eventId = 1;
@@ -113,11 +109,17 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             byte eventCode = photonEvent.Code;
             if (eventCode == 1)
             {
+                //Jakob, the program gets stuck on this code!
+                //string[] selectedCards = { "FastTank", "FastTank", "FastTank", "FastTank", "FastTank" }; // TODO set from card rooster
+                //CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[spawnPicker], selectedCards);
+
                 Debug.Log("Enabling UI");
                 canvasGame.enabled = true;
                 canvasAR.enabled = false;
 
                 tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
+                Debug.Log("Listener added to Spawn Cube");
+
                 rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
                 leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
 
