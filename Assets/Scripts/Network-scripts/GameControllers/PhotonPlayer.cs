@@ -117,8 +117,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 GameSetup.GS.ARSetup = false;
                 GameSetup.GS.instanceOfMap.SetActive(true);
 
-
-                GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").GetComponent<NavMeshSurface>().BuildNavMesh();
+                
+                GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").GetComponent<NavMeshBaker>().Bake();
 
                 var planeManager = GameObject.Find("AR Session Origin").GetComponent<ARPlaneManager>();
                 Debug.Log(planeManager);

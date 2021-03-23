@@ -112,13 +112,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        inputField.SetActive(false);
-        
+        inputField.SetActive(false); 
         ToggleButtons();
         lobbyText.GetComponent<Text>().text = "You are in " + PhotonNetwork.CurrentRoom.Name;
-
-        
-        
         //PhotonNetwork.MasterClient.NickName
     }
 

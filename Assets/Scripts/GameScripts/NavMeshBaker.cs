@@ -5,12 +5,15 @@ using UnityEngine.AI;
 
 public class NavMeshBaker : MonoBehaviour
 {
-    [SerializeField]
-    NavMeshSurface surface;
     // Start is called before the first frame update
-    void Start()
+    public void Bake()
     {
         this.transform.GetComponent<NavMeshSurface>().BuildNavMesh();
+    }
+
+    void Start()
+    {
+        Bake();
         //surface.BuildNavMesh();
     }
 
