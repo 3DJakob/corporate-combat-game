@@ -26,7 +26,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_VoxelSize: 0.33333334
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}
 --- !u!114 &1258389630095374573
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_VoxelSize: 0.33333334
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}
 --- !u!114 &732158030449309230
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_VoxelSize: 0.33333334
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}
 --- !u!114 &4432972724987666777
@@ -381,6 +381,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1599826595754709761, guid: 2054de4ac6a93c649ba6a9949b15757c,
         type: 3}
+      propertyPath: m_Name
+      value: BLUE FACTORY
+      objectReference: {fileID: 0}
+    - target: {fileID: -1599826595754709761, guid: 2054de4ac6a93c649ba6a9949b15757c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1599826595754709761, guid: 2054de4ac6a93c649ba6a9949b15757c,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -403,6 +413,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 2054de4ac6a93c649ba6a9949b15757c,
+        type: 3}
+      propertyPath: m_Name
+      value: RED FACTORY
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 2054de4ac6a93c649ba6a9949b15757c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2054de4ac6a93c649ba6a9949b15757c,
         type: 3}
