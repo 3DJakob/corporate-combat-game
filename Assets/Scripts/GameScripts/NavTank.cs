@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class NavTank : MonoBehaviour
 {
     public static NavMeshAgent meshAgent;
+    public int team;
     private Rigidbody rb;
 
     [SerializeField] Transform destination;
@@ -20,6 +21,15 @@ public class NavTank : MonoBehaviour
         }
         else
         {
+            if (team == 0)
+            {
+                meshAgent.Warp(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t1").transform.position);
+            }
+            else
+            {
+                meshAgent.Warp(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t2").transform.position);
+            }
+              
             SetDestination();
  
         }
@@ -27,21 +37,30 @@ public class NavTank : MonoBehaviour
 
     public void SetDestination()
     {
-        GameObject target = new GameObject();
-        target.transform.SetParent(GameSetup.GS.instanceOfMap.transform, false);
-        destination = target.transform;
-        
+        if (team == 0)
+        {
+            this.GetComponent<NavMeshAgent>().SetDestination(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t2").transform.position);
+        }
+        else 
+        {
+            this.GetComponent<NavMeshAgent>().SetDestination(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t1").transform.position);
+        }
 
-        this.gameObject.GetComponent<NavMeshAgent>().destination = destination.localPosition;
+
+
+        //GameObject target = new GameObject();
+        //target.transform.SetParent(GameSetup.GS.instanceOfMap.transform, false);
+        //destination = target.transform;
+        //this.gameObject.GetComponent<NavMeshAgent>().destination = destination.localPosition;
         //meshAgent.SetDestination(target);
     }
 
-    public void SetDestination(Vector3 target)
-    {
-        meshAgent = this.GetComponent<NavMeshAgent>(); //Don't know why this is needed here aswell but did not work without it
+    //public void SetDestination(Vector3 target)
+    //{
+      //  meshAgent = this.GetComponent<NavMeshAgent>(); //Don't know why this is needed here aswell but did not work without it
         //Debug.Log(meshAgent);
-        meshAgent.SetDestination(target);
-    }
+        //meshAgent.SetDestination(target);
+    //}
 
     //private void OnTriggerEnter(Collider other){
     private void OnCollisionEnter(Collision collider)

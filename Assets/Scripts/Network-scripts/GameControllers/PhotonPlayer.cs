@@ -173,7 +173,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
         //GameObject tank = (GameObject)Instantiate(GameSetup.GS.tankToSpawn, GameSetup.GS.spawnPoints[team].position, localT.rotation);
         //tank.transform.parent = localT;
-        PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].localPosition, new Quaternion(0,0,0,0), 0);
+        GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].localPosition, new Quaternion(0,0,0,0), 0);
+        Tank.GetComponent<NavTank>().team = team;
+
         //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, localT.rotation, 0);
         //if (team == 0)
         //    tank.GetComponent<NavTank>().GetComponent<NavMeshAgent>().SetDestination(localT.Find("Spelplan 1").Find("Factory 1").position);
