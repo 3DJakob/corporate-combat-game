@@ -10,9 +10,9 @@ using UnityEngine.UI;
 public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
     //UI elements
-    public Button loadARSetupButton;
+    //public Button loadARSetupButton;
     public GameSetup gameSetup;
-    public GameObject players;
+    //public GameObject players;
     public Canvas gameCanvas;
     public Canvas menuCanvas;
 
@@ -45,7 +45,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
             }
         }
         DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(menuCanvas);
+        //DontDestroyOnLoad(menuCanvas);
     }
 
     public override void OnEnable()
@@ -113,7 +113,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public void OnARSetupButtonClicked()
     {
         Debug.Log("AR setup");
-        loadARSetupButton.gameObject.SetActive(false);
+        MenuScript.menu.loadARSetupButton.gameObject.SetActive(false);
 
         if (!PhotonNetwork.IsMasterClient)
             return;
@@ -138,7 +138,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
         if (PhotonNetwork.PlayerList.Length >= 2 && PhotonNetwork.IsMasterClient)
         {  
-            loadARSetupButton.gameObject.SetActive(true);
+            MenuScript.menu.loadARSetupButton.gameObject.SetActive(true);
         }
 
         updatePlayersInLobby();
@@ -149,19 +149,20 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         base.OnPlayerLeftRoom(otherPlayer);
         if (PhotonNetwork.PlayerList.Length < 2 && PhotonNetwork.IsMasterClient && currentScene == 0)
         {
-            loadARSetupButton.gameObject.SetActive(false);
+            MenuScript.menu.loadARSetupButton.gameObject.SetActive(false);
         }
         Debug.Log(otherPlayer.ActorNumber + " has left the game");
-        playersInRoom--;
+        playersInRoom--;  
+        
     }
 
     void updatePlayersInLobby()
     {
-        players.GetComponent<Text>().text = "Players in Lobby: \n";
+        MenuScript.menu.playersText.GetComponent<Text>().text = "Players in Lobby: \n";
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
         {
-            players.GetComponent<Text>().text += PhotonNetwork.PlayerList[i].NickName + "\n";
+            MenuScript.menu.playersText.GetComponent<Text>().text += PhotonNetwork.PlayerList[i].NickName + "\n";
         }
     }
 
