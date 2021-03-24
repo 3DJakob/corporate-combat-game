@@ -15,21 +15,21 @@ public class CardController : MonoBehaviour {
         Debug.Log(placement.position);
 
         GameObject Empty = new GameObject();
+        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         GameObject theParent = GameObject.Instantiate(Empty, placement.position, placement.rotation);
+        // theParent.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
-        string prefabName = "FastTank";
         string pathOfPrefabDirectory = "Cards/";
-        var prefabInstance = Resources.Load(pathOfPrefabDirectory + prefabName) as GameObject;
 
+        float place = -CardNames.Length / 2.0f;
 
-        for(int i = 0; i < 8; i++) {
-            
-
-            GameObject theObj = GameObject.Instantiate(Card, theParent.transform, false);
-            theObj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-            theObj.transform.localPosition = new Vector3(theObj.transform.position.x  + 0.1f * i, 0, 0);
+        foreach (string prefabName in CardNames) {
+            var prefabInstance = Resources.Load(pathOfPrefabDirectory + prefabName) as GameObject;
+            GameObject theObj = GameObject.Instantiate(prefabInstance, theParent.transform, false);
+            theObj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f); // ITS HUGE!
+            theObj.transform.localPosition = new Vector3(theObj.transform.localPosition.x  + 0.1f * place, 0, 0);
+            place = place + 1.0f;
         }
-
     }
 
     // Update is called once per frame
