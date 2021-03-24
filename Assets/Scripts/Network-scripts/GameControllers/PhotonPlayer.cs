@@ -100,7 +100,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
             PV.RPC("RPC_UpdateReady", RpcTarget.MasterClient);
         }     
-            
     }
 
     public void OnStartGameButtonClicked()
@@ -130,9 +129,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             byte eventCode = photonEvent.Code;
             if (eventCode == 1)
             {
-                //Jakob, the program gets stuck on this code!
-                //string[] selectedCards = { "FastTank", "FastTank", "FastTank", "FastTank", "FastTank" }; // TODO set from card rooster
-                //CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[spawnPicker], selectedCards);
+
+                string[] selectedCards = { "FastTank", "FastTank", "FastTank", "FastTank", "FastTank" }; // TODO set from card rooster
+                CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[spawnPicker], selectedCards);
 
                 Debug.Log("Enabling UI");
                 canvasGame.enabled = true;
@@ -146,7 +145,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 //rightButton.onClick.AddListener(OnRightButtonClicked);
                 //leftButton.onClick.AddListener(OnLeftButtonClicked);
 
-                
                 GameSetup.GS.instanceOfMap.SetActive(true);
                 GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").GetComponent<NavMeshBaker>().Bake();
 
@@ -159,8 +157,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     //All clients have their own instance of the spawned tank
     public void OnTankSpawnButtonClicked()
     {
-        Transform localT = PlayerInfo.PI.T;
-        
         if (PV.IsMine)
         {
             //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
@@ -177,7 +173,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
         //GameObject tank = (GameObject)Instantiate(GameSetup.GS.tankToSpawn, GameSetup.GS.spawnPoints[team].position, localT.rotation);
         //tank.transform.parent = localT;
-        PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, localT.rotation, 0);
+        GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, new Quaternion(0,0,0,0), 0);
+        Tank.GetComponent<NavTank>().team = team;
+
         //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, localT.rotation, 0);
         //if (team == 0)
         //    tank.GetComponent<NavTank>().GetComponent<NavMeshAgent>().SetDestination(localT.Find("Spelplan 1").Find("Factory 1").position);

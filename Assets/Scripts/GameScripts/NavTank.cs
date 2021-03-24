@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class NavTank : MonoBehaviour
 {
     public static NavMeshAgent meshAgent;
+    public int team;
     private Rigidbody rb;
 
     [SerializeField] Transform destination;
@@ -14,50 +15,73 @@ public class NavTank : MonoBehaviour
     {
         meshAgent = this.GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
-
         if (meshAgent == null)
         {
             Debug.LogError("The nav mesh agent is not attached to " + gameObject.name);
         }
         else
         {
+            if (team == 0)
+            {
+                meshAgent.Warp(this.transform.position);
+            }
+            else
+            {
+                meshAgent.Warp(this.transform.position);
+            }
+              
             SetDestination();
+ 
         }
     }
 
-    private void SetDestination()
+    public void SetDestination()
     {
-        Vector3 target = new Vector3(0, 0, 0);
-        meshAgent.SetDestination(target);
+        if (team == 0)
+        {
+            this.GetComponent<NavMeshAgent>().SetDestination(PlayerInfo.PI.T.Find("SpawnPoint t2").position);
+        }
+        else 
+        {
+            this.GetComponent<NavMeshAgent>().SetDestination(PlayerInfo.PI.T.Find("SpawnPoint t1").position);
+        }
+
+
+
+        //GameObject target = new GameObject();
+        //target.transform.SetParent(GameSetup.GS.instanceOfMap.transform, false);
+        //destination = target.transform;
+        //this.gameObject.GetComponent<NavMeshAgent>().destination = destination.localPosition;
+        //meshAgent.SetDestination(target);
     }
 
-    public void SetDestination(Vector3 target)
-    {
-        meshAgent = this.GetComponent<NavMeshAgent>(); //Don't know why this is needed here aswell but did not work without it
+    //public void SetDestination(Vector3 target)
+    //{
+      //  meshAgent = this.GetComponent<NavMeshAgent>(); //Don't know why this is needed here aswell but did not work without it
         //Debug.Log(meshAgent);
-
-        meshAgent.SetDestination(target);
-    }
+        //meshAgent.SetDestination(target);
+    //}
 
     //private void OnTriggerEnter(Collider other){
     private void OnCollisionEnter(Collision collider)
     {
         if (collider.gameObject.tag == "Tank")
         {
-
             stopMove();
-
             //DestroyGameObject();
-
         }
-
     }
+
     private void OnCollisionExit(Collision collider)
     {
         startMove();
     }
+
     void stopMove()
     {
+
+
+        Debug.Log("Stop Move kallas");
         meshAgent.speed = 0;
 
         rb.constraints = RigidbodyConstraints.FreezeAll;

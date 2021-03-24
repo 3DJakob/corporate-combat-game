@@ -20,6 +20,8 @@ public class PickCard : MonoBehaviour
     {
         cardObject = tank = serializedTank;
     }
+
+    /*
     void Update()
     {
         myRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -40,4 +42,5 @@ public class PickCard : MonoBehaviour
                 }
         }
     }
+    */
 }

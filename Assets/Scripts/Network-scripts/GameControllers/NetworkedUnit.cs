@@ -12,6 +12,7 @@ public class NetworkedUnit : MonoBehaviour
         PV = GetComponent<PhotonView>();
         PV.transform.SetParent(GameSetup.GS.instanceOfMap.transform, false);
 
+        //this.GetComponent<NavTank>().SetDestination();
     }
     // Update is called once per frame
     void Update()
