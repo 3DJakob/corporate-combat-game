@@ -130,9 +130,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             byte eventCode = photonEvent.Code;
             if (eventCode == 1)
             {
-                //Jakob, the program gets stuck on this code!
-                //string[] selectedCards = { "FastTank", "FastTank", "FastTank", "FastTank", "FastTank" }; // TODO set from card rooster
-                //CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[spawnPicker], selectedCards);
+
+                string[] selectedCards = { "FastTank", "FastTank", "FastTank", "FastTank", "FastTank" }; // TODO set from card rooster
+                CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[spawnPicker], selectedCards);
 
                 Debug.Log("Enabling UI");
                 canvasGame.enabled = true;
