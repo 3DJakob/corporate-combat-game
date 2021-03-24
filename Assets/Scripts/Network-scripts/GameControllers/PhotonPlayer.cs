@@ -100,7 +100,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
             PV.RPC("RPC_UpdateReady", RpcTarget.MasterClient);
         }     
-            
     }
 
     public void OnStartGameButtonClicked()
@@ -146,7 +145,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 //rightButton.onClick.AddListener(OnRightButtonClicked);
                 //leftButton.onClick.AddListener(OnLeftButtonClicked);
 
-                
                 GameSetup.GS.instanceOfMap.SetActive(true);
                 GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").GetComponent<NavMeshBaker>().Bake();
 
@@ -159,8 +157,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     //All clients have their own instance of the spawned tank
     public void OnTankSpawnButtonClicked()
     {
-        Transform localT = PlayerInfo.PI.T;
-        
         if (PV.IsMine)
         {
             //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
@@ -173,11 +169,11 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     [PunRPC]
     void RPC_SpawnTank(int team)
     {
-        Transform localT = PlayerInfo.PI.T;
+        Transform localT = GameSetup.GS.instanceOfMap.transform;
 
         //GameObject tank = (GameObject)Instantiate(GameSetup.GS.tankToSpawn, GameSetup.GS.spawnPoints[team].position, localT.rotation);
         //tank.transform.parent = localT;
-        PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, localT.rotation, 0);
+        PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].localPosition, new Quaternion(0,0,0,0), 0);
         //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, localT.rotation, 0);
         //if (team == 0)
         //    tank.GetComponent<NavTank>().GetComponent<NavMeshAgent>().SetDestination(localT.Find("Spelplan 1").Find("Factory 1").position);

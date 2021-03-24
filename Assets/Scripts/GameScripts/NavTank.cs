@@ -25,10 +25,14 @@ public class NavTank : MonoBehaviour
         }
     }
 
-    private void SetDestination()
+    public void SetDestination()
     {
-        Vector3 target = new Vector3(0, 0, 0);
-        this.gameObject.GetComponent<NavMeshAgent>().destination = target;
+        GameObject target = new GameObject();
+        target.transform.SetParent(GameSetup.GS.instanceOfMap.transform, false);
+        destination = target.transform;
+        
+
+        this.gameObject.GetComponent<NavMeshAgent>().destination = destination.localPosition;
         //meshAgent.SetDestination(target);
     }
 
@@ -56,6 +60,9 @@ public class NavTank : MonoBehaviour
 
     void stopMove()
     {
+
+
+        Debug.Log("Stop Move kallas");
         meshAgent.speed = 0;
 
         rb.constraints = RigidbodyConstraints.FreezeAll;

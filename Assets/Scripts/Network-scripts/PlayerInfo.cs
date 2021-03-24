@@ -41,15 +41,12 @@ public class PlayerInfo : MonoBehaviour
         if (PlayerPrefs.HasKey("MyTeam"))
         {
             mySelectedTeam = PlayerPrefs.GetInt("MyTeam");
-      
         }
         else 
         {
             mySelectedTeam = 0;
             PlayerPrefs.SetInt("MyTeam", mySelectedTeam);
         }
-
-        
     }
 
     private void Update()
