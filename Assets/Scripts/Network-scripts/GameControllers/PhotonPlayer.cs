@@ -169,7 +169,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     [PunRPC]
     void RPC_SpawnTank(int team)
     {
-        Transform localT = GameSetup.GS.instanceOfMap.transform;
+        Transform localT = PlayerInfo.PI.T;
 
         //GameObject tank = (GameObject)Instantiate(GameSetup.GS.tankToSpawn, GameSetup.GS.spawnPoints[team].position, localT.rotation);
         //tank.transform.parent = localT;

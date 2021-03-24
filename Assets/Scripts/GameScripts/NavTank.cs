@@ -23,11 +23,11 @@ public class NavTank : MonoBehaviour
         {
             if (team == 0)
             {
-                meshAgent.Warp(GameSetup.GS.spawnPoints[team].position);
+                meshAgent.Warp(this.transform.position);
             }
             else
             {
-                meshAgent.Warp(GameSetup.GS.spawnPoints[team].position);
+                meshAgent.Warp(this.transform.position);
             }
               
             SetDestination();
@@ -39,11 +39,11 @@ public class NavTank : MonoBehaviour
     {
         if (team == 0)
         {
-            this.GetComponent<NavMeshAgent>().SetDestination(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t2").position);
+            this.GetComponent<NavMeshAgent>().SetDestination(PlayerInfo.PI.T.Find("SpawnPoint t2").position);
         }
         else 
         {
-            this.GetComponent<NavMeshAgent>().SetDestination(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t1").position);
+            this.GetComponent<NavMeshAgent>().SetDestination(PlayerInfo.PI.T.Find("SpawnPoint t1").position);
         }
 
 

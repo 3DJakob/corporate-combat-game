@@ -28,7 +28,6 @@ public class GameSetup : MonoBehaviour
             GameSetup.GS = this;
         }
     }
-    
     //If a player is disconnected load menu-scene (could be in UIElements)
     public void DisconnectPlayer()
     {
