@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,12 +9,15 @@ public class NavTank : MonoBehaviour
     public static NavMeshAgent meshAgent;
     public int team;
     private Rigidbody rb;
+    private PhotonView PV;
+
 
     [SerializeField] Transform destination;
     // Start is called before the first frame update
     void Start()
     {
-        meshAgent = this.GetComponent<NavMeshAgent>();
+        PV = GetComponent<PhotonView>();
+        meshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         if (meshAgent == null)
         {
@@ -23,7 +27,7 @@ public class NavTank : MonoBehaviour
             if (!meshAgent.isOnNavMesh)
             {
                 //Set to position you want to warp to
-                meshAgent.Warp(this.transform.position);
+                meshAgent.Warp(transform.localPosition);
                 meshAgent.enabled = false;
                 meshAgent.enabled = true;
             }
@@ -33,35 +37,28 @@ public class NavTank : MonoBehaviour
 
     public void WarpToPosition(Vector3 pos) {
 
-        if(!meshAgent.isOnNavMesh)
+        //Set to position you want to warp to
+        if (!meshAgent.isOnNavMesh)
         {
-            //Set to position you want to warp to
             meshAgent.Warp(pos);
             meshAgent.enabled = false;
             meshAgent.enabled = true;
         }
-        /*
-        if (team == 0)
-        {
-            meshAgent.Warp(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t1").transform.position);
-        }
-        else
-        {
-            meshAgent.Warp(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t2").transform.position);
-        }
-        */
         SetDestination();
     }
 
     public void SetDestination()
     {
-        if (team == 0)
+        if (meshAgent.isOnNavMesh)
         {
-            meshAgent.SetDestination(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t2").transform.position);
-        }
-        else 
-        {
-            meshAgent.SetDestination(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t1").transform.position);
+            if (team == 0)
+            {
+                meshAgent.SetDestination(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t2").transform.position);
+            }
+            else 
+            {
+                meshAgent.SetDestination(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t1").transform.position);
+            }
         }
     }
 
@@ -96,21 +93,20 @@ public class NavTank : MonoBehaviour
     {
         rb.constraints = RigidbodyConstraints.FreezePosition;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-        meshAgent.speed = 50f;
+        meshAgent.speed = 20f;
     }
 
     private void Update()
     {
         //This is to prevent a unity bug from occurring
-        if (!meshAgent.isOnNavMesh)
+        if (PV.IsMine && !meshAgent.isOnNavMesh)
         {
-            //By reenabling the navMeshAgent i
+            //By reenabling the navMeshAgent it is able to find the navMesh
             meshAgent.enabled = false;
             meshAgent.enabled = true;
             SetDestination();
-            Debug.Log("Sätter destination efter reEnable");
+            Debug.Log("Sätter destination efter ReEnable i Update()");
         }
-        
     }
 
 }
