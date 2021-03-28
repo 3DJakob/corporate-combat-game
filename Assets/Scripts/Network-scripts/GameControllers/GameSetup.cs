@@ -52,8 +52,6 @@ public class GameSetup : MonoBehaviour
     private void Start()
     {
         instanceOfMap = Instantiate(gameMap);
-        
-        //temp.Find("SpawnPoint t1");
         spawnPoints = new Transform[2];
 
         Transform temp = instanceOfMap.transform;
@@ -62,11 +60,14 @@ public class GameSetup : MonoBehaviour
 
         GameSetup.GS.cardPoints[0] = temp.Find("CardPoint t1");
         GameSetup.GS.cardPoints[1] = temp.Find("CardPoint t2");
+        
+
     }
 
     private void Update()
     {
-        if (PlayerInfo.PI.T != null && instanceOfMap != null)
+
+        if (ARSetup && PlayerInfo.PI.T != null && instanceOfMap != null)
         {
             //Calculate offset and Scale for gameMap
             float scale = PlayerInfo.PI.T.localScale.x;

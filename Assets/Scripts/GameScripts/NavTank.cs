@@ -99,7 +99,7 @@ public class NavTank : MonoBehaviour
     private void Update()
     {
         //This is to prevent a unity bug from occurring
-        if (PV.IsMine && !meshAgent.isOnNavMesh)
+        if (!meshAgent.isOnNavMesh)
         {
             //By reenabling the navMeshAgent it is able to find the navMesh
             meshAgent.enabled = false;

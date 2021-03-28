@@ -127,15 +127,18 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     {
         if (PV != null && PV.IsMine) { 
             byte eventCode = photonEvent.Code;
+            
+            //Start Game Event
             if (eventCode == 1)
             {
-
                 string[] selectedCards = { "FastTank", "FastTank", "FastTank", "FastTank", "FastTank" }; // TODO set from card rooster
                 CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[spawnPicker], selectedCards);
 
                 Debug.Log("Enabling UI");
                 canvasGame.enabled = true;
                 canvasAR.enabled = false;
+
+                GameSetup.GS.ARSetup = false;
 
                 tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
                 tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
