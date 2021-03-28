@@ -9,8 +9,8 @@ public class NetworkedUnit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //PV = GetComponent<PhotonView>();
-        //PV.transform.SetParent(GameSetup.GS.instanceOfMap.transform, false);
+        PV = GetComponent<PhotonView>();
+        PV.transform.SetParent(GameSetup.GS.instanceOfMap.transform, false);
 
         //this.GetComponent<NavTank>().SetDestination();
     }

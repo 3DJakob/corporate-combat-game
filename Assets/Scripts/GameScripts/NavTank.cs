@@ -17,20 +17,20 @@ public class NavTank : MonoBehaviour
     void Start()
     {
         PV = GetComponent<PhotonView>();
-        PV.transform.SetParent(GameSetup.GS.instanceOfMap.transform, false);
         meshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         if (meshAgent == null)
         {
             Debug.LogError("The nav mesh agent is not attached to " + gameObject.name);
         }
-        if (!meshAgent.isOnNavMesh)
-        {
-        //Set to position you want to warp to
-        meshAgent.Warp(transform.position);
-        meshAgent.enabled = false;
-        meshAgent.enabled = true;
-        }
+        
+            if (!meshAgent.isOnNavMesh)
+            {
+                //Set to position you want to warp to
+                meshAgent.Warp(transform.localPosition);
+                meshAgent.enabled = false;
+                meshAgent.enabled = true;
+            }
         SetDestination();
     }
 
