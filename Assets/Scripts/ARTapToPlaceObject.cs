@@ -183,7 +183,10 @@ public class ARTapToPlaceObject : MonoBehaviour
             }
 
             if (spawnedTableTop != null) {
-                PlayerInfo.PI.updateOrigin(spawnedTableTop.transform);
+
+                GameSetup.GS.PositionMap(spawnedTableTop.transform);
+
+                //PlayerInfo.PI.updateOrigin(spawnedTableTop.transform);
             }
         }
     }

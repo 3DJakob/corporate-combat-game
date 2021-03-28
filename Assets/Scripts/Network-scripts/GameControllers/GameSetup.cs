@@ -64,9 +64,18 @@ public class GameSetup : MonoBehaviour
 
     }
 
+    public void PositionMap(Transform T) {
+        float scale = T.localScale.x;
+        instanceOfMap.SetActive(true);
+        instanceOfMap.transform.position = new Vector3(PlayerInfo.PI.T.position.x, PlayerInfo.PI.T.position.y, PlayerInfo.PI.T.position.z);
+        instanceOfMap.transform.eulerAngles = T.eulerAngles;
+        instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
+    }
+
+
     private void Update()
     {
-
+        /*
         if (ARSetup && PlayerInfo.PI.T != null && instanceOfMap != null)
         {
             //Calculate offset and Scale for gameMap
@@ -77,6 +86,7 @@ public class GameSetup : MonoBehaviour
             instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
             //Debug.Log(GameObject.Find("SpawnPoint t1").GetComponent<Transform>());
         }
+        */
     }
  
 }
