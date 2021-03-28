@@ -19,48 +19,51 @@ public class NavTank : MonoBehaviour
         {
             Debug.LogError("The nav mesh agent is not attached to " + gameObject.name);
         }
+        
+            if (!meshAgent.isOnNavMesh)
+            {
+                //Set to position you want to warp to
+                meshAgent.Warp(this.transform.position);
+                meshAgent.enabled = false;
+                meshAgent.enabled = true;
+            }
+        SetDestination();
+    }
+
+
+    public void WarpToPosition(Vector3 pos) {
+
+        if(!meshAgent.isOnNavMesh)
+        {
+            //Set to position you want to warp to
+            meshAgent.Warp(pos);
+            meshAgent.enabled = false;
+            meshAgent.enabled = true;
+        }
+        /*
+        if (team == 0)
+        {
+            meshAgent.Warp(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t1").transform.position);
+        }
         else
         {
-            if (team == 0)
-            {
-                meshAgent.Warp(PlayerInfo.PI.T.Find("SpawnPoint t1").transform.localPosition);
-            }
-            else
-            {
-                meshAgent.Warp(PlayerInfo.PI.T.Find("SpawnPoint t2").transform.localPosition);
-            }
-              
-            SetDestination();
- 
+            meshAgent.Warp(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t2").transform.position);
         }
+        */
+        SetDestination();
     }
 
     public void SetDestination()
     {
         if (team == 0)
         {
-            this.GetComponent<NavMeshAgent>().SetDestination(PlayerInfo.PI.T.Find("SpawnPoint t2").transform.localPosition);
+            meshAgent.SetDestination(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t2").transform.position);
         }
         else 
         {
-            this.GetComponent<NavMeshAgent>().SetDestination(PlayerInfo.PI.T.Find("SpawnPoint t1").transform.localPosition);
+            meshAgent.SetDestination(GameSetup.GS.instanceOfMap.transform.Find("SpawnPoint t1").transform.position);
         }
-
-
-
-        //GameObject target = new GameObject();
-        //target.transform.SetParent(GameSetup.GS.instanceOfMap.transform, false);
-        //destination = target.transform;
-        //this.gameObject.GetComponent<NavMeshAgent>().destination = destination.localPosition;
-        //meshAgent.SetDestination(target);
     }
-
-    //public void SetDestination(Vector3 target)
-    //{
-      //  meshAgent = this.GetComponent<NavMeshAgent>(); //Don't know why this is needed here aswell but did not work without it
-        //Debug.Log(meshAgent);
-        //meshAgent.SetDestination(target);
-    //}
 
     //private void OnTriggerEnter(Collider other){
     private void OnCollisionEnter(Collision collider)
@@ -79,11 +82,8 @@ public class NavTank : MonoBehaviour
 
     void stopMove()
     {
-
-
         Debug.Log("Stop Move kallas");
         meshAgent.speed = 0;
-
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
@@ -96,8 +96,21 @@ public class NavTank : MonoBehaviour
     {
         rb.constraints = RigidbodyConstraints.FreezePosition;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-
         meshAgent.speed = 50f;
+    }
+
+    private void Update()
+    {
+        //This is to prevent a unity bug from occurring
+        if (!meshAgent.isOnNavMesh)
+        {
+            //By reenabling the navMeshAgent i
+            meshAgent.enabled = false;
+            meshAgent.enabled = true;
+            SetDestination();
+            Debug.Log("Sätter destination efter reEnable");
+        }
+        
     }
 
 }

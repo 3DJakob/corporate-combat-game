@@ -161,7 +161,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         {
             //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
             Debug.Log("Spawns Tank");
-            PV.RPC("RPC_SpawnTank", RpcTarget.All, PlayerInfo.PI.mySelectedTeam);
+            PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam);
         }
         
     }
@@ -175,6 +175,10 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         //tank.transform.parent = localT;
         GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].localPosition, new Quaternion(0,0,0,0), 0);
         Tank.GetComponent<NavTank>().team = team;
+        Tank.GetComponent<NavTank>().WarpToPosition(GameSetup.GS.spawnPoints[team].localPosition);
+        Tank.GetComponent<NavTank>().SetDestination();
+
+        //Tank.GetComponent<NavMeshAgent>().Warp(GameSetup.GS.spawnPoints[team].localPosition);
 
         //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].position, localT.rotation, 0);
         //if (team == 0)
