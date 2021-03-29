@@ -55,8 +55,8 @@ public class GameSetup : MonoBehaviour
             //Calculate offset and Scale for gameMap
             float scale = T.localScale.x;
             instanceOfMap.SetActive(true);
-            instanceOfMap.transform.position = new Vector3(T.position.x, T.position.y, T.position.z);
-            instanceOfMap.transform.eulerAngles = T.eulerAngles;
+            instanceOfMap.transform.localPosition = new Vector3(T.position.x, T.position.y, T.position.z);
+            instanceOfMap.transform.localEulerAngles = T.eulerAngles;
             instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
             //Debug.Log(GameObject.Find("SpawnPoint t1").GetComponent<Transform>());
         }

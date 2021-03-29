@@ -9,16 +9,17 @@ public class NavTank : MonoBehaviour
     public static NavMeshAgent meshAgent;
     public int team;
     private Rigidbody rb;
-    private PhotonView PV;
+    //private PhotonView PV;
 
 
     [SerializeField] Transform destination;
     // Start is called before the first frame update
     void Start()
     {
-        PV = GetComponent<PhotonView>();
+        //PV = GetComponent<PhotonView>();
         meshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+        
         if (meshAgent == null)
         {
             Debug.LogError("The nav mesh agent is not attached to " + gameObject.name);
