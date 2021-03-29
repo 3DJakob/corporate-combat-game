@@ -12,7 +12,7 @@ public class NetworkedUnit : MonoBehaviour
         PV = GetComponent<PhotonView>();
 
         GetComponent<Transform>().SetParent(GameSetup.GS.instanceOfMap.transform, false);
-
+        GetComponent<Transform>().localEulerAngles = new Vector3(0, 0, 0);
         //this.GetComponent<NavTank>().SetDestination();
     }
     // Update is called once per frame

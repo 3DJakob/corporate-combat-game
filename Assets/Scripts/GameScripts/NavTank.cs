@@ -10,9 +10,7 @@ public class NavTank : MonoBehaviour
     public int team;
     private Rigidbody rb;
     //private PhotonView PV;
-
-
-    [SerializeField] Transform destination;
+    //[SerializeField] Transform destination;
     // Start is called before the first frame update
     void Start()
     {

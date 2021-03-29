@@ -172,7 +172,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     [PunRPC]
     void RPC_SpawnTank(int team)
     {
-        GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].localPosition, new Quaternion(0,0,0,0), 0);
+        GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
         NavTank tankAgent = Tank.GetComponent<NavTank>();
 
         tankAgent.team = team;
