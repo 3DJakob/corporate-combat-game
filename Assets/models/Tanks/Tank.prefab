@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 2657830141248654751}
   - component: {fileID: 2657830141248654820}
   - component: {fileID: 2657830141248654749}
-  - component: {fileID: 2657830141248654747}
-  - component: {fileID: 2657830141248654746}
   - component: {fileID: 8333256216567594359}
   - component: {fileID: 2657830141248654750}
   m_Layer: 6
@@ -122,35 +120,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &2657830141248654747
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2657830141248654748}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2657830141248654746
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2657830141248654748}
-  serializedVersion: 2
-  m_Mass: 1000
-  m_Drag: 10000
-  m_AngularDrag: 5.4
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &8333256216567594359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,13 +134,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewRadius: 75
   viewAngle: 61
+  damage: 10
+  fireRate: 15
   targetMask:
     serializedVersion: 2
     m_Bits: 128
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
-  navTank: {fileID: 0}
+  ignoreRaycast:
+    serializedVersion: 2
+    m_Bits: 0
+  navtank: {fileID: 0}
+  smoke: {fileID: 0}
   visibleTargets: []
 --- !u!114 &2657830141248654750
 MonoBehaviour:
@@ -185,6 +160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4a7c54c2600a64cb03ec2d8576846a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fov: {fileID: 0}
+  tankHealth: 50
   destination: {fileID: -8679921383154817045, guid: d4437c003055e2c4d82f71b6fed0b091,
     type: 3}

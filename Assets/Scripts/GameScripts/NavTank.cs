@@ -32,55 +32,34 @@ public class NavTank : MonoBehaviour
         meshAgent.SetDestination(target);
     }
 
-    //private void OnTriggerEnter(Collider other){
-    private void OnCollisionEnter(Collision collider)
-    {
-        if (collider.gameObject.tag == "Tank")
-        {
-            
-            //StopMove();
-
-            //DestroyGameObject();
-
-        }
-
-    }
-
     public void StopMove()
     {
-        
-        Debug.Log("Stop");
-       // rb.constraints = RigidbodyConstraints.FreezeAll;
+        Debug.Log(meshAgent.isStopped + "Stop " + this.name);
         meshAgent.isStopped = true;
-        //meshAgent.SetDestination(gameObject.transform.position);
-        //meshAgent.velocity = Vector3.zero;
-        //Debug.Log("Stopped!");
-        //shoot();
-
-
-
     }
 
-    void DestroyGameObject()
-    {
-        Destroy(gameObject);
-    }
 
     public void StartMove()
     {
-
-        //rb.constraints = RigidbodyConstraints.FreezePosition;
-        //rb.constraints = RigidbodyConstraints.FreezeRotation;
         meshAgent.isStopped = false;
         Debug.Log("Moving");
     }
 
-    public void TakeDamage(float amount)
+    public bool TakeDamage(float amount)
     {
         tankHealth -= amount;
-        if (tankHealth <= 0)
+        if (tankHealth <= 0 && gameObject.tag != "Finish")
         {
             Die();
+            return true;
+        }
+        else if(tankHealth <= 0 && gameObject.tag == "Finish"){
+            Debug.Log("You WIN!!!");
+            Die();
+            return false;
+        }
+        else{
+            return false;
         }
     }
 

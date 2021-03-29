@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FOV : MonoBehaviour
 {
@@ -22,10 +23,8 @@ public class FOV : MonoBehaviour
     public List<Transform> visibleTargets = new List<Transform>();
 
     private float nextTimeToFire = 0f;
-
     public void Start()
     {
-
         StartCoroutine("FindTargetWithDelay", .2f);
     }
 
@@ -42,7 +41,6 @@ public class FOV : MonoBehaviour
     {
         visibleTargets.Clear();
         Collider[] targetsInView = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
-
         for (int i = 0; i < targetsInView.Length; i++)
         {
             Transform target = targetsInView[i].transform;
@@ -52,17 +50,15 @@ public class FOV : MonoBehaviour
                 float disToTargets = Vector3.Distance(transform.position, target.position);
                 if (!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask))
                 {
+                    this.GetComponent<NavMeshAgent>().isStopped = true;
                     visibleTargets.Add(target);
-
                     if (Time.time >= nextTimeToFire)
                     {
                         nextTimeToFire = Time.time + 1f / fireRate;
                         shoot(dirToTarget);
                     }
-
-
                 }
-            }
+            }            
         }
     }
 
@@ -81,20 +77,16 @@ public class FOV : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit))
         {
-
-            NavTank tank = hit.transform.GetComponent<NavTank>();
-            tank.StopMove();
-            if (tank != null)
+            NavTank enemyTank = hit.transform.GetComponent<NavTank>();
+            //tank.StopMove();
+            if (enemyTank != null)
             {
                 nextTimeToFire = Time.time + 1f / fireRate;
-                tank.TakeDamage(damage);
-                Debug.Log("Damaged: " + hit.transform.name);
+                if (enemyTank.TakeDamage(damage)){ //if the enemy is dead
+                    this.transform.GetComponent<NavMeshAgent>().isStopped = false;
+                }
+                //Debug.Log("Damaged: " + hit.transform.name);
             }
-        }
-        else{
-            Debug.Log(NavTank.meshAgent.isStopped);
-            NavTank.meshAgent.isStopped = false;
-            Debug.Log(NavTank.meshAgent.isStopped);
         }
     }
 }

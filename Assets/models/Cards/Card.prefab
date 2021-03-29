@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3333290350714329545}
   - component: {fileID: 3333290350714329544}
   - component: {fileID: 3333290350714329547}
-  - component: {fileID: 3333290350714329546}
+  - component: {fileID: 2770593582819842495}
   m_Layer: 0
   m_Name: Card
   m_TagString: Player
@@ -97,7 +97,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &3333290350714329546
+--- !u!114 &2770593582819842495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

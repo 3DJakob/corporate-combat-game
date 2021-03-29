@@ -18,10 +18,11 @@ public class FOVEditor : Editor
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngleB * fov.viewRadius);
 
         Handles.color = Color.red;
+        if(fov.visibleTargets != null){
         foreach (Transform visibleTargets in fov.visibleTargets)
         {
             Handles.DrawLine(fov.transform.position, visibleTargets.position);
-        }
+        }}
     }
 
 }
