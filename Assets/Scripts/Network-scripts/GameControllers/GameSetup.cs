@@ -56,7 +56,7 @@ public class GameSetup : MonoBehaviour
             float scale = T.localScale.x;
             instanceOfMap.SetActive(true);
             instanceOfMap.transform.localPosition = new Vector3(T.position.x, T.position.y, T.position.z);
-            instanceOfMap.transform.localEulerAngles = T.eulerAngles;
+            instanceOfMap.transform.localEulerAngles = new Vector3(0,T.eulerAngles.y, 0);
             instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
             //Debug.Log(GameObject.Find("SpawnPoint t1").GetComponent<Transform>());
         }

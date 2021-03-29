@@ -15,7 +15,6 @@ public class CardController : MonoBehaviour {
         Debug.Log(placement.position);
 
         GameObject Empty = new GameObject();
-        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         GameObject theParent = GameObject.Instantiate(Empty, placement.position, placement.rotation);
         // theParent.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 

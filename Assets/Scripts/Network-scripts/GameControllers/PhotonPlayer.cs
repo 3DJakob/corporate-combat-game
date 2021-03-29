@@ -176,8 +176,11 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         NavTank tankAgent = Tank.GetComponent<NavTank>();
 
         tankAgent.team = team;
-        tankAgent.WarpToPosition(GameSetup.GS.spawnPoints[team].localPosition);
-        //tankAgent.SetDestination();
+        //tankAgent.WarpToPosition(GameSetup.GS.spawnPoints[team].localPosition);
+        tankAgent.SetDestination();
+
+        Tank = null;
+        tankAgent = null;
 
     }
 
