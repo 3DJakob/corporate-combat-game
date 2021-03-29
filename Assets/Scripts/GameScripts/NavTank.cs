@@ -24,13 +24,13 @@ public class NavTank : MonoBehaviour
             Debug.LogError("The nav mesh agent is not attached to " + gameObject.name);
         }
         
-            if (!meshAgent.isOnNavMesh)
-            {
-                //Set to position you want to warp to
-                meshAgent.Warp(transform.localPosition);
-                meshAgent.enabled = false;
-                meshAgent.enabled = true;
-            }
+        if (!meshAgent.isOnNavMesh)
+        {
+            //Set to position you want to warp to
+            meshAgent.Warp(transform.localPosition);
+            meshAgent.enabled = false;
+            meshAgent.enabled = true;
+        }
         SetDestination();
     }
 

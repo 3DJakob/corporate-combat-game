@@ -49,6 +49,20 @@ public class GameSetup : MonoBehaviour
         Application.Quit();
     }
 
+    public void PositionMap(Transform T) {
+        if (instanceOfMap != null)
+        {
+            //Calculate offset and Scale for gameMap
+            float scale = T.localScale.x;
+            instanceOfMap.SetActive(true);
+            instanceOfMap.transform.position = new Vector3(T.position.x, T.position.y, T.position.z);
+            instanceOfMap.transform.eulerAngles = T.eulerAngles;
+            instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
+            //Debug.Log(GameObject.Find("SpawnPoint t1").GetComponent<Transform>());
+        }
+    }
+
+
     private void Start()
     {
         instanceOfMap = Instantiate(gameMap);
@@ -66,8 +80,8 @@ public class GameSetup : MonoBehaviour
 
     private void Update()
     {
-
-        if (ARSetup && PlayerInfo.PI.T != null && instanceOfMap != null)
+        /*
+        if (PlayerInfo.PI.T != null && instanceOfMap != null)
         {
             //Calculate offset and Scale for gameMap
             float scale = PlayerInfo.PI.T.localScale.x;
@@ -77,8 +91,9 @@ public class GameSetup : MonoBehaviour
             instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
             //Debug.Log(GameObject.Find("SpawnPoint t1").GetComponent<Transform>());
         }
+        */
     }
- 
+
 }
 //spawnPoints[0] = GameObject.Find("SpawnPoint t1").GetComponent<Transform>();
 //spawnPoints[1] = GameObject.Find("SpawnPoint t2").GetComponent<Transform>();
