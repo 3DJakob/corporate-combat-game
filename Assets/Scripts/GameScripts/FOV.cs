@@ -19,7 +19,7 @@ public class FOV : MonoBehaviour
     public NavTank navtank;
     public ParticleSystem smoke;
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
 
     private float nextTimeToFire = 0f;
@@ -41,24 +41,30 @@ public class FOV : MonoBehaviour
     {
         visibleTargets.Clear();
         Collider[] targetsInView = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        if(visibleTargets.Count == 0){
+            this.GetComponent<NavMeshAgent>().isStopped = false;
+        }
         for (int i = 0; i < targetsInView.Length; i++)
         {
-            Transform target = targetsInView[i].transform;
-            Vector3 dirToTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
-            {
-                float disToTargets = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask))
+            if(targetsInView[i].tag != "Finish" && targetsInView[i].gameObject != this.gameObject){
+                
+                Transform target = targetsInView[i].transform;
+                Vector3 dirToTarget = (target.position - transform.position).normalized;
+                if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
                 {
                     this.GetComponent<NavMeshAgent>().isStopped = true;
-                    visibleTargets.Add(target);
-                    if (Time.time >= nextTimeToFire)
+                    float disToTargets = Vector3.Distance(transform.position, target.position);
+                    if ((!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && target.gameObject.layer != this.gameObject.layer))
                     {
-                        nextTimeToFire = Time.time + 1f / fireRate;
-                        shoot(dirToTarget);
+                        visibleTargets.Add(target);
+                        if (Time.time >= nextTimeToFire)
+                        {
+                            nextTimeToFire = Time.time + 1f / fireRate;
+                            shoot(dirToTarget);
+                        }
                     }
-                }
-            }            
+                }            
+            }
         }
     }
 
