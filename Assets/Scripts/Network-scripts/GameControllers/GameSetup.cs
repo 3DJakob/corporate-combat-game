@@ -52,13 +52,11 @@ public class GameSetup : MonoBehaviour
     public void PositionMap(Transform T) {
         if (instanceOfMap != null)
         {
-            instanceOfMap.transform.SetParent(T);
-
             //Calculate offset and Scale for gameMap
             float scale = T.localScale.x;
             instanceOfMap.SetActive(true);
-            instanceOfMap.transform.localPosition = new Vector3(0,0,0);
-            instanceOfMap.transform.localEulerAngles = new Vector3(0,0,0);
+            instanceOfMap.transform.localPosition = new Vector3(T.position.x, T.position.y, T.position.z);
+            instanceOfMap.transform.localEulerAngles = new Vector3(0,T.eulerAngles.y, 0);
             instanceOfMap.transform.localScale = new Vector3(scale, scale, scale);
             //Debug.Log(GameObject.Find("SpawnPoint t1").GetComponent<Transform>());
         }
@@ -82,15 +80,9 @@ public class GameSetup : MonoBehaviour
 
     private void Update()
     {
-
-       
-
-
         /*
         if (PlayerInfo.PI.T != null && instanceOfMap != null)
         {
-
-
             //Calculate offset and Scale for gameMap
             float scale = PlayerInfo.PI.T.localScale.x;
             instanceOfMap.SetActive(true);
