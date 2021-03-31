@@ -45,7 +45,7 @@ public class NavTank : MonoBehaviour
         Debug.Log("Moving");
     }
 
-    public bool TakeDamage(float amount)
+    /*public bool TakeDamage(float amount)
     {
         tankHealth -= amount;
         if (tankHealth <= 0 && gameObject.tag != "Finish")
@@ -66,6 +66,6 @@ public class NavTank : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
-    }
+    }*/
 
 }

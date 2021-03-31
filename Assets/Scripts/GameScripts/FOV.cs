@@ -16,14 +16,15 @@ public class FOV : MonoBehaviour
     public LayerMask obstacleMask;
     public LayerMask ignoreRaycast;
 
-    public NavTank navtank;
+    //public TankNav navtank;
     public ParticleSystem smoke;
 
     //[HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
+    public static bool found = false;
 
     private float nextTimeToFire = 0f;
-    /*public void Start()
+    public void Start()
     {
         StartCoroutine("FindTargetWithDelay", .2f);
     }
@@ -33,17 +34,15 @@ public class FOV : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(delay);
-            //findVisibleTargets();
+            findVisibleTargets();
         }
-    }*/
+    }
 
-    /*void findVisibleTargets()
+    void findVisibleTargets()
     {
         visibleTargets.Clear();
         Collider[] targetsInView = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
-        if(visibleTargets.Count == 0){
-            this.GetComponent<NavMeshAgent>().isStopped = false;
-        }
+        
         for (int i = 0; i < targetsInView.Length; i++)
         {
             if((targetsInView[i].gameObject != this.gameObject) || (targetsInView[i].tag == "Finish" && targetsInView[i].gameObject.layer != this.gameObject.layer)){
@@ -52,7 +51,7 @@ public class FOV : MonoBehaviour
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
                 if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
                 {
-                    this.GetComponent<NavMeshAgent>().isStopped = true;
+                    found = true;
                     float disToTargets = Vector3.Distance(transform.position, target.position);
                     if ((!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && target.gameObject.layer != this.gameObject.layer))
                     {
@@ -66,7 +65,7 @@ public class FOV : MonoBehaviour
                 }            
             }
         }
-    }*/
+    }
 
     public Vector3 DirFromAngle(float angleInDeg, bool angleIsGlobal)
     {
@@ -83,13 +82,15 @@ public class FOV : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit))
         {
-            NavTank enemyTank = hit.transform.GetComponent<NavTank>();
+            Debug.Log("Hit: " + hit.collider.name);
+            HealthManager enemyTank = hit.transform.GetComponent<HealthManager>();
+            Debug.Log("Enemy: " + enemyTank);
             if (enemyTank != null)
             {
                 nextTimeToFire = Time.time + 1f / fireRate;
-                if (enemyTank.TakeDamage(damage)){ //if the enemy is dead
-                    this.transform.GetComponent<NavMeshAgent>().isStopped = false;
-                }
+                if(enemyTank.TakeDamage(damage)) //if the enemy is dead
+                    found = false;
+                
                 //Debug.Log("Damaged: " + hit.transform.name);
             }
         }

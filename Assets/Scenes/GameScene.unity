@@ -5658,24 +5658,40 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1154455453}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &178235935 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2657830141248654750, guid: 1ba12f9d228c470499522049aad8171d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1154455453}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 178235934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f4a7c54c2600a64cb03ec2d8576846a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &178235941 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2657830141248654745, guid: 1ba12f9d228c470499522049aad8171d,
     type: 3}
   m_PrefabInstance: {fileID: 1154455453}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &178235942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178235934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93e6b50df813c248bc5621f6fd620c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  line: {fileID: 708818709}
+  speed: 0.2
+  team: 1
+--- !u!114 &178235943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178235934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72552e3bd9f5ae74b897f2247b10059d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 500
 --- !u!1 &210712892 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2355525838586877712, guid: bb34ed32817a74347ae4cc34473c593c,
@@ -5763,18 +5779,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 512407603}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &414330233 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2657830141248654750, guid: 1ba12f9d228c470499522049aad8171d,
-    type: 3}
-  m_PrefabInstance: {fileID: 512407603}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414330232}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f4a7c54c2600a64cb03ec2d8576846a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &414330234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5787,8 +5791,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93e6b50df813c248bc5621f6fd620c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: {fileID: 1464106446}
+  line: {fileID: 132521903}
   speed: 0.05
+  team: 0
+--- !u!114 &414330240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414330232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72552e3bd9f5ae74b897f2247b10059d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 50
 --- !u!1 &415667265
 GameObject:
   m_ObjectHideFlags: 0
@@ -5899,20 +5917,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1644403579}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &419133557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419133554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f4a7c54c2600a64cb03ec2d8576846a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tankHealth: 50
-  destination: {fileID: 0}
 --- !u!65 &419133558
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5926,6 +5930,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.98060006, y: 0.4660059, z: 0.2152205}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &419133560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419133554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72552e3bd9f5ae74b897f2247b10059d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 50
 --- !u!1 &445496015
 GameObject:
   m_ObjectHideFlags: 0
@@ -6060,7 +6077,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1644403579}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470320191}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -6072,7 +6089,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470320191}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4525dcb097b85a48a10cb0c2829efb5, type: 3}
   m_Name: 
@@ -6224,7 +6241,7 @@ PrefabInstance:
     - target: {fileID: 2657830141248654750, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
       propertyPath: tankHealth
-      value: 50
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 2657830141248654750, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
@@ -6305,7 +6322,7 @@ PrefabInstance:
         type: 3}
       propertyPath: navtank
       value: 
-      objectReference: {fileID: 414330233}
+      objectReference: {fileID: 0}
     - target: {fileID: 8333256216567594359, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
       propertyPath: fireRate
@@ -6314,7 +6331,7 @@ PrefabInstance:
     - target: {fileID: 8333256216567594359, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
       propertyPath: viewRadius
-      value: 48.5
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 8333256216567594359, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
@@ -6326,7 +6343,14 @@ PrefabInstance:
       propertyPath: obstacleMask.m_Bits
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8333256216567594359, guid: 1ba12f9d228c470499522049aad8171d,
+        type: 3}
+      propertyPath: ignoreRaycast.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2657830141248654750, guid: 1ba12f9d228c470499522049aad8171d, type: 3}
+    - {fileID: 2657830141248654820, guid: 1ba12f9d228c470499522049aad8171d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1ba12f9d228c470499522049aad8171d, type: 3}
 --- !u!1 &544457792 stripped
 GameObject:
@@ -6620,12 +6644,12 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 14.153287, z: -162.76714}
-  - {x: 0, y: 13.707792, z: -139.18837}
-  - {x: 0, y: 2.375896, z: -110.57797}
-  - {x: 0, y: 2.3759131, z: 114.3772}
-  - {x: 0, y: 13.949383, z: 142.29492}
-  - {x: 0, y: 14.046268, z: 164.16891}
+  - {x: 0, y: 15.15329, z: -162.76714}
+  - {x: 0, y: 14.70779, z: -139.18837}
+  - {x: 0, y: 3.375896, z: -110.57797}
+  - {x: 0, y: 3.375913, z: 114.3772}
+  - {x: 0, y: 14.94938, z: 142.29492}
+  - {x: 0, y: 15.04627, z: 164.16891}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -7347,6 +7371,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2657830141248654750, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657830141248654750, guid: 1ba12f9d228c470499522049aad8171d,
+        type: 3}
       propertyPath: tankHealth
       value: 50
       objectReference: {fileID: 0}
@@ -7419,7 +7448,7 @@ PrefabInstance:
         type: 3}
       propertyPath: navtank
       value: 
-      objectReference: {fileID: 178235935}
+      objectReference: {fileID: 0}
     - target: {fileID: 8333256216567594359, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
       propertyPath: fireRate
@@ -7428,7 +7457,7 @@ PrefabInstance:
     - target: {fileID: 8333256216567594359, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
       propertyPath: viewRadius
-      value: 48.5
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 8333256216567594359, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
@@ -7438,14 +7467,16 @@ PrefabInstance:
     - target: {fileID: 8333256216567594359, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
       propertyPath: obstacleMask.m_Bits
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8333256216567594359, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
       propertyPath: ignoreRaycast.m_Bits
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2657830141248654750, guid: 1ba12f9d228c470499522049aad8171d, type: 3}
+    - {fileID: 2657830141248654820, guid: 1ba12f9d228c470499522049aad8171d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1ba12f9d228c470499522049aad8171d, type: 3}
 --- !u!1 &1155130884
 GameObject:
@@ -13053,6 +13084,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 732158030449309230, guid: bb34ed32817a74347ae4cc34473c593c,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 732158030449309230, guid: bb34ed32817a74347ae4cc34473c593c,
+        type: 3}
       propertyPath: m_VoxelSize
       value: 1.6666666
       objectReference: {fileID: 0}
@@ -13060,6 +13096,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NavMeshData
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178758222157219351, guid: bb34ed32817a74347ae4cc34473c593c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2355525838586877727, guid: bb34ed32817a74347ae4cc34473c593c,
         type: 3}
@@ -13094,7 +13135,7 @@ PrefabInstance:
     - target: {fileID: 2943604869815781631, guid: bb34ed32817a74347ae4cc34473c593c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2943604869815781631, guid: bb34ed32817a74347ae4cc34473c593c,
         type: 3}
@@ -13164,7 +13205,7 @@ PrefabInstance:
     - target: {fileID: 4162448251426759696, guid: bb34ed32817a74347ae4cc34473c593c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4162448251426759696, guid: bb34ed32817a74347ae4cc34473c593c,
         type: 3}
@@ -13910,20 +13951,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1644403579}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1837135563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837135562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f4a7c54c2600a64cb03ec2d8576846a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tankHealth: 50
-  destination: {fileID: 0}
 --- !u!65 &1837135564
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13937,6 +13964,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.98060006, y: 0.4660059, z: 0.2152205}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1837135567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837135562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72552e3bd9f5ae74b897f2247b10059d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 50
 --- !u!1 &1933480564
 GameObject:
   m_ObjectHideFlags: 0
