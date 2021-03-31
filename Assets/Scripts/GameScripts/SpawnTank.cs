@@ -27,13 +27,13 @@ public class SpawnTank : MonoBehaviour
                 {
                     if (PickCard.playerTag == "Player")
                     {
-                        Instantiate(PickCard.tank, SpawnPoint1.gameObject.transform.position, Quaternion.identity);
+                        Instantiate(PickCard.tank, SpawnPoint1.gameObject.transform.position, PickCard.tank.transform.rotation);
                         PickCard.cardSelected = false;
 
                     }
                     else if (PickCard.playerTag == "Player2")
                     {
-                        Instantiate(PickCard.tank, SpawnPoint2.gameObject.transform.position, Quaternion.identity);
+                        Instantiate(PickCard.tank, SpawnPoint2.gameObject.transform.position, PickCard.tank.transform.rotation);
                         PickCard.cardSelected = false;
 
                     }

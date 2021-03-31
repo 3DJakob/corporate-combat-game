@@ -23,7 +23,7 @@ public class FOV : MonoBehaviour
     public List<Transform> visibleTargets = new List<Transform>();
 
     private float nextTimeToFire = 0f;
-    public void Start()
+    /*public void Start()
     {
         StartCoroutine("FindTargetWithDelay", .2f);
     }
@@ -33,11 +33,11 @@ public class FOV : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(delay);
-            findVisibleTargets();
+            //findVisibleTargets();
         }
-    }
+    }*/
 
-    void findVisibleTargets()
+    /*void findVisibleTargets()
     {
         visibleTargets.Clear();
         Collider[] targetsInView = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
@@ -46,7 +46,7 @@ public class FOV : MonoBehaviour
         }
         for (int i = 0; i < targetsInView.Length; i++)
         {
-            if(targetsInView[i].tag != "Finish" && targetsInView[i].gameObject != this.gameObject){
+            if((targetsInView[i].gameObject != this.gameObject) || (targetsInView[i].tag == "Finish" && targetsInView[i].gameObject.layer != this.gameObject.layer)){
                 
                 Transform target = targetsInView[i].transform;
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
@@ -66,7 +66,7 @@ public class FOV : MonoBehaviour
                 }            
             }
         }
-    }
+    }*/
 
     public Vector3 DirFromAngle(float angleInDeg, bool angleIsGlobal)
     {
@@ -84,7 +84,6 @@ public class FOV : MonoBehaviour
         if (Physics.Raycast(transform.position, direction, out hit))
         {
             NavTank enemyTank = hit.transform.GetComponent<NavTank>();
-            //tank.StopMove();
             if (enemyTank != null)
             {
                 nextTimeToFire = Time.time + 1f / fireRate;
