@@ -21,7 +21,8 @@ public class FOV : MonoBehaviour
 
     //[HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
-    public static bool found = false;
+    public bool found = false;
+    bool foundTank = false;
 
     private float nextTimeToFire = 0f;
     public void Start()
@@ -42,16 +43,18 @@ public class FOV : MonoBehaviour
     {
         visibleTargets.Clear();
         Collider[] targetsInView = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
-        
+        foundTank = false;
+
         for (int i = 0; i < targetsInView.Length; i++)
         {
+            // Om den inte ser sig själv eller sin fabrik
             if((targetsInView[i].gameObject != this.gameObject) || (targetsInView[i].tag == "Finish" && targetsInView[i].gameObject.layer != this.gameObject.layer)){
                 
                 Transform target = targetsInView[i].transform;
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
                 if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
                 {
-                    found = true;
+                    foundTank = true;
                     float disToTargets = Vector3.Distance(transform.position, target.position);
                     if ((!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && target.gameObject.layer != this.gameObject.layer))
                     {
@@ -62,9 +65,14 @@ public class FOV : MonoBehaviour
                             shoot(dirToTarget);
                         }
                     }
-                }            
+                }          
             }
+            
         }
+        if(foundTank)
+            found = true;
+        else
+            found = false;
     }
 
     public Vector3 DirFromAngle(float angleInDeg, bool angleIsGlobal)

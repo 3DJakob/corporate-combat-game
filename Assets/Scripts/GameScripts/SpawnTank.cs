@@ -29,6 +29,7 @@ public class SpawnTank : MonoBehaviour
                     {
                         Instantiate(PickCard.tank, SpawnPoint1.gameObject.transform.position, PickCard.tank.transform.rotation);
                         PickCard.cardSelected = false;
+                        
 
                     }
                     else if (PickCard.playerTag == "Player2")

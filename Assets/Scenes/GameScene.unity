@@ -5676,8 +5676,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93e6b50df813c248bc5621f6fd620c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: {fileID: 708818709}
-  speed: 0.2
+  line: {fileID: 1464106446}
+  speed: 0.05
   team: 1
 --- !u!114 &178235943
 MonoBehaviour:
@@ -5791,7 +5791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93e6b50df813c248bc5621f6fd620c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: {fileID: 132521903}
+  line: {fileID: 1464106446}
   speed: 0.05
   team: 0
 --- !u!114 &414330240
@@ -6171,7 +6171,7 @@ PrefabInstance:
     - target: {fileID: 2657830141248654745, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -123
+      value: -250
       objectReference: {fileID: 0}
     - target: {fileID: 2657830141248654745, guid: 1ba12f9d228c470499522049aad8171d,
         type: 3}
@@ -13603,7 +13603,7 @@ GameObject:
   - component: {fileID: 1662228662}
   m_Layer: 0
   m_Name: Directional Light
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

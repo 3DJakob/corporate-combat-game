@@ -9,7 +9,8 @@ public class TankNav : MonoBehaviour
     public float speed;
     float moveSpeed;
     float rotationSpeed;
-    float step;
+    float stepMove;
+    float stepRotate;
     bool rotating = false;
     bool gettingNewPos = false;
     public int team = 1;
@@ -36,24 +37,31 @@ public class TankNav : MonoBehaviour
     }
      void Update(){
                 
-        step = Mathf.FloorToInt(moveSpeed);
-         
-        Debug.Log(rotating);
+        stepMove = Mathf.FloorToInt(moveSpeed);
+        stepRotate = Mathf.FloorToInt(rotationSpeed);
+        Debug.Log(stepRotate);
+        //Debug.Log(rotating);
 
         
         //------Test with rotation ----
-        // if(!FOV.found && !rotating){
+        // if(!GetComponent<FOV>().found && !rotating){
         //     moveSpeed += speed/Vector3.Distance(prevPosition, nextPosition);
-        //     this.transform.position = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - step);
+        //     Debug.Log("MoveSpeed " + moveSpeed);
+        //     this.transform.position = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - stepMove);
         // } 
         // if(this.transform.position == nextPosition)
         // {
         //     if(this.transform.rotation != Quaternion.LookRotation(nextPosition)){
         //         rotating = true;
-        //         step = Mathf.FloorToInt(rotationSpeed);
-        //         Debug.Log(step);
-        //         rotationSpeed += speed/Quaternion.Angle(this.transform.rotation, Quaternion.LookRotation(nextPosition));
-        //         this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(nextPosition), rotationSpeed - step);
+                
+        //         Debug.Log("Quaternion " +Quaternion.Angle(this.transform.rotation, Quaternion.LookRotation(nextPosition)));
+        //         if(Quaternion.Angle(this.transform.rotation, Quaternion.LookRotation(nextPosition)) != 0)
+        //             rotationSpeed += speed/(100*Quaternion.Angle(this.transform.rotation, Quaternion.LookRotation(nextPosition)));
+        //         Debug.Log("RotationSpeed " + rotationSpeed);
+        //         Debug.Log("NextRotation " + Quaternion.LookRotation(nextPosition));
+                
+        //         Debug.Log("Current rotation " + this.transform.rotation);
+        //         this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(nextPosition), rotationSpeed - stepRotate);
         //     }
         //     else{
         //         getNextPosition();
@@ -64,13 +72,11 @@ public class TankNav : MonoBehaviour
         
 
         //If no targets are in sight, move along the road        
-        if(!FOV.found){
+        if(!GetComponent<FOV>().found){
             moveSpeed += speed/Vector3.Distance(prevPosition, nextPosition);
-            this.transform.position = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - step);
+            this.transform.position = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - stepMove);
         }
-        //if(this.transform.rotation != Quaternion.LookRotation(nextPosition))
-        //this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(nextPosition), moveSpeed - step);
-        //Switch positions to interpolate between
+        
         if(this.transform.position == nextPosition )
         {
             getNextPosition();
