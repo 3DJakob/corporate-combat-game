@@ -160,6 +160,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     //All clients have their own instance of the spawned tank
     public void OnTankSpawnButtonClicked()
     {
+        Debug.Log("buttonclicked...");
         if (PV.IsMine)
         {
             //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3333290350714329545}
   - component: {fileID: 3333290350714329544}
   - component: {fileID: 3333290350714329547}
-  - component: {fileID: 3333290350714329546}
+  - component: {fileID: 2364391216036272834}
+  - component: {fileID: 3472787392822959545}
   m_Layer: 0
-  m_Name: Card
+  m_Name: FastTank
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +98,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &3333290350714329546
+--- !u!114 &2364391216036272834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,7 +107,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 3333290350714329549}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32ebce9df9c9f2d4e831f762dc2232ab, type: 3}
+  m_Script: {fileID: 11500000, guid: d90593a8ea907476bb4a4e5caac9fb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializedTank: {fileID: 0}
+  fireRate: 1
+  damage: 1
+  speed: 1
+  range: 1
+  cost: 200
+  ObjectToSpawn: {fileID: 0}
+--- !u!114 &3472787392822959545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3333290350714329549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 0}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

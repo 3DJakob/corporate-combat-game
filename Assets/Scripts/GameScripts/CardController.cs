@@ -20,7 +20,7 @@ public class CardController : MonoBehaviour {
 
         string pathOfPrefabDirectory = "Cards/";
 
-        float place = -CardNames.Length / 2.0f;
+        float place = (-CardNames.Length + 1.0f) / 2.0f;
 
         foreach (string prefabName in CardNames) {
             var prefabInstance = Resources.Load(pathOfPrefabDirectory + prefabName) as GameObject;
