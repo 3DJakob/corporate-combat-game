@@ -149,7 +149,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 //leftButton.onClick.AddListener(OnLeftButtonClicked);
 
                 GameSetup.GS.instanceOfMap.SetActive(true);
-                GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").GetComponent<NavMeshBaker>().Bake();
 
             }
         }
@@ -174,15 +173,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     void RPC_SpawnTank(int team)
     {
         GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
-        NavTank tankAgent = Tank.GetComponent<NavTank>();
-
-        tankAgent.team = team;
-        //tankAgent.WarpToPosition(GameSetup.GS.spawnPoints[team].localPosition);
-        tankAgent.SetDestination();
-
-        Tank = null;
-        tankAgent = null;
-
     }
 
     [PunRPC]
