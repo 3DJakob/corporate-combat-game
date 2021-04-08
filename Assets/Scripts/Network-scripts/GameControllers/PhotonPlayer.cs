@@ -164,15 +164,23 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         {
             //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
             Debug.Log("Spawns Tank");
-            PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam);
+            PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, "Highway");
         }
         
     }
 
     [PunRPC]
-    void RPC_SpawnTank(int team)
+    void RPC_SpawnTank(int team, string lane)
     {
         GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
+        TankNav nav = Tank.GetComponent<TankNav>();
+        nav.team = team;
+        nav.line = GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").Find(lane).GetComponent<LineRenderer>();
+
+        nav.enabled = true;
+
+        Debug.Log(nav.line != null);
+
     }
 
     [PunRPC]

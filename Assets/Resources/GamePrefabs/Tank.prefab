@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 2009505009741145925}
   - component: {fileID: 2009505009741145922}
   - component: {fileID: 2009505009741145920}
-  - component: {fileID: 2009505009741145926}
-  - component: {fileID: 2009505009741145927}
   - component: {fileID: 5821204508344898370}
   - component: {fileID: -6447037691022937952}
   - component: {fileID: 4007203517125091582}
-  m_Layer: 0
+  - component: {fileID: 4059208201937871098}
+  - component: {fileID: 8864351187949699643}
+  - component: {fileID: 5533346984986368490}
+  m_Layer: 6
   m_Name: Tank
   m_TagString: Tank
   m_Icon: {fileID: 0}
@@ -100,35 +101,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &2009505009741145926
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2009505009741145921}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2009505009741145927
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2009505009741145921}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &5821204508344898370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,3 +152,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be436fe5a4879547bb9adb4a255e7ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4059208201937871098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009505009741145921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6584047fc7d8a4a51aa5b6dd2b146d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 45
+  viewAngle: 61
+  damage: 10
+  fireRate: 15
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 192
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ignoreRaycast:
+    serializedVersion: 2
+    m_Bits: 0
+  smoke: {fileID: 0}
+  visibleTargets: []
+  found: 0
+--- !u!114 &8864351187949699643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009505009741145921}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93e6b50df813c248bc5621f6fd620c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  line: {fileID: 0}
+  speed: 1
+  team: 0
+--- !u!114 &5533346984986368490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009505009741145921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72552e3bd9f5ae74b897f2247b10059d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 50
