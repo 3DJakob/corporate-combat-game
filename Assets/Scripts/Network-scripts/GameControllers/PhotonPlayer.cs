@@ -159,28 +159,35 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     //All clients have their own instance of the spawned tank
     public void OnTankSpawnButtonClicked()
     {
-        Debug.Log("buttonclicked...");
+        Debug.Log("button clicked...");
+        SpawnTank(1.0f, 1.0f, 1.0f, 1.0f, "Tank");
+    }
+
+    public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn) {
+        Debug.Log("spawn tank...");
         if (PV.IsMine)
         {
             //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
             Debug.Log("Spawns Tank");
-            PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, "Highway");
+            PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, "Highway", fireRate, damage, speed, range, nameOfObjectToSpawn);
         }
-        
     }
 
     [PunRPC]
-    void RPC_SpawnTank(int team, string lane)
+    void RPC_SpawnTank(int team, string lane, float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn)
     {
-        GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "Tank"), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
+        GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
         TankNav nav = Tank.GetComponent<TankNav>();
         nav.team = team;
         nav.line = GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").Find(lane).GetComponent<LineRenderer>();
-
+        nav.speed = speed;
         nav.enabled = true;
 
         Debug.Log(nav.line != null);
 
+        FOV fov = Tank.GetComponent<FOV>();
+        fov.damage = damage;
+        fov.fireRate = fireRate;
     }
 
     [PunRPC]

@@ -15,10 +15,11 @@ public class Card : MonoBehaviour {
     public int cost = 200;
     private PhotonView PV;
 
-    public GameObject ObjectToSpawn;
+    // public GameObject ObjectToSpawn;
+    public string nameOfObjectToSpawn;
 
     public void Spawn () {
-        GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().OnTankSpawnButtonClicked();
+        GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnTank(fireRate, damage, speed, range, nameOfObjectToSpawn);
     }
 
     // Start is called before the first frame update
