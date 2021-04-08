@@ -972,11 +972,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
-  - {fileID: 1244936062394143733}
   - {fileID: 2409178819460558808}
   - {fileID: 7690991600166594842}
   - {fileID: 4366030544746343809}
   - {fileID: 2675168106051228652}
+  - {fileID: 1244936062394143733}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1015,7 +1015,7 @@ Transform:
   - {fileID: 6126311150253194069}
   - {fileID: 2242893961222751783}
   m_Father: {fileID: 7475648999435648618}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3132526481396757236
 PrefabInstance:
@@ -1027,7 +1027,7 @@ PrefabInstance:
     - target: {fileID: 1724801249610833781, guid: 064beed3a5c4b447d923f93f9e351d2f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1724801249610833781, guid: 064beed3a5c4b447d923f93f9e351d2f,
         type: 3}
@@ -1117,7 +1117,7 @@ PrefabInstance:
     - target: {fileID: 1724801249610833781, guid: 6b46e1c0b4c59495a85915c546b024de,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1724801249610833781, guid: 6b46e1c0b4c59495a85915c546b024de,
         type: 3}
@@ -1197,7 +1197,7 @@ PrefabInstance:
     - target: {fileID: 5663032618338785014, guid: ae3cad27b868710409c53388c7cb1a74,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5663032618338785014, guid: ae3cad27b868710409c53388c7cb1a74,
         type: 3}
@@ -1267,7 +1267,7 @@ PrefabInstance:
     - target: {fileID: 1724801249610833781, guid: 342dfbeb2574159438c7a31ce740b55e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1724801249610833781, guid: 342dfbeb2574159438c7a31ce740b55e,
         type: 3}
