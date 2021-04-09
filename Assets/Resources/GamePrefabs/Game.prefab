@@ -173,9 +173,10 @@ GameObject:
   - component: {fileID: 1426293781683246232}
   - component: {fileID: 6865286650348988315}
   - component: {fileID: 7024527449725000220}
+  - component: {fileID: 7268821606916479900}
   m_Layer: 7
   m_Name: BLUE FACTORY
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,8 +244,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &4053058575138690339
-GameObject:
+--- !u!114 &7268821606916479900
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -513,6 +514,13 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
+  m_GameObject: {fileID: 3186633045023152981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72552e3bd9f5ae74b897f2247b10059d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 50
 --- !u!1 &4517980813784155869
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,9 +532,10 @@ GameObject:
   - component: {fileID: 7074315226604681773}
   - component: {fileID: 4089639664126966832}
   - component: {fileID: 4982112925155522068}
+  - component: {fileID: 6437860657331640259}
   m_Layer: 6
   m_Name: RED FACTORY
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -594,8 +603,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &4534017604365549419
-GameObject:
+--- !u!114 &6437860657331640259
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -755,6 +764,13 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
+  m_GameObject: {fileID: 4517980813784155869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72552e3bd9f5ae74b897f2247b10059d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 50
 --- !u!1 &4729135439741103665
 GameObject:
   m_ObjectHideFlags: 0

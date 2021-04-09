@@ -19,9 +19,11 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     public Button startButton;
     public Button readyButton;
     public Button tankSpawnButton;
-    
+
     //public Button rightButton;
     //public Button leftButton;
+    public GameObject winPanel;
+    public GameObject winText;
 
     public Canvas canvasGame;
     public Canvas canvasAR;
@@ -30,7 +32,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     public int spawnPicker;
     public static int playersReady;
 
-    // public UnityEvent onGameStart;
+    //---Event Codes ----
+    private const int STARTGAME = 1;
+    private const int ENDGAME = 2;
 
     // Start is called before the first frame update
     private void Start()
@@ -57,36 +61,21 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             canvasAR = GameObject.Find("ARSetup").GetComponent<Canvas>();
             startButton = GameObject.Find("StartGame").GetComponent<Button>();
             readyButton = GameObject.Find("Ready").GetComponent<Button>();
+            winPanel = GameObject.Find("WinState");
+            winText = GameObject.Find("Winner");
 
             startButton.onClick.AddListener(OnStartGameButtonClicked);
             readyButton.onClick.AddListener(OnReadyButtonClicked);
             startButton.gameObject.SetActive(false);
+            winPanel.SetActive(false);
 
             canvasGame.enabled = false;
             canvasAR.enabled = true;
-
-            //if (!PhotonNetwork.IsMasterClient)
-            //    startButton.gameObject.SetActive(false);
+            Debug.Log("winPanel " + winPanel);
+            Debug.Log("winText " + winText);
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-    //When MoveRight/MoveLeft is clicked, move "myAvatar" to the right/left
-    //public void OnRightButtonClicked()
-    //{
-        
-    //    Debug.Log("Moves right");
-    //    myAvatar.transform.position += new Vector3(0.2f, 0, 0);
-        
-    //}
-    //public void OnLeftButtonClicked()
-    //{
-    //    Debug.Log("Moves left");
-    //    myAvatar.transform.position += new Vector3(-0.2f, 0, 0);
-    //}
+
     public void OnReadyButtonClicked()
     {
         GameSetup.GS.ARSetup = false;
@@ -113,6 +102,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             PhotonNetwork.RaiseEvent(eventId, startGame, raiseEventOptions, SendOptions.SendReliable);
         }
     }
+
     private void OnEnable()
     {
         PhotonNetwork.AddCallbackTarget(this);
@@ -128,8 +118,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         if (PV != null && PV.IsMine) { 
             byte eventCode = photonEvent.Code;
             
-            //Start Game Event
-            if (eventCode == 1)
+            if (eventCode == STARTGAME)
             {
                 string[] selectedCards = { "FastTank", "FastTank", "FastTank", "FastTank", "FastTank" }; // TODO set from card rooster
                 CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[spawnPicker], selectedCards);
@@ -143,12 +132,20 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
                 tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
 
-                //rightButton = GameObject.Find("MoveRight").GetComponent<Button>();
-                //leftButton = GameObject.Find("MoveLeft").GetComponent<Button>();
-                //rightButton.onClick.AddListener(OnRightButtonClicked);
-                //leftButton.onClick.AddListener(OnLeftButtonClicked);
-
                 GameSetup.GS.instanceOfMap.SetActive(true);
+
+            }
+            if (eventCode == ENDGAME)
+            {
+                Debug.Log("Event 2 is called");
+
+                string data = (string)photonEvent.CustomData;
+
+                winPanel.SetActive(true);
+                if (data == "Player_1")
+                    winText.GetComponent<Text>().text += "\n\n RED TEAM";
+                else
+                    winText.GetComponent<Text>().text += "\n\n BLUE TEAM";
 
             }
         }
@@ -207,6 +204,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         }
             
     }
- 
+
 
 }
