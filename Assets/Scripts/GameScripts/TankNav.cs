@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class TankNav : MonoBehaviour
 {
-    public LineRenderer line;
+    public string lineName;
+    LineRenderer line;
     public float speed;
     float moveSpeed;
     float rotationSpeed;
@@ -19,9 +20,9 @@ public class TankNav : MonoBehaviour
     private Vector3 nextPosition;
 
 
-   void Start(){
+   public void InitiateTank(){
 
-        line = GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").Find("Highway").GetComponent<LineRenderer>(); ;
+        line = GameSetup.GS.instanceOfMap.transform.Find(lineName).GetComponent<LineRenderer>();
 
         //Decide route depending on team
         if(team == 0){
@@ -47,13 +48,14 @@ public class TankNav : MonoBehaviour
         {
             return;        
         }
-
         stepMove = Mathf.FloorToInt(moveSpeed);
+        Debug.Log(nextPosition);
+
         //stepRotate = Mathf.FloorToInt(rotationSpeed);
         //Debug.Log(stepRotate);
         //Debug.Log(rotating);
 
-        
+
         //------Test with rotation ----
         // if(!GetComponent<FOV>().found && !rotating){
         //     moveSpeed += speed/Vector3.Distance(prevPosition, nextPosition);
@@ -64,13 +66,13 @@ public class TankNav : MonoBehaviour
         // {
         //     if(this.transform.rotation != Quaternion.LookRotation(nextPosition)){
         //         rotating = true;
-                
+
         //         Debug.Log("Quaternion " +Quaternion.Angle(this.transform.rotation, Quaternion.LookRotation(nextPosition)));
         //         if(Quaternion.Angle(this.transform.rotation, Quaternion.LookRotation(nextPosition)) != 0)
         //             rotationSpeed += speed/(100*Quaternion.Angle(this.transform.rotation, Quaternion.LookRotation(nextPosition)));
         //         Debug.Log("RotationSpeed " + rotationSpeed);
         //         Debug.Log("NextRotation " + Quaternion.LookRotation(nextPosition));
-                
+
         //         Debug.Log("Current rotation " + this.transform.rotation);
         //         this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(nextPosition), rotationSpeed - stepRotate);
         //     }
@@ -80,16 +82,14 @@ public class TankNav : MonoBehaviour
         //     }
 
         // }
-        
 
         //If no targets are in sight, move along the road        
-        if(!GetComponent<FOV>().found){
+        if (!GetComponent<FOV>().found){
             moveSpeed += speed/Vector3.Distance(prevPosition, nextPosition);
-            this.transform.localPosition = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - stepMove);
-            Debug.Log(100*nextPosition);
+            this.transform.localPosition = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - stepMove); 
         }
         
-        if(this.transform.position == nextPosition )
+        if(this.transform.localPosition == nextPosition)
         {
             getNextPosition();
             this.transform.LookAt(nextPosition);
@@ -109,5 +109,6 @@ public class TankNav : MonoBehaviour
                 nextPosition = line.GetPosition(i-1);
             }
         prevPosition = line.GetPosition(i);
+        
     }
 }

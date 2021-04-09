@@ -11,7 +11,7 @@ public class NetworkedUnit : MonoBehaviour
     {
         PV = GetComponent<PhotonView>();
 
-        GetComponent<Transform>().SetParent(GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1"), false);
+        GetComponent<Transform>().SetParent(GameSetup.GS.instanceOfMap.transform, false);
         GetComponent<Transform>().localEulerAngles = new Vector3(0, 0, 0);
         //this.GetComponent<NavTank>().SetDestination();
     }

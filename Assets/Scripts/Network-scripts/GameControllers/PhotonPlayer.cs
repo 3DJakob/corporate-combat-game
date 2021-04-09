@@ -178,16 +178,21 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     {
         GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
         TankNav nav = Tank.GetComponent<TankNav>();
-        nav.team = team;
-        nav.line = GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").Find(lane).GetComponent<LineRenderer>();
-        nav.speed = speed;
-        nav.enabled = true;
 
-        Debug.Log(nav.line != null);
-
+        //FOV
         FOV fov = Tank.GetComponent<FOV>();
         fov.damage = damage;
         fov.fireRate = fireRate;
+
+        //TankNav
+        nav.team = team;
+        nav.lineName = "HighwayLine"; //Put line name here
+        //nav.speed = speed; TOO FAST!!!
+
+        //Initialize TankNav
+        nav.InitiateTank();
+
+        
     }
 
     [PunRPC]
