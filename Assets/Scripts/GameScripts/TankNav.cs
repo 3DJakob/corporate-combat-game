@@ -19,7 +19,9 @@ public class TankNav : MonoBehaviour
     private Vector3 nextPosition;
 
 
-   void OnEnable(){
+   void Start(){
+
+        line = GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").Find("Highway").GetComponent<LineRenderer>(); ;
 
         //Decide route depending on team
         if(team == 0){
@@ -31,14 +33,11 @@ public class TankNav : MonoBehaviour
             i = line.positionCount-1;
             nextPosition = line.GetPosition(i-1);
         }
+
         prevPosition = line.GetPosition(i);
-
+        this.transform.localPosition = prevPosition;
         tankInitiated = true;
-
-
         Debug.Log(line.positionCount);
-
-
 
         //StartCoroutine("GetNextPositionDelay", .2f);
     }
@@ -86,8 +85,8 @@ public class TankNav : MonoBehaviour
         //If no targets are in sight, move along the road        
         if(!GetComponent<FOV>().found){
             moveSpeed += speed/Vector3.Distance(prevPosition, nextPosition);
-            this.transform.position = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - stepMove);
-            Debug.Log(nextPosition);
+            this.transform.localPosition = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - stepMove);
+            Debug.Log(100*nextPosition);
         }
         
         if(this.transform.position == nextPosition )

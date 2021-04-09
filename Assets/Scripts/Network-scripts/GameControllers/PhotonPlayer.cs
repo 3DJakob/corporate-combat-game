@@ -176,11 +176,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         TankNav nav = Tank.GetComponent<TankNav>();
         nav.team = team;
         nav.line = GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").Find(lane).GetComponent<LineRenderer>();
-
-        nav.enabled = true;
-
         Debug.Log(nav.line != null);
-
     }
 
     [PunRPC]
