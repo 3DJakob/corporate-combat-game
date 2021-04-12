@@ -49,7 +49,7 @@ public class TankNav : MonoBehaviour
             return;        
         }
         stepMove = Mathf.FloorToInt(moveSpeed);
-        Debug.Log(nextPosition);
+        // Debug.Log(nextPosition);
 
         //stepRotate = Mathf.FloorToInt(rotationSpeed);
         //Debug.Log(stepRotate);

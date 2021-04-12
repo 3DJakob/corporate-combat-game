@@ -12,14 +12,30 @@ public class Card : MonoBehaviour {
     public float speed = 1.0f;
     public float range = 1.0f;
 
-    public int cost = 200;
+    public int cost = 50;
     private PhotonView PV;
 
     // public GameObject ObjectToSpawn;
     public string nameOfObjectToSpawn;
 
     public void Spawn () {
-        GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnTank(fireRate, damage, speed, range, nameOfObjectToSpawn);
+
+        Debug.Log("trying to get money...");
+        // Debug.Log(GameObject.Find("EnergyController").GetComponent<EnergyController>());
+        // GameObject EnergyDoHicky = GameObject.Find("EnergyController");
+        // Debug.Log(EnergyDoHicky);
+        // if (GameObject.Find("EnergyController").GetComponent<EnergyController>()) {
+        //     Debug.Log("Found th econtroller");
+        // } else {
+        //                 Debug.Log("CANT find th econtroller");
+        // }
+
+        if (GameObject.Find("EnergyController").GetComponent<EnergyController>().Buy(cost)) {
+            GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnTank(fireRate, damage, speed, range, nameOfObjectToSpawn);
+        } else {
+            Debug.Log("sry...");
+        }
+
     }
 
     // Start is called before the first frame update

@@ -29,8 +29,10 @@ public class ARSelect : MonoBehaviour
             GameObject theObj = hit.transform.gameObject;
 
             
-            Card other = (Card) theObj.GetComponent(typeof(Card));
-            other.Spawn();
+            Card card = (Card) theObj.GetComponent(typeof(Card));
+            if (card) {
+                card.Spawn();
+            }
 
 
         }

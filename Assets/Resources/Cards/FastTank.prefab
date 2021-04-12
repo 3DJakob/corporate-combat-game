@@ -114,8 +114,8 @@ MonoBehaviour:
   damage: 1
   speed: 1
   range: 1
-  cost: 200
-  ObjectToSpawn: {fileID: 0}
+  cost: 50
+  nameOfObjectToSpawn: 
 --- !u!114 &3472787392822959545
 MonoBehaviour:
   m_ObjectHideFlags: 0
