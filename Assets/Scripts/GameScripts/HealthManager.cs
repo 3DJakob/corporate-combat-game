@@ -8,18 +8,24 @@ using UnityEngine;
 public class HealthManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    
+
     public float Health = 50f;
+    
+
     public bool TakeDamage(float amount)
     {
-        Health -= amount;
+        
+        PhotonView PV = GetComponent<PhotonView>();
+
+        PV.RPC("RPC_UpdateHealth", RpcTarget.All, amount);
+
         Debug.Log(Health);
         if (Health <= 0 && gameObject.tag != "Finish")
         {
             Die();
             return true;
         }
-        else if(Health <= 0 && gameObject.tag == "Finish"){
+        else if (Health <= 0 && gameObject.tag == "Finish") {
 
             //Send event to photonPlayer and attach this.gameObject.layer
             if (PhotonNetwork.IsMasterClient)
@@ -32,15 +38,25 @@ public class HealthManager : MonoBehaviour
             Die();
             return false;
         }
-        else{
+        else {
             return false;
         }
     }
 
     void Die()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
     }
+
+    [PunRPC]
+    void RPC_UpdateHealth(float amount) {
+        Health -= amount;
+
+        Debug.Log("I am taking damage!");
+    }
+
+
 
     private void Update()
     {

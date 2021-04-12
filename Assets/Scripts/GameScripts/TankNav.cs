@@ -34,7 +34,6 @@ public class TankNav : MonoBehaviour
             i = line.positionCount-1;
             nextPosition = line.GetPosition(i-1);
         }
-
         prevPosition = line.GetPosition(i);
         this.transform.localPosition = prevPosition;
         tankInitiated = true;
@@ -49,7 +48,7 @@ public class TankNav : MonoBehaviour
             return;        
         }
         stepMove = Mathf.FloorToInt(moveSpeed);
-        // Debug.Log(nextPosition);
+        //Debug.Log(nextPosition);
 
         //stepRotate = Mathf.FloorToInt(rotationSpeed);
         //Debug.Log(stepRotate);
@@ -92,8 +91,9 @@ public class TankNav : MonoBehaviour
         if(this.transform.localPosition == nextPosition)
         {
             getNextPosition();
-            this.transform.LookAt(nextPosition);
-            Debug.Log("Got a new position!");
+
+            this.transform.LookAt(GameSetup.GS.instanceOfMap.transform.TransformPoint(nextPosition));
+            
         }
     }
 
