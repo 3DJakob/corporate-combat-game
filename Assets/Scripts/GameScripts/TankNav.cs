@@ -92,8 +92,9 @@ public class TankNav : MonoBehaviour
         if(this.transform.localPosition == nextPosition)
         {
             getNextPosition();
-            this.transform.LookAt(nextPosition);
-            Debug.Log("Got a new position!");
+
+            this.transform.LookAt(GameSetup.GS.instanceOfMap.transform.TransformPoint(nextPosition));
+            
         }
     }
 

@@ -70,6 +70,8 @@ MonoBehaviour:
   startButton: {fileID: 0}
   readyButton: {fileID: 0}
   tankSpawnButton: {fileID: 0}
+  winPanel: {fileID: 0}
+  winText: {fileID: 0}
   canvasGame: {fileID: 0}
   canvasAR: {fileID: 0}
   CardController: {fileID: 0}
