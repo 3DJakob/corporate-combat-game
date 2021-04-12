@@ -17,7 +17,7 @@ public class FOV : MonoBehaviour
     public LayerMask ignoreRaycast;
 
     //public TankNav navtank;
-    public ParticleSystem smoke;
+    //public ParticleSystem smoke;
 
     //[HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
@@ -57,7 +57,7 @@ public class FOV : MonoBehaviour
                 {
                     foundTank = true;
                     float disToTargets = Vector3.Distance(transform.position, target.position);
-                    if ((!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && target.gameObject.layer != this.gameObject.layer))
+                    if ((!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && targetsInView[i].GetComponent<TankNav>().team != this.gameObject.GetComponent<TankNav>().team))
                     {
                         visibleTargets.Add(target);
                         if (Time.time >= nextTimeToFire)
@@ -87,7 +87,7 @@ public class FOV : MonoBehaviour
 
     void shoot(Vector3 direction)
     {
-        smoke.Play();
+        //smoke.Play();
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit))
         {

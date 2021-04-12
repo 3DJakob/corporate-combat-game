@@ -178,7 +178,6 @@ MonoBehaviour:
   ignoreRaycast:
     serializedVersion: 2
     m_Bits: 0
-  smoke: {fileID: 0}
   visibleTargets: []
   found: 0
 --- !u!114 &8864351187949699643

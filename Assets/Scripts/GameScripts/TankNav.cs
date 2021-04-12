@@ -34,7 +34,6 @@ public class TankNav : MonoBehaviour
             i = line.positionCount-1;
             nextPosition = line.GetPosition(i-1);
         }
-
         prevPosition = line.GetPosition(i);
         this.transform.localPosition = prevPosition;
         tankInitiated = true;
