@@ -53,11 +53,12 @@ public class FOV : MonoBehaviour
                 Transform target = targetsInView[i].transform;
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
                 if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
-                {
+                {Debug.Log(this.name);
                     foundTank = true;
                     float disToTargets = Vector3.Distance(transform.position, target.position);
-                    if ((!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && target.gameObject.layer != this.gameObject.layer))
+                    if ((!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && targetsInView[i].GetComponent<TankNav>().team != this.gameObject.GetComponent<TankNav>().team))
                     {
+                        
                         visibleTargets.Add(target);
                         if (Time.time >= nextTimeToFire)
                         {
@@ -90,9 +91,9 @@ public class FOV : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit))
         {
-            Debug.Log("Hit: " + hit.collider.name);
-            HealthManager enemyTank = hit.transform.GetComponent<HealthManager>();
-            Debug.Log("Enemy: " + enemyTank);
+            //Debug.Log("Hit: " + hit.collider.name);
+            TankHealth enemyTank = hit.transform.GetComponent<TankHealth>();
+            //Debug.Log("Enemy: " + enemyTank);
             if (enemyTank != null)
             {
                 nextTimeToFire = Time.time + 1f / fireRate;

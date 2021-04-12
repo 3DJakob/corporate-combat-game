@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    
+    /*
     public float Health = 50f;
     public bool TakeDamage(float amount)
     {
@@ -29,5 +29,5 @@ public class HealthManager : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
-    }
+    }*/
 }
