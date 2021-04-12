@@ -35,6 +35,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     //---Event Codes ----
     private const int STARTGAME = 1;
     private const int ENDGAME = 2;
+    private const int SELECTEDCARD = 3;
 
     // Start is called before the first frame update
     private void Start()
@@ -147,6 +148,14 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 else
                     winText.GetComponent<Text>().text += "\n\n BLUE TEAM";
 
+            }
+            if(eventCode == SELECTEDCARD)
+            {
+                Debug.Log("Event 3 is called");
+                int[] data = (int[])photonEvent.CustomData; //data[0] is the team that sent the event //data[1] is which card is effected
+
+                if(data[0] == PlayerInfo.PI.mySelectedTeam)
+                    GameObject.Find("CardPickerController").GetComponent<CardPickerController>().CardPicked(data[1]);
             }
         }
     }
