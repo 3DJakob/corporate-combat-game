@@ -18,6 +18,7 @@ public class TankNav : MonoBehaviour
     int i;
     private Vector3 prevPosition;
     private Vector3 nextPosition;
+    Vector3 lineOffset = new Vector3(0, 0.15f, 0);
 
 
    public void InitiateTank(){
@@ -27,14 +28,14 @@ public class TankNav : MonoBehaviour
         //Decide route depending on team
         if(team == 0){
             i = 0;
-            nextPosition = line.GetPosition(i+1);
+            nextPosition = line.GetPosition(i+1) + lineOffset;
         }
         else if(team == 1)
         {
             i = line.positionCount-1;
-            nextPosition = line.GetPosition(i-1);
+            nextPosition = line.GetPosition(i-1) + lineOffset;
         }
-        prevPosition = line.GetPosition(i);
+        prevPosition = line.GetPosition(i) + lineOffset;
         this.transform.localPosition = prevPosition;
         tankInitiated = true;
         Debug.Log(line.positionCount);
@@ -101,14 +102,14 @@ public class TankNav : MonoBehaviour
         if(team == 0 && i < line.positionCount)
             {
                 i++;
-                nextPosition = line.GetPosition(i+1);
+                nextPosition = line.GetPosition(i+1) + lineOffset;
             }
             else if(team == 1 && i > 0)
             {
                 i--;
-                nextPosition = line.GetPosition(i-1);
+                nextPosition = line.GetPosition(i-1) + lineOffset;
             }
-        prevPosition = line.GetPosition(i);
+        prevPosition = line.GetPosition(i) + lineOffset;
         
     }
 }
