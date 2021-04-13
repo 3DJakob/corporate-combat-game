@@ -5083,7 +5083,8 @@ MonoBehaviour:
   delayStart: 0
   maxPlayers: 4
   menuScene: 0
-  gameScene: 1
+  cardScene: 1
+  gameScene: 2
 --- !u!4 &2061699757
 Transform:
   m_ObjectHideFlags: 0
