@@ -68,7 +68,6 @@ public class FOV : MonoBehaviour
                     }
                 }
             }
-
         }
         if (foundTank)
             found = true;
@@ -92,7 +91,7 @@ public class FOV : MonoBehaviour
         if (Physics.Raycast(transform.position, direction, out hit))
         {
             Debug.Log("Hit: " + hit.collider.name);
-            HealthManager enemyTank = hit.transform.GetComponent<HealthManager>();
+            TankHealth enemyTank = hit.transform.GetComponent<TankHealth>();
             Debug.Log("Enemy: " + enemyTank);
             if (enemyTank != null)
             {

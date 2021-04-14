@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1358830629652532024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589950428183339573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72552e3bd9f5ae74b897f2247b10059d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 50
 --- !u!1 &649255975782662949
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +175,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3378869637121476103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816597034890890970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72552e3bd9f5ae74b897f2247b10059d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 50
 --- !u!1 &3186633045023152981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,10 +1840,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: BLUE FACTORY
       objectReference: {fileID: 0}
+    - target: {fileID: -1599826595754709761, guid: 2054de4ac6a93c649ba6a9949b15757c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -1599826595754709761, guid: 2054de4ac6a93c649ba6a9949b15757c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
     - target: {fileID: -516098083770646512, guid: 2054de4ac6a93c649ba6a9949b15757c,
         type: 3}
       propertyPath: m_Name
       value: RED FACTORY
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 2054de4ac6a93c649ba6a9949b15757c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 2054de4ac6a93c649ba6a9949b15757c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Finish
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2054de4ac6a93c649ba6a9949b15757c,
         type: 3}
@@ -1839,6 +1885,18 @@ PrefabInstance:
 --- !u!4 &7379451022702881057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2054de4ac6a93c649ba6a9949b15757c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7053669346532675274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &589950428183339573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1599826595754709761, guid: 2054de4ac6a93c649ba6a9949b15757c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7053669346532675274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1816597034890890970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -516098083770646512, guid: 2054de4ac6a93c649ba6a9949b15757c,
     type: 3}
   m_PrefabInstance: {fileID: 7053669346532675274}
   m_PrefabAsset: {fileID: 0}
