@@ -2979,7 +2979,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1738218986}
         m_TargetAssemblyTypeName: PhotonRoom, Assembly-CSharp
-        m_MethodName: OnARSetupButtonClicked
+        m_MethodName: OnCardSelectionButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -149,14 +149,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                     winText.GetComponent<Text>().text += "\n\n BLUE TEAM";
 
             }
-            if(eventCode == SELECTEDCARD)
-            {
-                Debug.Log("Event 3 is called");
-                int[] data = (int[])photonEvent.CustomData; //data[0] is the team that sent the event //data[1] is which card is effected
-
-                if(data[0] == PlayerInfo.PI.mySelectedTeam)
-                    GameObject.Find("CardPickerController").GetComponent<CardPickerController>().CardPicked(data[1]);
-            }
+            
         }
     }
 
