@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 
 public class TankNav : MonoBehaviour
 {
+
+    PhotonView PV;
     public string lineName;
     LineRenderer line;
     public float speed;
@@ -24,7 +27,7 @@ public class TankNav : MonoBehaviour
    public void InitiateTank(){
 
         line = GameSetup.GS.instanceOfMap.transform.Find(lineName).GetComponent<LineRenderer>();
-
+        PV = GetComponent<PhotonView>();
         //Decide route depending on team
         if(team == 0){
             i = 0;
@@ -83,18 +86,21 @@ public class TankNav : MonoBehaviour
 
         // }
 
-        //If no targets are in sight, move along the road        
-        if (!GetComponent<FOV>().found){
-            moveSpeed += speed/Vector3.Distance(prevPosition, nextPosition);
-            this.transform.localPosition = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - stepMove); 
-        }
-        
-        if(this.transform.localPosition == nextPosition)
-        {
-            getNextPosition();
+        //If no targets are in sight, move along the road   
 
-            this.transform.LookAt(GameSetup.GS.instanceOfMap.transform.TransformPoint(nextPosition));
+        if(PV.IsMine){     
+            if (!GetComponent<FOV>().found){
+                moveSpeed += speed/Vector3.Distance(prevPosition, nextPosition);
+                this.transform.localPosition = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - stepMove); 
+            }
             
+            if(this.transform.localPosition == nextPosition)
+            {
+                getNextPosition();
+                this.transform.LookAt(GameSetup.GS.instanceOfMap.transform.TransformPoint(nextPosition));
+            }
+        }else{
+            this.transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, 1.0f);
         }
     }
 
