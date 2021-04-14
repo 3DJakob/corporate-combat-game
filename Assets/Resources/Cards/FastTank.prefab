@@ -110,9 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90593a8ea907476bb4a4e5caac9fb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
+  fireRate: 4
   damage: 1
-  speed: 1
+  speed: 2
   range: 1
   cost: 50
   nameOfObjectToSpawn: FastTank
