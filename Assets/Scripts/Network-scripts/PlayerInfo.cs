@@ -8,6 +8,7 @@ public class PlayerInfo : MonoBehaviour
     public static PlayerInfo PI;
     public string nickname;
     public int mySelectedTeam;
+    public string[] selectedCards;
 
     public Transform T;
     public int[] teams;
@@ -47,6 +48,7 @@ public class PlayerInfo : MonoBehaviour
             mySelectedTeam = 0;
             PlayerPrefs.SetInt("MyTeam", mySelectedTeam);
         }
+
     }
 
     private void Update()
