@@ -12,6 +12,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     //UI elements
     //public Button loadARSetupButton;
     public GameSetup gameSetup;
+    //public GameObject = 
     //public GameObject players;
     public Canvas gameCanvas;
     public Canvas menuCanvas;
@@ -94,6 +95,11 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
             Debug.Log("GameScene loaded");
             CreatePlayer();
         }
+        else if(currentScene == MultiplayerSetting.multiplayerSetting.cardScene)
+        {
+            //CreatePlayer();
+            GameObject.Find("Done").GetComponent<Button>().onClick.AddListener(OnARSetupButtonClicked);
+        }
         else if (currentScene == MultiplayerSetting.multiplayerSetting.menuScene)
         {
             menuCanvas.enabled = true;
@@ -109,6 +115,13 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer")
             , transform.position, Quaternion.identity, 0);
         Debug.Log("NetworkPlayer created");
+    }
+    public void OnCardSelectionButtonClicked()
+    {
+        Debug.Log("Card selection");
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+        PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.cardScene);
     }
     public void OnARSetupButtonClicked()
     {

@@ -10,6 +10,7 @@ public class MultiplayerSetting : MonoBehaviour
     public int maxPlayers;
 
     public int menuScene;
+    public int cardScene;
     public int gameScene;
     //public int multiplayerScene;
 
