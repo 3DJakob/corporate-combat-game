@@ -8,12 +8,14 @@ using UnityEngine.UI;
 
 public class CardPickerController : MonoBehaviour, IOnEventCallback
 {
+    //---- UIElements -----
     public GameObject teamText;
     public GameObject numberOfCards;
     public GameObject doneButton;
     public GameObject allDoneButton;
-
     public GameObject[] cards;
+
+    public string[] namesOfCards;
     private bool[] picked;
     private int[] cardsLeft;
     private bool[] teamsDone;
@@ -53,8 +55,6 @@ public class CardPickerController : MonoBehaviour, IOnEventCallback
 
     public void DoneButtonClicked()
     {
-        
-
         byte eventId = TEAMDONE;
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
         int content = PlayerInfo.PI.mySelectedTeam;
@@ -99,6 +99,7 @@ public class CardPickerController : MonoBehaviour, IOnEventCallback
             doneButton.SetActive(false);
     }
 
+    //The events for cardScene are handled here
     public void OnEvent(EventData photonEvent)
     {
         Debug.Log("Event called");
@@ -109,7 +110,7 @@ public class CardPickerController : MonoBehaviour, IOnEventCallback
             Debug.Log("Event 3 is called");
             int[] data = (int[])photonEvent.CustomData; //data[0] is the team that sent the event //data[1] is which card is effected
 
-            if (data[0] == PlayerInfo.PI.mySelectedTeam)
+            if (data[0] == PlayerInfo.PI.mySelectedTeam && !teamsDone[data[0]])
             {
                 GameObject.Find("CardPickerController").GetComponent<CardPickerController>().CardPicked(data[0], data[1]);
             }
@@ -122,13 +123,25 @@ public class CardPickerController : MonoBehaviour, IOnEventCallback
             teamsDone[data] = true;
 
             if (data == PlayerInfo.PI.mySelectedTeam)
+            {
+                PlayerInfo.PI.selectedCards = new string[cardLimit];
                 doneButton.SetActive(false);
+                int counter = 0;
+
+                for(int i = 0; i < 10; ++i) //Loop through all chosen cards and store the data in PlayerInfo
+                {
+                    if (picked[i])
+                    {
+                        PlayerInfo.PI.selectedCards[counter] = namesOfCards[i];
+                        ++counter;
+                    }
+                }
+                
+            }   
             
             if (PhotonNetwork.IsMasterClient && teamsDone[0] && teamsDone[1])
-                allDoneButton.SetActive(true);
-            
-        }
-        
+                allDoneButton.SetActive(true); 
+        } 
         
     }
 }
