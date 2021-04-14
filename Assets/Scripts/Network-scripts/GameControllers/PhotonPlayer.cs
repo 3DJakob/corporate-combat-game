@@ -182,6 +182,10 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     [PunRPC]
     void RPC_SpawnTank(int team, string lane, float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn)
     {
+        Debug.Log("HERE IS THE SPEED");
+        Debug.Log(nameOfObjectToSpawn);
+        Debug.Log(speed / 1000);
+
         GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
         TankNav nav = Tank.GetComponent<TankNav>();
 
@@ -193,7 +197,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         //TankNav
         nav.team = team;
         nav.lineName = "HighwayLine"; //Put line name here
-        //nav.speed = speed; TOO FAST!!!
+        nav.speed = speed / 1000; // good speed!
 
         //Initialize TankNav
         nav.InitiateTank();
