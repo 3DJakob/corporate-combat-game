@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Photon.Pun;
 using UnityEngine.UI;
 
 public class TankHealth : MonoBehaviour
@@ -42,10 +43,12 @@ public class TankHealth : MonoBehaviour
     public bool TakeDamage(float amount)
     {
         // Adjust the tank's current health, update the UI based on the new health and check whether or not the tank is dead.
-        m_CurrentHealth -= amount;
+        
+        PhotonView PV = GetComponent<PhotonView>();
+        PV.RPC("RPC_UpdateHealth", RpcTarget.All, amount);
+        //m_CurrentHealth -= amount;
         //Debug.Log(this.name + m_CurrentHealth);
-        SetHealthUI();
-
+        //SetHealthUI();
         if(m_CurrentHealth <= 0f && !m_Dead)
         {
             OnDeath();
@@ -54,6 +57,16 @@ public class TankHealth : MonoBehaviour
 
         return false;
     }
+
+    [PunRPC]
+    void RPC_UpdateHealth(float amount) {
+       
+        m_CurrentHealth  -= amount;
+        Debug.Log("I am taking damage!");
+        SetHealthUI();
+    }
+
+
 
 
     private void SetHealthUI()
@@ -79,7 +92,7 @@ public class TankHealth : MonoBehaviour
 
         //m_ExplosionAudio.Play();
 
-        Debug.Log("dead");
-        gameObject.SetActive(false);
+        Debug.Log("BOOOOOOM");
+        PhotonNetwork.Destroy(gameObject);
     }
 }

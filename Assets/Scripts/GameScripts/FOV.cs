@@ -47,7 +47,7 @@ public class FOV : MonoBehaviour
 
         for (int i = 0; i < targetsInView.Length; i++)
         {
-            // Om den inte ser sig själv eller sin fabrik
+            // Om den inte ser sig sjï¿½lv eller sin fabrik
             if ((targetsInView[i].gameObject != this.gameObject) || (targetsInView[i].tag == "Finish" && targetsInView[i].gameObject.layer != this.gameObject.layer))
             {
 
