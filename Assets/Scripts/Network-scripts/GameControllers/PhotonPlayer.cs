@@ -149,7 +149,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                     winText.GetComponent<Text>().text += "\n\n BLUE TEAM";
 
             }
-            
         }
     }
 
@@ -159,7 +158,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     public void OnTankSpawnButtonClicked()
     {
         Debug.Log("button clicked...");
-        SpawnTank(1.0f, 1.0f, 1.0f, 1.0f, "Tank");
+        SpawnTank(2.0f, 10.0f, 0.5f, 45.0f, "Tank");
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn) {
@@ -172,6 +171,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         }
     }
 
+
+    //RPC Function that instatiates a tank in the multiplayer room. Use RpcTarget.MasterClient when calling.
     [PunRPC]
     void RPC_SpawnTank(int team, string lane, float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn)
     {
@@ -186,7 +187,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         FOV fov = Tank.GetComponent<FOV>();
         fov.damage = damage;
         fov.fireRate = fireRate;
-
+        fov.viewRadius = range*(GameSetup.GS.instanceOfMap.transform.localScale.x*0.01f); //scale range after host scale;
+        
         //TankNav
         nav.team = team;
         nav.lineName = "HighwayLine"; //Put line name here
@@ -194,8 +196,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
         //Initialize TankNav
         nav.InitiateTank();
-
-        
     }
 
     [PunRPC]

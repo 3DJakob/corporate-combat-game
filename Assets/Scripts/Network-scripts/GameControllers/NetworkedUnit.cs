@@ -4,7 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+//Positions Tanks as children of "Game"
+//Also smoothly syncs their movement so no visible staggering will occur for player who aren't master
 public class NetworkedUnit :  MonoBehaviour, IPunObservable
 {
     Vector3 realPos;
@@ -14,7 +15,6 @@ public class NetworkedUnit :  MonoBehaviour, IPunObservable
     PhotonView PV;
     public float PredictionCoeffecient = 1.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
         PV = GetComponent<PhotonView>();
@@ -22,26 +22,29 @@ public class NetworkedUnit :  MonoBehaviour, IPunObservable
         GetComponent<Transform>().localEulerAngles = new Vector3(0, 0, 0);
         //this.GetComponent<NavTank>().SetDestination();
     }
-    // Update is called once per frame
     
-    
+    //Updates every NetworkUpdate that occurs ~10 times/second
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+        //Host sends data
         if(stream.IsWriting && PV.IsMine)
             {
+                //Current Position
                 stream.SendNext(transform.localPosition);
                 stream.SendNext(transform.localRotation);
                 stream.SendNext((realPos - lastPos)/Time.deltaTime);
             }
+            //Players recieve data
             else
             {
+                //Position to lerp to
                 realPos = (Vector3)(stream.ReceiveNext());
                 realRot = (Quaternion)(stream.ReceiveNext());
                 velocity = (Vector3)(stream.ReceiveNext());
             }
-        
     }
-    
+
+    //Lerps tank to a predicted position to create smooth movement
     void Update()
     {
         lastPos = realPos;
@@ -50,11 +53,4 @@ public class NetworkedUnit :  MonoBehaviour, IPunObservable
             transform.localRotation = Quaternion.Lerp(transform.localRotation, realRot, Time.deltaTime);
         }
     }
-
-    
-
-
-
-
-
 }
