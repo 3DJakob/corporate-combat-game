@@ -121,8 +121,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             
             if (eventCode == STARTGAME)
             {
-                string[] selectedCards = { "FastTank", "FastTank", "FastTank", "FastTank", "FastTank" }; // TODO set from card rooster
-                CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[spawnPicker], selectedCards);
+                //string[] selectedCards = { "FastTank", "FastTank", "FastTank", "FastTank", "FastTank" }; // TODO set from card rooster
+                CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[PlayerInfo.PI.mySelectedTeam], PlayerInfo.PI.selectedCards);
 
                 Debug.Log("Enabling UI");
                 canvasGame.enabled = true;
@@ -172,6 +172,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     {
         Debug.Log("button clicked...");
         SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank");
+        //SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, 3f, "WindPower");
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn) {
@@ -184,12 +185,12 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         }
     }
 
-    public void SpawnEnergySource(int team, string nameOfObjectToSpawn)
+    public void SpawnEnergySource(int team, float generationRate, string nameOfObjectToSpawn)
     {
         if (PV.IsMine)
         {
             Debug.Log("Spawns EnergySource");
-            PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, team, nameOfObjectToSpawn);
+            PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, team, generationRate, nameOfObjectToSpawn);
         }
     }
 
@@ -222,10 +223,15 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     }
     
     [PunRPC]
-    void RPC_SpawnEnergySource(int team, string nameOfObjectToSpawn)
+    void RPC_SpawnEnergySource(int team, float generationRate, string nameOfObjectToSpawn)
     {
         Transform temp = GameSetup.GS.windPointsT1[1].transform;
+        
         GameObject ES = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), temp.localPosition, temp.localRotation, 0);
+        ES.transform.SetParent(temp.parent.transform, false);
+        //Vector3 pos = transform.InverseTransformPoint(temp.position);
+        //ES.transform.parent = temp.parent.transform;
+        Debug.Log(ES.transform.localPosition);
     }
 
     [PunRPC]

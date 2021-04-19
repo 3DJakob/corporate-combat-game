@@ -231,7 +231,7 @@ MonoBehaviour:
   numberOfCards: {fileID: 700102099}
   doneButton: {fileID: 1881168890}
   allDoneButton: {fileID: 483476868}
-  infoText: {fileID: 0}
+  infoText: {fileID: 616474214}
   cards:
   - {fileID: 1449895530}
   - {fileID: 1483512006}
@@ -249,11 +249,11 @@ MonoBehaviour:
   - FastTank
   - FastTank
   - FastTank
-  - FastTank
-  - FastTank
-  - FastTank
-  - FastTank
-  - FastTank
+  - WindPower
+  - WindPower
+  - WindPower
+  - WindPower
+  - WindPower
 --- !u!4 &439283480
 Transform:
   m_ObjectHideFlags: 0
