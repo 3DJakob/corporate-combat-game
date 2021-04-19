@@ -35,7 +35,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     //---Event Codes ----
     private const int STARTGAME = 1;
     private const int ENDGAME = 2;
-    private const int SELECTEDCARD = 3;
+    private const int UPDATEENERGY = 3;
 
     // Start is called before the first frame update
     private void Start()
@@ -149,6 +149,19 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                     winText.GetComponent<Text>().text += "\n\n BLUE TEAM";
 
             }
+            if(eventCode == UPDATEENERGY)
+            {
+                Debug.Log("Event 3 is called");
+                int[] data = (int[])photonEvent.CustomData; //data[0] is team, data[1] is the new energy
+
+                if(data[0] == PlayerInfo.PI.mySelectedTeam)
+                {
+                    //UPDATE ENERGY
+                    Debug.Log("A unit was bought!");
+                    GameObject.Find("EnergyController").GetComponent<EnergyController>().updateEnergy(data[1]);
+                }
+                
+            }
         }
     }
 
@@ -171,6 +184,14 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         }
     }
 
+    public void SpawnEnergySource(int team, string nameOfObjectToSpawn)
+    {
+        if (PV.IsMine)
+        {
+            Debug.Log("Spawns EnergySource");
+            PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, team, nameOfObjectToSpawn);
+        }
+    }
 
     //RPC Function that instatiates a tank in the multiplayer room. Use RpcTarget.MasterClient when calling.
     [PunRPC]
@@ -198,6 +219,13 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
         //Initialize TankNav
         nav.InitiateTank();
+    }
+    
+    [PunRPC]
+    void RPC_SpawnEnergySource(int team, string nameOfObjectToSpawn)
+    {
+        Transform temp = GameSetup.GS.windPointsT1[1].transform;
+        GameObject ES = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), temp.localPosition, temp.localRotation, 0);
     }
 
     [PunRPC]
