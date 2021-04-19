@@ -134,4 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameOfObjectToSpawn: WindPower
-  cost: 100
+  generationRate: 3
+  cost: 20

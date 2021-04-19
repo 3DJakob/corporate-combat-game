@@ -52,6 +52,7 @@ public class CardPickerController : MonoBehaviour, IOnEventCallback
         picked = new bool[10];
         cardsLeft = new int[2]{cardLimit, cardLimit};
         teamsDone = new bool[2];
+        //namesOfCards = new string[10] { "FastTank", "FastTank", "FastTank", "FastTank", "FastTank", "FastTank", "FastTank", "FastTank", "FastTank", "WindPower" };
     }
 
     public void DoneButtonClicked()
@@ -135,6 +136,7 @@ public class CardPickerController : MonoBehaviour, IOnEventCallback
                     if (picked[i])
                     {
                         PlayerInfo.PI.selectedCards[counter] = namesOfCards[i];
+                        Debug.Log(namesOfCards[i]);
                         ++counter;
                     }
                 }

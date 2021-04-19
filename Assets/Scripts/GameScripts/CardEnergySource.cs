@@ -7,13 +7,13 @@ public class CardEnergySource : MonoBehaviour
 {
     public string nameOfObjectToSpawn;
 
-    public int cost = 100;
-    //private PhotonView PV;
+    public float generationRate;
+    public int cost;
 
     // Start is called before the first frame update
     void Start()
     {
-        //PV = GetComponent<PhotonView>();
+
     }
 
     public void Spawn()
@@ -31,7 +31,7 @@ public class CardEnergySource : MonoBehaviour
 
         if (GameObject.Find("EnergyController").GetComponent<EnergyController>().Buy(cost))
         {
-            GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, nameOfObjectToSpawn);
+            GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, generationRate, nameOfObjectToSpawn);
         
         }
         else
