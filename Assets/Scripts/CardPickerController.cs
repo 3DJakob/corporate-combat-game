@@ -13,6 +13,7 @@ public class CardPickerController : MonoBehaviour, IOnEventCallback
     public GameObject numberOfCards;
     public GameObject doneButton;
     public GameObject allDoneButton;
+    public GameObject infoText;
     public GameObject[] cards;
 
     public string[] namesOfCards;
@@ -126,6 +127,7 @@ public class CardPickerController : MonoBehaviour, IOnEventCallback
             {
                 PlayerInfo.PI.selectedCards = new string[cardLimit];
                 doneButton.SetActive(false);
+                infoText.SetActive(true);
                 int counter = 0;
 
                 for(int i = 0; i < 10; ++i) //Loop through all chosen cards and store the data in PlayerInfo

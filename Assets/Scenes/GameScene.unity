@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -936,7 +936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &445496016
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3149,6 +3149,30 @@ MonoBehaviour:
   cardPoints:
   - {fileID: 0}
   - {fileID: 0}
+  windPointsT1:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  oilPointsT1:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  sunPointsT1:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  windPointsT2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  oilPointsT2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  sunPointsT2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   player: {fileID: 0}
   gameMap: {fileID: 7896412431965812592, guid: aab85b0e51a74b14db435b646460c967, type: 3}
   tankToSpawn: {fileID: 2009505009741145921, guid: 98a62d7e4bce3374d8079e35fc6a7a2e,
@@ -3187,7 +3211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1933480565
 RectTransform:
   m_ObjectHideFlags: 0
