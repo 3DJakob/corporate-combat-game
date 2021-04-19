@@ -98,7 +98,8 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         else if(currentScene == MultiplayerSetting.multiplayerSetting.cardScene)
         {
             //CreatePlayer();
-            GameObject.Find("Done").GetComponent<Button>().onClick.AddListener(OnARSetupButtonClicked);
+            GameObject.Find("AllDone").GetComponent<Button>().onClick.AddListener(OnARSetupButtonClicked);
+            GameObject.Find("AllDone").SetActive(false);
         }
         else if (currentScene == MultiplayerSetting.multiplayerSetting.menuScene)
         {
@@ -123,6 +124,13 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
             return;
         PhotonNetwork.LoadLevel(MultiplayerSetting.multiplayerSetting.cardScene);
     }
+    //public void CardSelectionIsDone()
+    //{
+    //    if (PhotonNetwork.IsMasterClient)
+    //    {
+    //        GameObject.Find("AllDone").GetComponent<Button>().interactable = true;
+    //    }
+    //}
     public void OnARSetupButtonClicked()
     {
         Debug.Log("AR setup");

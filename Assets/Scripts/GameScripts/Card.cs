@@ -27,9 +27,9 @@ public class Card : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        Debug.Log("getting photonview...");
+        //Debug.Log("getting photonview...");
         PV = GetComponent<PhotonView>();
-        Debug.Log(PV);
+        //Debug.Log(PV);
     }
 
     // Update is called once per frame

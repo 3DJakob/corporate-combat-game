@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 
 public class TankNav : MonoBehaviour
 {
+
+    PhotonView PV;
     public string lineName;
     LineRenderer line;
     public float speed;
@@ -12,7 +15,7 @@ public class TankNav : MonoBehaviour
     float rotationSpeed;
     float stepMove;
     float stepRotate;
-    bool rotating = false;
+    //bool rotating = false;
     bool tankInitiated = false;
     public int team;
     int i;
@@ -20,20 +23,20 @@ public class TankNav : MonoBehaviour
     private Vector3 nextPosition;
     Vector3 lineOffset = new Vector3(0, 0.15f, 0);
 
-
-   public void InitiateTank(){
-
+    public void InitiateTank()
+    {
         line = GameSetup.GS.instanceOfMap.transform.Find(lineName).GetComponent<LineRenderer>();
-
+        PV = GetComponent<PhotonView>();
         //Decide route depending on team
-        if(team == 0){
-            i = 0;
-            nextPosition = line.GetPosition(i+1) + lineOffset;
-        }
-        else if(team == 1)
+        if (team == 0)
         {
-            i = line.positionCount-1;
-            nextPosition = line.GetPosition(i-1) + lineOffset;
+            i = 0;
+            nextPosition = line.GetPosition(i + 1) + lineOffset;
+        }
+        else if (team == 1)
+        {
+            i = line.positionCount - 1;
+            nextPosition = line.GetPosition(i - 1) + lineOffset;
         }
         prevPosition = line.GetPosition(i) + lineOffset;
         this.transform.localPosition = prevPosition;
@@ -43,11 +46,10 @@ public class TankNav : MonoBehaviour
         //StartCoroutine("GetNextPositionDelay", .2f);
     }
 
-     void Update(){
-        if (!tankInitiated) 
-        {
-            return;        
-        }
+    void Update()
+    {
+        if (!tankInitiated) return;
+
         stepMove = Mathf.FloorToInt(moveSpeed);
         //Debug.Log(nextPosition);
 
@@ -83,33 +85,39 @@ public class TankNav : MonoBehaviour
 
         // }
 
-        //If no targets are in sight, move along the road        
-        if (!GetComponent<FOV>().found){
-            moveSpeed += speed/Vector3.Distance(prevPosition, nextPosition);
-            this.transform.localPosition = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - stepMove); 
-        }
-        
-        if(this.transform.localPosition == nextPosition)
-        {
-            getNextPosition();
+        //If no targets are in sight, move along the road   
 
-            this.transform.LookAt(GameSetup.GS.instanceOfMap.transform.TransformPoint(nextPosition));
-            
+        if (PV.IsMine)
+        {
+            if (!GetComponent<FOV>().found)
+            {
+                moveSpeed += speed / Vector3.Distance(prevPosition, nextPosition);
+                this.transform.localPosition = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - stepMove);
+            }
+            if (this.transform.localPosition == nextPosition)
+            {
+                getNextPosition();
+                this.transform.LookAt(GameSetup.GS.instanceOfMap.transform.TransformPoint(nextPosition));
+            }
+        }
+        else
+        {
+            this.transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, 1.0f);
         }
     }
-
-    void getNextPosition(){
-        if(team == 0 && i < line.positionCount)
-            {
-                i++;
-                nextPosition = line.GetPosition(i+1) + lineOffset;
-            }
-            else if(team == 1 && i > 0)
-            {
-                i--;
-                nextPosition = line.GetPosition(i-1) + lineOffset;
-            }
+    void getNextPosition()
+    {
+        if (team == 0 && i < line.positionCount)
+        {
+            i++;
+            nextPosition = line.GetPosition(i + 1) + lineOffset;
+        }
+        else if (team == 1 && i > 0)
+        {
+            i--;
+            nextPosition = line.GetPosition(i - 1) + lineOffset;
+        }
         prevPosition = line.GetPosition(i) + lineOffset;
-        
+
     }
 }

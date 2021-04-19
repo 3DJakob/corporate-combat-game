@@ -35,7 +35,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     //---Event Codes ----
     private const int STARTGAME = 1;
     private const int ENDGAME = 2;
-    private const int SELECTEDCARD = 3;
+    private const int UPDATEENERGY = 3;
 
     // Start is called before the first frame update
     private void Start()
@@ -149,13 +149,18 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                     winText.GetComponent<Text>().text += "\n\n BLUE TEAM";
 
             }
-            if(eventCode == SELECTEDCARD)
+            if(eventCode == UPDATEENERGY)
             {
                 Debug.Log("Event 3 is called");
-                int[] data = (int[])photonEvent.CustomData; //data[0] is the team that sent the event //data[1] is which card is effected
+                int[] data = (int[])photonEvent.CustomData; //data[0] is team, data[1] is the new energy
 
                 if(data[0] == PlayerInfo.PI.mySelectedTeam)
-                    GameObject.Find("CardPickerController").GetComponent<CardPickerController>().CardPicked(data[1]);
+                {
+                    //UPDATE ENERGY
+                    Debug.Log("A unit was bought!");
+                    GameObject.Find("EnergyController").GetComponent<EnergyController>().updateEnergy(data[1]);
+                }
+                
             }
         }
     }
@@ -179,6 +184,16 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         }
     }
 
+    public void SpawnEnergySource(int team, string nameOfObjectToSpawn)
+    {
+        if (PV.IsMine)
+        {
+            Debug.Log("Spawns EnergySource");
+            PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, team, nameOfObjectToSpawn);
+        }
+    }
+
+    //RPC Function that instatiates a tank in the multiplayer room. Use RpcTarget.MasterClient when calling.
     [PunRPC]
     void RPC_SpawnTank(int team, string lane, float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn)
     {
@@ -189,11 +204,14 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
         TankNav nav = Tank.GetComponent<TankNav>();
 
+        float scale = GameSetup.GS.instanceOfMap.transform.localScale.x;
+
         //FOV
         FOV fov = Tank.GetComponent<FOV>();
         fov.damage = damage;
         fov.fireRate = fireRate;
-
+        fov.viewRadius = range*scale*0.01f; //scale range after host scale;
+        
         //TankNav
         nav.team = team;
         nav.lineName = lane + "Line"; //Put line name here
@@ -201,8 +219,13 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
         //Initialize TankNav
         nav.InitiateTank();
-
-        
+    }
+    
+    [PunRPC]
+    void RPC_SpawnEnergySource(int team, string nameOfObjectToSpawn)
+    {
+        Transform temp = GameSetup.GS.windPointsT1[1].transform;
+        GameObject ES = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), temp.localPosition, temp.localRotation, 0);
     }
 
     [PunRPC]
