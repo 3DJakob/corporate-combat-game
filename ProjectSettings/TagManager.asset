@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Player2
   - Tank
+  - Selectable
   layers:
   - Default
   - TransparentFX

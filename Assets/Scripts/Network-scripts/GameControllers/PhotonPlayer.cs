@@ -171,17 +171,16 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     public void OnTankSpawnButtonClicked()
     {
         Debug.Log("button clicked...");
-        SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank");
-        //SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, 3f, "WindPower");
+        SpawnTank(1.0f, 1.0f, 1.0f, 1.0f, "Tank", "Highway");
     }
 
-    public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn) {
+    public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn, string lane) {
         Debug.Log("spawn tank...");
         if (PV.IsMine)
         {
             //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
             Debug.Log("Spawns Tank");
-            PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, "Highway", fireRate, damage, speed, range, nameOfObjectToSpawn);
+            PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, lane, fireRate, damage, speed, range, nameOfObjectToSpawn);
         }
     }
 
@@ -215,7 +214,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         
         //TankNav
         nav.team = team;
-        nav.lineName = "HighwayLine"; //Put line name here
+        nav.lineName = lane + "Line"; //Put line name here
         nav.speed = speed / 1000; // good speed!
 
         //Initialize TankNav
