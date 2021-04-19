@@ -19,8 +19,11 @@ public class TankHealth : MonoBehaviour
     [SerializeField]
     private float m_CurrentHealth;  
     private bool m_Dead;    
-          
+    public int team;
 
+    void Start(){
+        team = GetComponent<TankNav>().team;
+    }
 
     private void Awake()
     {

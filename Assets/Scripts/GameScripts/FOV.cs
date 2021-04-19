@@ -48,20 +48,22 @@ public class FOV : MonoBehaviour
         for (int i = 0; i < targetsInView.Length; i++)
         {
             // Om den inte ser sig sj�lv eller sin fabrik
-            if ((targetsInView[i].gameObject != this.gameObject) || (targetsInView[i].tag == "Finish" && targetsInView[i].gameObject.layer != this.gameObject.layer))
+            if ((targetsInView[i].gameObject != this.gameObject) || (targetsInView[i].tag == "Finish" && targetsInView[i].GetComponent<TankHealth>().team != this.gameObject.GetComponent<TankHealth>().team))
             {
-
+                
                 Transform target = targetsInView[i].transform;
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
                 if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
                 {
+                    
                     foundTank = true;
                     float disToTargets = Vector3.Distance(transform.position, target.position);
-                    if ((!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && targetsInView[i].GetComponent<TankNav>().team != this.gameObject.GetComponent<TankNav>().team))
+                    if ((!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && targetsInView[i].GetComponent<TankHealth>().team != this.gameObject.GetComponent<TankHealth>().team))
                     {
                         visibleTargets.Add(target);
                         if (Time.time >= nextTimeToFire)
                         {
+                            Debug.Log(target.name);
                             nextTimeToFire = Time.time + 1f / fireRate;
                             shoot(dirToTarget);
                         }
@@ -92,7 +94,7 @@ public class FOV : MonoBehaviour
         {
             Debug.Log("Hit: " + hit.collider.name);
             TankHealth enemyTank = hit.transform.GetComponent<TankHealth>();
-            Debug.Log("Enemy: " + enemyTank);
+            Debug.Log("Enemy: " + enemyTank.name);
             if (enemyTank != null)
             {
                 nextTimeToFire = Time.time + 1f / fireRate;
