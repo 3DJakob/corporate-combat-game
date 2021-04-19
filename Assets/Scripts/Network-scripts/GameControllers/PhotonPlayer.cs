@@ -158,7 +158,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     public void OnTankSpawnButtonClicked()
     {
         Debug.Log("button clicked...");
-        SpawnTank(2.0f, 10.0f, 0.5f, 45.0f, "Tank");
+        SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank");
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn) {
@@ -183,11 +183,13 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
         TankNav nav = Tank.GetComponent<TankNav>();
 
+        float scale = GameSetup.GS.instanceOfMap.transform.localScale.x;
+
         //FOV
         FOV fov = Tank.GetComponent<FOV>();
         fov.damage = damage;
         fov.fireRate = fireRate;
-        fov.viewRadius = range*(GameSetup.GS.instanceOfMap.transform.localScale.x*0.01f); //scale range after host scale;
+        fov.viewRadius = range*scale*0.01f; //scale range after host scale;
         
         //TankNav
         nav.team = team;
