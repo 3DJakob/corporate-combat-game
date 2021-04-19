@@ -5212,10 +5212,10 @@ MonoBehaviour:
   nickname: 
   mySelectedTeam: 0
   selectedCards:
-  - 
-  - 
-  - 
-  - 
+  - FastTank
+  - FastTank
+  - FastTank
+  - FastTank
   T: {fileID: 0}
   teams: 0000000001000000
 --- !u!4 &2090399287
