@@ -81,6 +81,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8767102315428209747
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697746899520964383}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2310689709435436231, guid: 2054de4ac6a93c649ba6a9949b15757c, type: 3}
 --- !u!1 &1716558098733119904
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +176,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &110459259913955045
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839027521456462813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8932166026425825430, guid: 2054de4ac6a93c649ba6a9949b15757c, type: 3}
 --- !u!1 &3186633045023152981
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +513,20 @@ MonoBehaviour:
   m_Name: ForestLine
   m_EditorClassIdentifier: 
   Health: 50
+--- !u!64 &1105729553867673024
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4675848468361343613}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1924128652491027321, guid: 2054de4ac6a93c649ba6a9949b15757c, type: 3}
 --- !u!1 &4729135439741103665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,6 +1851,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HighwayRoad
       objectReference: {fileID: 0}
+    - target: {fileID: -6845372964647519049, guid: 2054de4ac6a93c649ba6a9949b15757c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Selectable
+      objectReference: {fileID: 0}
     - target: {fileID: -1599826595754709761, guid: 2054de4ac6a93c649ba6a9949b15757c,
         type: 3}
       propertyPath: m_Name
@@ -1829,16 +1876,44 @@ PrefabInstance:
       propertyPath: m_Name
       value: MountainRoad
       objectReference: {fileID: 0}
+    - target: {fileID: 8533249448058522069, guid: 2054de4ac6a93c649ba6a9949b15757c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Selectable
+      objectReference: {fileID: 0}
     - target: {fileID: 8675660419491173655, guid: 2054de4ac6a93c649ba6a9949b15757c,
         type: 3}
       propertyPath: m_Name
       value: ForestRoad
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675660419491173655, guid: 2054de4ac6a93c649ba6a9949b15757c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Selectable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2054de4ac6a93c649ba6a9949b15757c, type: 3}
 --- !u!4 &7379451022702881057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2054de4ac6a93c649ba6a9949b15757c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7053669346532675274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1697746899520964383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8533249448058522069, guid: 2054de4ac6a93c649ba6a9949b15757c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7053669346532675274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4675848468361343613 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6845372964647519049, guid: 2054de4ac6a93c649ba6a9949b15757c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7053669346532675274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1839027521456462813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8675660419491173655, guid: 2054de4ac6a93c649ba6a9949b15757c,
     type: 3}
   m_PrefabInstance: {fileID: 7053669346532675274}
   m_PrefabAsset: {fileID: 0}
