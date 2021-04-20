@@ -157,7 +157,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 if(data[0] == PlayerInfo.PI.mySelectedTeam)
                 {
                     //UPDATE ENERGY
-                    Debug.Log("A unit was bought!");
+                    //Debug.Log("A unit was bought!");
                     GameObject.Find("EnergyController").GetComponent<EnergyController>().updateEnergy(data[1]);
                 }
                 
@@ -172,6 +172,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     {
         Debug.Log("button clicked...");
         SpawnTank(1.0f, 1.0f, 1.0f, 1.0f, "Tank", "Highway");
+        //SpawnEnergySource(0, 1f, 20f, "WindPower");
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn, string lane) {
@@ -184,12 +185,12 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         }
     }
 
-    public void SpawnEnergySource(int team, float generationRate, string nameOfObjectToSpawn)
+    public void SpawnEnergySource(int team, float generationRate, float lifetime, string nameOfObjectToSpawn)
     {
         if (PV.IsMine)
         {
             Debug.Log("Spawns EnergySource");
-            PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, team, generationRate, nameOfObjectToSpawn);
+            PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, team, generationRate, lifetime, nameOfObjectToSpawn);
         }
     }
 
@@ -222,15 +223,20 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     }
     
     [PunRPC]
-    void RPC_SpawnEnergySource(int team, float generationRate, string nameOfObjectToSpawn)
+    void RPC_SpawnEnergySource(int team, float generationRate, float lifetime, string nameOfObjectToSpawn)
     {
         Transform temp = GameSetup.GS.windPointsT1[1].transform;
         
         GameObject ES = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), temp.localPosition, temp.localRotation, 0);
         ES.transform.SetParent(temp.parent.transform, false);
-        //Vector3 pos = transform.InverseTransformPoint(temp.position);
-        //ES.transform.parent = temp.parent.transform;
-        Debug.Log(ES.transform.localPosition);
+
+        ES.transform.localPosition += new Vector3(0, 10, 0);
+        ES.GetComponent<EnergyGeneration>().rate = generationRate;
+        ES.GetComponent<EnergyGeneration>().team = team;
+        ES.GetComponent<DestoryAfterLifetime>().lifetime = lifetime;
+        Debug.Log("Lifetime set to" + ES.GetComponent<DestoryAfterLifetime>().lifetime);
+        ES.GetComponent<DestoryAfterLifetime>().enabled = true;
+
     }
 
     [PunRPC]

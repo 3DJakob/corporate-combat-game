@@ -9,7 +9,9 @@ using UnityEngine.UI;
 public class EnergyController : MonoBehaviour
 {
     public Text textObject;
-    private int energy = 200;
+    public int energyT1 = 200;
+    public int energyT2 = 200;
+    public int energy = 200;
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +21,9 @@ public class EnergyController : MonoBehaviour
 
     public bool Buy(int cost) {
         if (energy >= cost) {
-            //energy = energy - cost;
-
-            byte eventId = 3;
+            
             int[] content = { PlayerInfo.PI.mySelectedTeam, energy - cost };
+            byte eventId = 3;
 
             RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
             PhotonNetwork.RaiseEvent(eventId, content, raiseEventOptions, SendOptions.SendReliable);
@@ -38,6 +39,15 @@ public class EnergyController : MonoBehaviour
     {
         energy = newEnergy;
         textObject.text = "Energy: " + energy.ToString();
+    }
+
+    public void updateEnergy(int team, int newEnergy)
+    {
+        if(team == PlayerInfo.PI.mySelectedTeam)
+        {
+            energy = newEnergy;
+            textObject.text = "Energy: " + energy.ToString();
+        }   
     }
 
     // Update is called once per frame
