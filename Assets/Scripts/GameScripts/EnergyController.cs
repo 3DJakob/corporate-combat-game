@@ -8,15 +8,33 @@ using UnityEngine.UI;
 
 public class EnergyController : MonoBehaviour
 {
+    public static EnergyController EC;
+
+    public PhotonPlayer PP;
     public Text textObject;
-    public int energyT1 = 200;
-    public int energyT2 = 200;
+    float timeAlive = 0;
+    public int rate = 1;
     public int energy = 200;
 
     // Start is called before the first frame update
     void Start()
     {
         textObject.text = "Energy: " + energy.ToString();
+    }
+    private void OnEnable()
+    {
+        if (EnergyController.EC == null)
+        {
+            EnergyController.EC = this;
+        }
+        else
+        {
+            if (EnergyController.EC != this) 
+            {
+              Destroy(EnergyController.EC.gameObject);
+                EnergyController.EC = this;
+            }
+        }
     }
 
     public bool Buy(int cost) {
@@ -34,25 +52,28 @@ public class EnergyController : MonoBehaviour
             return false;
         }
     }
-
     public void updateEnergy(int newEnergy)
     {
         energy = newEnergy;
         textObject.text = "Energy: " + energy.ToString();
     }
-
-    public void updateEnergy(int team, int newEnergy)
+    //For every spawned energyGeneration, update rate by 1 for your team
+    //Called by energyGeneration
+    public void updateRate(int value)
     {
-        if(team == PlayerInfo.PI.mySelectedTeam)
-        {
-            energy = newEnergy;
-            textObject.text = "Energy: " + energy.ToString();
-        }   
+        rate += value;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update() {
+
+        timeAlive += Time.deltaTime;
+        if(timeAlive > 1f)
+        {
+            //Debug.Log(timeAlive);
+            //Update the energy for all players
+            energy += rate;
+            textObject.text = "Energy: " + energy.ToString();
+            timeAlive = timeAlive - 1;
+        }
     }
 }

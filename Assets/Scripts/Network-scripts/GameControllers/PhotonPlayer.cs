@@ -36,6 +36,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     private const int STARTGAME = 1;
     private const int ENDGAME = 2;
     private const int UPDATEENERGY = 3;
+    private const int UPDATERATE = 4;
 
     // Start is called before the first frame update
     private void Start()
@@ -57,13 +58,14 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             //myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
             //    GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
             Debug.Log("Player created");
-
             canvasGame = GameObject.Find("InGameUI").GetComponent<Canvas>();
             canvasAR = GameObject.Find("ARSetup").GetComponent<Canvas>();
             startButton = GameObject.Find("StartGame").GetComponent<Button>();
             readyButton = GameObject.Find("Ready").GetComponent<Button>();
             winPanel = GameObject.Find("WinState");
             winText = GameObject.Find("Winner");
+
+            EnergyController.EC.PP = this;
 
             startButton.onClick.AddListener(OnStartGameButtonClicked);
             readyButton.onClick.AddListener(OnReadyButtonClicked);
@@ -121,7 +123,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             {
                 //string[] selectedCards = { "FastTank", "FastTank", "FastTank", "FastTank", "FastTank" }; // TODO set from card rooster
                 CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[PlayerInfo.PI.mySelectedTeam], PlayerInfo.PI.selectedCards);
-
                 Debug.Log("Enabling UI");
                 canvasGame.enabled = true;
                 canvasAR.enabled = false;
@@ -132,6 +133,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
 
                 GameSetup.GS.instanceOfMap.SetActive(true);
+                
+                EnergyController.EC.energy = 200;
+                
                 if(PhotonNetwork.IsMasterClient){
                     Debug.Log("im here?");
 
@@ -163,9 +167,18 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 {
                     //UPDATE ENERGY
                     //Debug.Log("A unit was bought!");
-                    GameObject.Find("EnergyController").GetComponent<EnergyController>().updateEnergy(data[1]);
+                    EnergyController.EC.updateEnergy(data[1]);
                 }
                 
+            }
+            if(eventCode == UPDATERATE){
+                int[] data = (int[])photonEvent.CustomData; //data[0] is team, data[1] is new value
+
+                if(data[0] == PlayerInfo.PI.mySelectedTeam)
+                {
+                    //UPDATE ENERGY
+                    EnergyController.EC.updateRate(data[1]);
+                }
             }
         }
     }
@@ -176,8 +189,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     public void OnTankSpawnButtonClicked()
     {
         Debug.Log("button clicked...");
-        SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Highway");
-        //SpawnEnergySource(0, 1f, 20f, "WindPower");
+        //SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Highway");
+        SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, 1, 20f, "WindPower");
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn, string lane) {
@@ -190,7 +203,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         }
     }
 
-    public void SpawnEnergySource(int team, float generationRate, float lifetime, string nameOfObjectToSpawn)
+    public void SpawnEnergySource(int team, int generationRate, float lifetime, string nameOfObjectToSpawn)
     {
         if (PV.IsMine)
         {
@@ -198,6 +211,16 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, team, generationRate, lifetime, nameOfObjectToSpawn);
         }
     }
+
+    public void UpdateEnergy(int team, int changeAmount)
+    {
+        if (PV.IsMine)
+        {
+            Debug.Log("Update Energy source");
+            //PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, team, generationRate, lifetime, nameOfObjectToSpawn);
+        }
+    }
+
 
     //RPC Function that instatiates a tank in the multiplayer room. Use RpcTarget.MasterClient when calling.
     [PunRPC]
@@ -228,14 +251,11 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     }
     
     [PunRPC]
-    void RPC_SpawnEnergySource(int team, float generationRate, float lifetime, string nameOfObjectToSpawn)
+    void RPC_SpawnEnergySource(int team, int generationRate, float lifetime, string nameOfObjectToSpawn)
     {
-        Transform temp = GameSetup.GS.windPointsT1[1].transform;
+        Transform temp = GameSetup.GS.windPointsT2[1].transform;
         
         GameObject ES = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), temp.localPosition, temp.localRotation, 0);
-        ES.transform.SetParent(temp.parent.transform, false);
-
-        ES.transform.localPosition += new Vector3(0, 10, 0);
         ES.GetComponent<EnergyGeneration>().rate = generationRate;
         ES.GetComponent<EnergyGeneration>().team = team;
         ES.GetComponent<DestoryAfterLifetime>().lifetime = lifetime;
@@ -243,6 +263,13 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         ES.GetComponent<DestoryAfterLifetime>().enabled = true;
 
     }
+    [PunRPC]
+    void RPC_updateEnergy(int team, int changeAmount){
+        if(PlayerInfo.PI.mySelectedTeam == team){
+            EnergyController.EC.updateEnergy(changeAmount);
+        }
+    }
+
 
     [PunRPC]
     void RPC_UpdateReady()

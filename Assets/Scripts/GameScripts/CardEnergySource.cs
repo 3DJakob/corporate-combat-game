@@ -6,8 +6,7 @@ using UnityEngine;
 public class CardEnergySource : MonoBehaviour
 {
     public string nameOfObjectToSpawn;
-
-    public float generationRate;
+    public int generationRate;
     public float lifetime;
     public int cost;
 

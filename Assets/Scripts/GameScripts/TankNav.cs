@@ -27,6 +27,7 @@ public class TankNav : MonoBehaviour
     {
         line = GameSetup.GS.instanceOfMap.transform.Find(lineName).GetComponent<LineRenderer>();
         PV = GetComponent<PhotonView>();
+        
         //Decide route depending on team
         if (team == 0)
         {
@@ -38,9 +39,13 @@ public class TankNav : MonoBehaviour
             i = line.positionCount - 1;
             nextPosition = line.GetPosition(i - 1) + lineOffset;
         }
+        
         prevPosition = line.GetPosition(i) + lineOffset;
         this.transform.localPosition = prevPosition;
+        
+        
         tankInitiated = true;
+
         Debug.Log(line.positionCount);
 
         //StartCoroutine("GetNextPositionDelay", .2f);
@@ -50,6 +55,9 @@ public class TankNav : MonoBehaviour
     {
         if (!tankInitiated) return;
 
+
+
+        
         stepMove = Mathf.FloorToInt(moveSpeed);
         //Debug.Log(nextPosition);
 
@@ -86,13 +94,14 @@ public class TankNav : MonoBehaviour
         // }
 
         //If no targets are in sight, move along the road   
-
+        
         if (PV.IsMine)
         {
-            if(nextPosition == null){
+            if (nextPosition == null)
+            {
                 PhotonNetwork.Destroy(gameObject);
             }
-                
+
 
             if (!GetComponent<FOV>().found)
             {

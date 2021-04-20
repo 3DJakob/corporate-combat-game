@@ -19,15 +19,6 @@ public class NetworkedUnit :  MonoBehaviour, IPunObservable
     {
         PV = GetComponent<PhotonView>();
         GetComponent<Transform>().SetParent(GameSetup.GS.instanceOfMap.transform, false);
-        if( GetComponent<TankNav>().team == 0){
-            GetComponent<Transform>().localEulerAngles = new Vector3(0, 0, 0);
-        }
-        else{
-            GetComponent<Transform>().localEulerAngles = new Vector3(0, 180, 0);
-        }
-        
-        
-        
         //this.GetComponent<NavTank>().SetDestination();
     }
     

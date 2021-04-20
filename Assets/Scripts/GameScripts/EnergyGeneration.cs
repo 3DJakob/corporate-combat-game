@@ -1,37 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 
 public class EnergyGeneration : MonoBehaviour
 {
-    private EnergyController myEC;
-    public float rate;
+    public int rate;
     public int team;
-    private float timeAlive;
-
-    private void Awake()
-    {
-        timeAlive = 0f;
-    }
 
     // Start is called before the first frame update
     void Start()
     {
-        myEC = GameObject.Find("EnergyController").GetComponent<EnergyController>();
+        Transform parent = GameSetup.GS.windPointsT1[1]; // needs input from spawn
+        transform.SetParent(parent, false);
+        transform.localPosition += new Vector3(0, 10, 0);
+
+        //Update energyBySecond for your team
+        int[] content = {team, rate};
+        byte eventId = 4;
+
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+        PhotonNetwork.RaiseEvent(eventId, content, raiseEventOptions, SendOptions.SendReliable);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        timeAlive += Time.deltaTime;
 
-        if(timeAlive > rate)
-        {
-            Debug.Log(timeAlive);
-            //int[] content = {team, myEC.getEnergy() + 1};
-            myEC.updateEnergy(team, myEC.energy + 1);
-            timeAlive = timeAlive - rate;
-        }
+    private void OnDestroy() {
+        int[] content = {team, -rate};
+        byte eventId = 4;
+
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+        PhotonNetwork.RaiseEvent(eventId, content, raiseEventOptions, SendOptions.SendReliable);
     }
 
 }
