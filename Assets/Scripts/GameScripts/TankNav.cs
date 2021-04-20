@@ -89,6 +89,11 @@ public class TankNav : MonoBehaviour
 
         if (PV.IsMine)
         {
+            if(nextPosition == null){
+                PhotonNetwork.Destroy(gameObject);
+            }
+                
+
             if (!GetComponent<FOV>().found)
             {
                 moveSpeed += speed / Vector3.Distance(prevPosition, nextPosition);
