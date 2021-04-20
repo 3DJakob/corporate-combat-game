@@ -94,7 +94,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
     public void OnStartGameButtonClicked()
     {
-        
         if (PhotonNetwork.IsMasterClient)
         {
             byte eventId = 1;
@@ -103,7 +102,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             PhotonNetwork.RaiseEvent(eventId, startGame, raiseEventOptions, SendOptions.SendReliable);
         }
     }
-
     private void OnEnable()
     {
         PhotonNetwork.AddCallbackTarget(this);
@@ -134,6 +132,13 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
 
                 GameSetup.GS.instanceOfMap.SetActive(true);
+                if(PhotonNetwork.IsMasterClient){
+                    Debug.Log("im here?");
+
+                    PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "RED FACTORY"), new Vector3(0.002134264f, 0.3164462f, 1.763784f), Quaternion.identity , 0);
+                    PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "BLUE FACTORY"),  new Vector3(0.00170175f,0.3164462f,-1.763591f), Quaternion.identity, 0);
+                }
+
 
             }
             if (eventCode == ENDGAME)
@@ -171,7 +176,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     public void OnTankSpawnButtonClicked()
     {
         Debug.Log("button clicked...");
-        SpawnTank(1.0f, 1.0f, 1.0f, 1.0f, "Tank", "Highway");
+        SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Highway");
         //SpawnEnergySource(0, 1f, 20f, "WindPower");
     }
 
