@@ -65,7 +65,7 @@ public class FOV : MonoBehaviour
                         {
                             Debug.Log(target.name);
                             nextTimeToFire = Time.time + 1f / fireRate;
-                            shoot(dirToTarget);
+                            shoot(dirToTarget, target);
                         }
                     }
                 }
@@ -86,15 +86,20 @@ public class FOV : MonoBehaviour
         return new Vector3(Mathf.Sin(angleInDeg * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDeg * Mathf.Deg2Rad));
     }
 
-    void shoot(Vector3 direction)
+    void shoot(Vector3 direction, Transform target)
     {
         //smoke.Play();
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit))
         {
-            Debug.Log("Hit: " + hit.collider.name);
             TankHealth enemyTank = hit.transform.GetComponent<TankHealth>();
+
+            Debug.Log("Hit: " + hit.collider.name);
             Debug.Log("Enemy: " + enemyTank.name);
+
+            if(hit.transform == this.transform)
+                return;
+
             if (enemyTank != null)
             {
                 nextTimeToFire = Time.time + 1f / fireRate;
