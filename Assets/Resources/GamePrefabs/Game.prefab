@@ -1342,7 +1342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1295329866067944277}
   - component: {fileID: 7572812647798900097}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HighwayLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1463,7 +1463,7 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!1 &4675848468361343613
 GameObject:
@@ -1728,7 +1728,7 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0.18303747, y: 0.18, z: -1.7725548}
+  - {x: 0.167288, y: 0.18, z: -1.7725548}
   - {x: 0.6396175, y: 0.18, z: -1.7628148}
   - {x: 0.7889395, y: 0.16922207, z: -1.7648507}
   - {x: 0.88103276, y: 0.116625935, z: -1.7587667}
