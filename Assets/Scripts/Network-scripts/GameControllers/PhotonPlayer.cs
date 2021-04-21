@@ -187,7 +187,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     {
         Debug.Log("button clicked...");
         SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Forest");
-        SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, 1, 20f, "WindPower");
+        //SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, 1, 20.0f, "WindPower");
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn, string lane) {
@@ -200,12 +200,12 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         }
     }
 
-    public void SpawnEnergySource(int team, int generationRate, float lifetime, string nameOfObjectToSpawn)
+    public void SpawnEnergySource(int generationRate, float lifetime, string nameOfObjectToSpawn, string lane)
     {
         if (PV.IsMine)
         {
             Debug.Log("Spawns EnergySource");
-            PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, team, generationRate, lifetime, nameOfObjectToSpawn);
+            PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, generationRate, lifetime, nameOfObjectToSpawn);
         }
     }
 

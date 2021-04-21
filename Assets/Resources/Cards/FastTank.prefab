@@ -116,6 +116,7 @@ MonoBehaviour:
   range: 30
   cost: 50
   nameOfObjectToSpawn: FastTank
+  type: Tank
 --- !u!114 &3472787392822959545
 MonoBehaviour:
   m_ObjectHideFlags: 0

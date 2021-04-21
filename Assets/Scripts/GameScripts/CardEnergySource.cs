@@ -36,7 +36,7 @@ public class CardEnergySource : MonoBehaviour
 
         if (GameObject.Find("EnergyController").GetComponent<EnergyController>().Buy(cost))
         {
-            GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, generationRate, lifetime, nameOfObjectToSpawn);
+            //GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, generationRate, lifetime, nameOfObjectToSpawn);
         
         }
         else
