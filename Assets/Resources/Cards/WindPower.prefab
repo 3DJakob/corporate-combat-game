@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 3333290350714329544}
   - component: {fileID: 3333290350714329547}
   - component: {fileID: 3472787392822959545}
-  - component: {fileID: -2053678943314142752}
+  - component: {fileID: -4748416500835498236}
   m_Layer: 0
   m_Name: WindPower
-  m_TagString: Player
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &-2053678943314142752
+--- !u!114 &-4748416500835498236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,10 +130,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3333290350714329549}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e01e57e6edfe754458c91ff3870e6abc, type: 3}
+  m_Script: {fileID: 11500000, guid: d90593a8ea907476bb4a4e5caac9fb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 0
+  damage: 0
+  speed: 0
+  range: 0
+  generationRate: 2
+  lifetime: 10
+  cost: 50
   nameOfObjectToSpawn: WindPower
-  generationRate: 0.5
-  lifetime: 2
-  cost: 20
+  type: EnergySource

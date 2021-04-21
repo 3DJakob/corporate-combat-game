@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 5053447577897845511}
   - component: {fileID: 3148138445037554804}
   m_Layer: 6
-  m_Name: Tank
+  m_Name: FastTank
   m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

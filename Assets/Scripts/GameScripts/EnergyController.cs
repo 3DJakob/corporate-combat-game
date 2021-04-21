@@ -67,7 +67,7 @@ public class EnergyController : MonoBehaviour
     private void Update() {
 
         timeAlive += Time.deltaTime;
-        if(timeAlive > 1f)
+        if(timeAlive > 2f)
         {
             //Debug.Log(timeAlive);
             //Update the energy for all players
