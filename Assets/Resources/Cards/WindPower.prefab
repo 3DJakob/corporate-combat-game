@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3333290350714329547}
   - component: {fileID: 3472787392822959545}
   - component: {fileID: -4748416500835498236}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WindPower
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -137,6 +137,7 @@ MonoBehaviour:
   damage: 0
   speed: 0
   range: 0
+  hp: 0
   generationRate: 2
   lifetime: 10
   cost: 50

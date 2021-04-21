@@ -5214,8 +5214,8 @@ MonoBehaviour:
   selectedCards:
   - FastTank
   - FastTank
-  - FastTank
-  - FastTank
+  - WindPower
+  - WindPower
   T: {fileID: 0}
   teams: 0000000001000000
 --- !u!4 &2090399287

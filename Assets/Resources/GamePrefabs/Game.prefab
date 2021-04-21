@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7218363960003526890}
   - component: {fileID: 8455630042245132643}
   - component: {fileID: 4518398876206673338}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WindPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 7965585796542299474}
   - component: {fileID: 8814143850837281942}
   - component: {fileID: 4140854090989045962}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OilPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 8955215213968311813}
   - component: {fileID: 3435921317394891430}
   - component: {fileID: 1802592812381541591}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WindPlatform
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ Transform:
   m_GameObject: {fileID: 539837988686661879}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.3914, y: 0.1504, z: -1.8372991}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
   m_RootOrder: 0
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 2330725893451596247}
   - component: {fileID: 6459526906309995945}
   - component: {fileID: 2928083763118549521}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WindPlatform
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ Transform:
   m_GameObject: {fileID: 547526128753265729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.3145, y: 0.1504, z: -1.707499}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
   m_RootOrder: 2
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 3878927388860346883}
   - component: {fileID: 1702949540529893873}
   - component: {fileID: 3587532548879259656}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OilPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ Transform:
   m_GameObject: {fileID: 816789865892183372}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: -1.3053999, y: 0.2662, z: -1.7744998}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
   m_RootOrder: 5
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 7912467808240339865}
   - component: {fileID: 1423905459786411724}
   - component: {fileID: 3225757188813179600}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OilPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 6644500228587581444}
   - component: {fileID: 3762259053740698992}
   - component: {fileID: 9214952903227846655}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SunPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 8701286076239347431}
   - component: {fileID: 7074058624702204645}
   - component: {fileID: 2627278913416597871}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WindPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,7 +772,7 @@ GameObject:
   - component: {fileID: 8231170322750745967}
   - component: {fileID: 594752187235790558}
   - component: {fileID: 3810667321326487195}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SunPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -788,7 +788,7 @@ Transform:
   m_GameObject: {fileID: 1694110942746507516}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.31599998, y: 0.1491, z: -1.067}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
   m_RootOrder: 6
@@ -867,7 +867,7 @@ GameObject:
   - component: {fileID: 5945428916156055816}
   - component: {fileID: 7923680516180878387}
   - component: {fileID: 597366809012156111}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MountainRoad
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -963,7 +963,7 @@ GameObject:
   - component: {fileID: 8154534016724793648}
   - component: {fileID: 6096954447328137467}
   - component: {fileID: 3231581815326356675}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ForestRoad
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -1059,7 +1059,7 @@ GameObject:
   - component: {fileID: 6301995534432493707}
   - component: {fileID: 7887387993055666443}
   - component: {fileID: 6139781441107801765}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SunPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,7 +1154,7 @@ GameObject:
   - component: {fileID: 648313725524774698}
   - component: {fileID: 2139507649881390222}
   - component: {fileID: 5461632902566009660}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OilPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1249,7 +1249,7 @@ GameObject:
   - component: {fileID: 387054779886215602}
   - component: {fileID: 8430456455600906967}
   - component: {fileID: 2854460750205419549}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SunPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1265,7 +1265,7 @@ Transform:
   m_GameObject: {fileID: 2542871040819030164}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.33399996, y: 0.1491, z: -0.53100014}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
   m_RootOrder: 7
@@ -1477,7 +1477,7 @@ GameObject:
   - component: {fileID: 2386710308258666965}
   - component: {fileID: 8422386811059355852}
   - component: {fileID: 4142379186702407060}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HighwayRoad
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -1573,7 +1573,7 @@ GameObject:
   - component: {fileID: 631161747834338253}
   - component: {fileID: 7895703258172285524}
   - component: {fileID: 3002434413417396314}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SunPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1589,7 +1589,7 @@ Transform:
   m_GameObject: {fileID: 4777248701037960165}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.4159999, y: 0.1491, z: -0.825}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
   m_RootOrder: 8
@@ -1821,7 +1821,7 @@ GameObject:
   - component: {fileID: 5857956350798413266}
   - component: {fileID: 8237265502931005656}
   - component: {fileID: 8227508065198973636}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OilPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1837,7 +1837,7 @@ Transform:
   m_GameObject: {fileID: 5016405794521887507}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: -1.2260001, y: 0.2662, z: -1.6041}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
   m_RootOrder: 4
@@ -1916,7 +1916,7 @@ GameObject:
   - component: {fileID: 492700656854461480}
   - component: {fileID: 1045872577333279069}
   - component: {fileID: 7621063646739717182}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SunPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2011,7 +2011,7 @@ GameObject:
   - component: {fileID: 891451371246302735}
   - component: {fileID: 1077197640697277903}
   - component: {fileID: 8223522503689243047}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WindPlatform
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -2027,7 +2027,7 @@ Transform:
   m_GameObject: {fileID: 6768156423952072840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.2351, y: 0.1504, z: -1.8778992}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
   m_RootOrder: 1
@@ -2396,7 +2396,7 @@ GameObject:
   - component: {fileID: 558521781527981311}
   - component: {fileID: 6006962199253120563}
   - component: {fileID: 4958205987738220193}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OilPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2412,7 +2412,7 @@ Transform:
   m_GameObject: {fileID: 8048641250323586825}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: -1.3822999, y: 0.2662, z: -1.6446998}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
   m_RootOrder: 3
@@ -2856,7 +2856,7 @@ GameObject:
   - component: {fileID: 3058013541594221213}
   - component: {fileID: 4843928576756691702}
   - component: {fileID: 9066141748367720679}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WindPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

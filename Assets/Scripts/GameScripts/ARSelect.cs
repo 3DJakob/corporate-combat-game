@@ -30,8 +30,14 @@ public class ARSelect : MonoBehaviour
                 ColorObject(lastHovered, Color.white);
 
                 lastHovered = hit.transform.gameObject;
-                ColorObject(lastHovered, Color.cyan);
-                ColorObject(selectedCard, Color.green);
+
+                //Check if card type is the same as layer of the gameobject or if the hovered gameobject is of type card
+                if((Card)lastHovered.GetComponent(typeof(Card)) || selectedCard.layer == lastHovered.layer)
+                {
+                    ColorObject(lastHovered, Color.cyan);
+                    ColorObject(selectedCard, Color.green);
+                }
+                //ColorObject(selectedCard, Color.green);
             }
         } else {
             if (lastHovered) {
@@ -53,27 +59,12 @@ public class ARSelect : MonoBehaviour
             if (card) {
                 ColorObject(selectedCard, Color.white);
                 selectedCard = theObj;
+
+                ColorObject(selectedCard, Color.green);
             }
 
             bool isRoad = (theObj.name == "ForestRoad" || theObj.name == "HighwayRoad" || theObj.name == "MountainRoad");
             bool isPlatform = (theObj.name == "WindPlatform" || theObj.name == "SunPlatform" || theObj.name == "OilPlatform");
-            //if(selectedCard && type == "Tank")
-
-            //if (isRoad) {
-            //    if (selectedCard) {
-            //        Card cardScript = (Card) selectedCard.GetComponent(typeof(Card));
-            //        if(cardScript.type == "Tank")
-            //        {
-            //            string lane = theObj.name.Split(new string[] { "Road" }, System.StringSplitOptions.None)[0];
-            //            cardScript.Spawn(lane);
-            //        }
-            //        else if(cardScript.type == "EnergySource")
-            //        {
-            //            string source = theObj.name.Split(new string[] { "Platform" }, System.StringSplitOptions.None)[0];
-            //            cardScript.Spawn(source);
-            //        }
-            //    }
-            //}
 
             if(selectedCard)
             {
