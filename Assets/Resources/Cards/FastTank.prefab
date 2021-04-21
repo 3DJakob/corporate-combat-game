@@ -111,11 +111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 4
-  damage: 1
-  speed: 2
-  range: 1
-  generationRate: 0
-  lifetime: 0
+  damage: 5
+  speed: 3
+  range: 30
   cost: 50
   nameOfObjectToSpawn: FastTank
   type: Tank

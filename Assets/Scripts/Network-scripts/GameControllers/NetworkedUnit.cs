@@ -19,7 +19,7 @@ public class NetworkedUnit :  MonoBehaviour, IPunObservable
     {
         PV = GetComponent<PhotonView>();
         GetComponent<Transform>().SetParent(GameSetup.GS.instanceOfMap.transform, false);
-        //this.GetComponent<NavTank>().SetDestination();
+        GetComponent<TankNav>().SetRotation();
     }
     
     //Updates every NetworkUpdate that occurs ~10 times/second

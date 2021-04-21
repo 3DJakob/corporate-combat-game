@@ -71,8 +71,7 @@ public class TankHealth : MonoBehaviour
         m_CurrentHealth  -= amount;
         Debug.Log("I am taking damage!");
         
-        if(m_Slider != null)
-            SetHealthUI();
+        
     }
 
 

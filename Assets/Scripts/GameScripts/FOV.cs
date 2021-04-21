@@ -58,7 +58,7 @@ public class FOV : MonoBehaviour
                     
                     foundTank = true;
                     float disToTargets = Vector3.Distance(transform.position, target.position);
-                    if ((!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && targetsInView[i].GetComponent<TankHealth>().team != this.gameObject.GetComponent<TankHealth>().team))
+                    if ( (!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && targetsInView[i].GetComponent<TankHealth>().team != this.gameObject.GetComponent<TankHealth>().team))
                     {
                         visibleTargets.Add(target);
                         if (Time.time >= nextTimeToFire)
@@ -88,23 +88,26 @@ public class FOV : MonoBehaviour
 
     void shoot(Vector3 direction, Transform target)
     {
+        
         //smoke.Play();
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit))
         {
             TankHealth enemyTank = hit.transform.GetComponent<TankHealth>();
-
+            TankNav tankNav = GetComponent<TankNav>();
+            
+            tankNav.SetRotation(hit.transform);
             Debug.Log("Hit: " + hit.collider.name);
             Debug.Log("Enemy: " + enemyTank.name);
-
-            if(hit.transform == this.transform)
-                return;
 
             if (enemyTank != null)
             {
                 nextTimeToFire = Time.time + 1f / fireRate;
-                if (enemyTank.TakeDamage(damage)) //if the enemy is dead
+                if (enemyTank.TakeDamage(damage)){
                     found = false;
+                    tankNav.SetRotation();
+                } //if the enemy is dead
+                    
 
                 //Debug.Log("Damaged: " + hit.transform.name);
             }

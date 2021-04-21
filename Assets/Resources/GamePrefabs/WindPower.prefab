@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1004829615267716673}
   - component: {fileID: 7396718851716591957}
   - component: {fileID: -8615191018351763152}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WindPower
   m_TagString: Tank
   m_Icon: {fileID: 0}
