@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 5053447577897845511}
   - component: {fileID: 3148138445037554804}
   m_Layer: 6
-  m_Name: Tank
+  m_Name: FastTank
   m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f7b45ebd977ba47a67f3c6179fa823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StartingHealth: 100
+  m_StartingHealth: 50
   m_Slider: {fileID: 1673031046261736025}
   m_FillImage: {fileID: 4577030160416228384}
   m_FullHealthColor: {r: 0, g: 1, b: 0, a: 1}

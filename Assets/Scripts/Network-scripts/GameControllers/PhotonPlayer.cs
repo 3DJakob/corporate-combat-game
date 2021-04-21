@@ -138,7 +138,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 
                 if(PhotonNetwork.IsMasterClient){
                     Debug.Log("im here?");
-
                     PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "RedTarget"), new Vector3(0, 0, 0.001f), Quaternion.identity, 0);
                     PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "BlueTarget"),new Vector3(0, 0, 0.001f), Quaternion.identity, 0);
                 }
@@ -187,7 +186,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     public void OnTankSpawnButtonClicked()
     {
         Debug.Log("button clicked...");
-        SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Highway");
+        SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Forest");
         SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, 1, 20f, "WindPower");
     }
 
