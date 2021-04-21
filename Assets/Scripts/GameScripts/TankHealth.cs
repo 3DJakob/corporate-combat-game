@@ -70,8 +70,7 @@ public class TankHealth : MonoBehaviour
        
         m_CurrentHealth  -= amount;
         Debug.Log("I am taking damage!");
-        
-        
+        SetHealthUI();
     }
 
 

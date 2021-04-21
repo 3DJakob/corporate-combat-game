@@ -138,8 +138,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 
                 if(PhotonNetwork.IsMasterClient){
                     Debug.Log("im here?");
-                    PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "RedTarget"), new Vector3(0, 0, 0.001f), Quaternion.identity, 0);
-                    PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "BlueTarget"),new Vector3(0, 0, 0.001f), Quaternion.identity, 0);
+                    PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "RedTarget"), new Vector3(0, 0, 0.001f), Quaternion.Euler(0, 0 ,0), 0);
+                    PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "BlueTarget"),new Vector3(0, 0, 0.001f), Quaternion.Euler(0, 0 ,0), 0);
                 }
             }
             if (eventCode == ENDGAME)
