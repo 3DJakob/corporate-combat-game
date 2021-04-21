@@ -188,7 +188,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         Debug.Log("button clicked...");
         //SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Highway");
         //SpawnEnergySource( 1, 20f, "WindPower", GameObject.Find("WindPlatform").transform);
-        SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Forest");
+        SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Highway");
         //SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, 1, 20.0f, "WindPower");
     }
 
