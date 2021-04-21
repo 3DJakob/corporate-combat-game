@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3333290350714329545}
   - component: {fileID: 3333290350714329544}
   - component: {fileID: 3333290350714329547}
-  - component: {fileID: 2364391216036272834}
   - component: {fileID: 3472787392822959545}
-  m_Layer: 8
-  m_Name: FastTank
+  - component: {fileID: -4748416500835498236}
+  m_Layer: 11
+  m_Name: SunPower
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ae8dec6039458714f82ce7d3f7d2dce9, type: 2}
+  - {fileID: 2100000, guid: 214896ca7299b1549a7bb3e80b4bdfc4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,28 +98,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2364391216036272834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3333290350714329549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d90593a8ea907476bb4a4e5caac9fb85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireRate: 4
-  damage: 5
-  speed: 3
-  range: 30
-  hp: 0
-  generationRate: 1
-  lifetime: 10
-  cost: 40
-  nameOfObjectToSpawn: FastTank
-  type: Tank
 --- !u!114 &3472787392822959545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +121,25 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &-4748416500835498236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3333290350714329549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90593a8ea907476bb4a4e5caac9fb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0
+  damage: 0
+  speed: 0
+  range: 0
+  hp: 0
+  generationRate: 5
+  lifetime: 40
+  cost: 150
+  nameOfObjectToSpawn: SunPower
+  type: EnergySource

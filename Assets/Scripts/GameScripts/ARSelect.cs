@@ -32,12 +32,12 @@ public class ARSelect : MonoBehaviour
                 lastHovered = hit.transform.gameObject;
 
                 //Check if card type is the same as layer of the gameobject or if the hovered gameobject is of type card
-                if((Card)lastHovered.GetComponent(typeof(Card)) || selectedCard.layer == lastHovered.layer)
+                if((Card)lastHovered.GetComponent(typeof(Card)) || selectedCard.layer == lastHovered.layer && (LayerMask.LayerToName(lastHovered.layer) == "Road" || lastHovered.transform.parent.name == PlayerInfo.PI.mySelectedTeam.ToString()))
                 {
                     ColorObject(lastHovered, Color.cyan);
                     ColorObject(selectedCard, Color.green);
+                     
                 }
-                //ColorObject(selectedCard, Color.green);
             }
         } else {
             if (lastHovered) {

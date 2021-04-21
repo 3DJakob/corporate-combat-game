@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4518398876206673338}
   m_Layer: 9
   m_Name: WindPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4140854090989045962}
   m_Layer: 10
   m_Name: OilPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 3225757188813179600}
   m_Layer: 10
   m_Name: OilPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 9214952903227846655}
   m_Layer: 11
   m_Name: SunPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 2627278913416597871}
   m_Layer: 9
   m_Name: WindPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1061,7 +1061,7 @@ GameObject:
   - component: {fileID: 6139781441107801765}
   m_Layer: 11
   m_Name: SunPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1156,7 +1156,7 @@ GameObject:
   - component: {fileID: 5461632902566009660}
   m_Layer: 10
   m_Name: OilPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1918,7 +1918,7 @@ GameObject:
   - component: {fileID: 7621063646739717182}
   m_Layer: 11
   m_Name: SunPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2858,7 +2858,7 @@ GameObject:
   - component: {fileID: 9066141748367720679}
   m_Layer: 9
   m_Name: WindPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

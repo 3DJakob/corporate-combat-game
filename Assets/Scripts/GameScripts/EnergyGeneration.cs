@@ -15,7 +15,7 @@ public class EnergyGeneration : MonoBehaviour
     void Start()
     {
         transform.SetParent(GameSetup.GS.instanceOfMap.transform, false);
-        transform.localPosition += new Vector3(0, 0.1f, 0);
+        transform.localPosition += new Vector3(0, transform.localScale.y/2, 0);
         //Update energyBySecond for your team
         int[] content = {team, rate};
         byte eventId = 4;
