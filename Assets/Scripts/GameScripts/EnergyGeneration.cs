@@ -9,14 +9,13 @@ public class EnergyGeneration : MonoBehaviour
 {
     public int rate;
     public int team;
+    public Transform myTransform;
 
     // Start is called before the first frame update
     void Start()
     {
-        Transform parent = GameSetup.GS.windPointsT1[1].parent; // needs input from spawn
-        transform.SetParent(parent, false);
-        transform.localPosition += new Vector3(0, 10, 0);
-
+        transform.SetParent(GameSetup.GS.instanceOfMap.transform, false);
+        transform.localPosition += new Vector3(0, 0.1f, 0);
         //Update energyBySecond for your team
         int[] content = {team, rate};
         byte eventId = 4;

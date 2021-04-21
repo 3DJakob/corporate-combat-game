@@ -12,6 +12,7 @@ public class Card : MonoBehaviour {
     public float damage = 1.0f;
     public float speed = 1.0f;
     public float range = 1.0f;
+    public float hp;
 
     //EnergyProperties
     public int generationRate = 1;
@@ -26,10 +27,17 @@ public class Card : MonoBehaviour {
         Debug.Log("trying to get money...");
 
         if (GameObject.Find("EnergyController").GetComponent<EnergyController>().Buy(cost)) {
-            if(type == "Tank")
-                GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnTank(fireRate, damage, speed, range, nameOfObjectToSpawn, lane);
-            else if(type == "EnergySource")
-                GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnEnergySource(generationRate, lifetime, nameOfObjectToSpawn , lane);
+
+            GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnTank(fireRate, damage, speed, range, nameOfObjectToSpawn, lane);
+        }
+    }
+    public void Spawn(Transform pos)
+    {
+        Debug.Log("trying to get money...");
+
+        if (GameObject.Find("EnergyController").GetComponent<EnergyController>().Buy(cost))
+        {
+            GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnEnergySource(generationRate, lifetime, nameOfObjectToSpawn, pos);
         }
     }
 

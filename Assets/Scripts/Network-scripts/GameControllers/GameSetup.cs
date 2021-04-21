@@ -13,14 +13,6 @@ public class GameSetup : MonoBehaviour
 
     public Transform[] spawnPoints;
     public Transform[] cardPoints;
-    //public Transform[][] spawnPointsT1;
-
-    public Transform[] windPointsT1;
-    public Transform[] oilPointsT1;
-    public Transform[] sunPointsT1;
-    public Transform[] windPointsT2;
-    public Transform[] oilPointsT2;
-    public Transform[] sunPointsT2;
 
     public PhotonPlayer player;
     public GameObject gameMap;
@@ -85,36 +77,9 @@ public class GameSetup : MonoBehaviour
         GameSetup.GS.cardPoints[0] = temp.Find("CardPoint t1");
         GameSetup.GS.cardPoints[1] = temp.Find("CardPoint t2");
 
-        Transform parent = temp.Find("SpawnPoint t1 WindPower");
-        GameSetup.GS.windPointsT1[0] = parent.Find("SP1");
-        GameSetup.GS.windPointsT1[1] = parent.Find("SP2");
-        GameSetup.GS.windPointsT1[2] = parent.Find("SP3");
+        
 
-        parent = temp.Find("SpawnPoint t2 WindPower");
-        GameSetup.GS.windPointsT2[0] = parent.Find("SP1");
-        GameSetup.GS.windPointsT2[1] = parent.Find("SP2");
-        GameSetup.GS.windPointsT2[2] = parent.Find("SP3");
-
-        parent = temp.Find("SpawnPoint t1 OilPower");
-        GameSetup.GS.oilPointsT1[0] = parent.Find("SP1");
-        GameSetup.GS.oilPointsT1[1] = parent.Find("SP2");
-        GameSetup.GS.oilPointsT1[2] = parent.Find("SP3");
-
-        parent = temp.Find("SpawnPoint t2 OilPower");
-        GameSetup.GS.oilPointsT2[0] = parent.Find("SP1");
-        GameSetup.GS.oilPointsT2[1] = parent.Find("SP2");
-        GameSetup.GS.oilPointsT2[2] = parent.Find("SP3");
-
-        parent = temp.Find("SpawnPoint t1 SunPower");
-        GameSetup.GS.sunPointsT1[0] = parent.Find("SP1");
-        GameSetup.GS.sunPointsT1[1] = parent.Find("SP2");
-        GameSetup.GS.sunPointsT1[2] = parent.Find("SP3");
-
-        parent = temp.Find("SpawnPoint t2 SunPower");
-        GameSetup.GS.sunPointsT2[0] = parent.Find("SP1");
-        GameSetup.GS.sunPointsT2[1] = parent.Find("SP2");
-        GameSetup.GS.sunPointsT2[2] = parent.Find("SP3");
-
+        
     }
 
     private void Update()

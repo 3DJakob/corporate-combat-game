@@ -9,17 +9,16 @@ public class DestoryAfterLifetime : MonoBehaviour
     private void Start()
     {
         Debug.Log(lifetime);
-        Destroy(this.gameObject, lifetime);
-    }
-
-    private void Update()
-    {
-
+        Destroy(gameObject, lifetime);
     }
 
     private void OnDestroy()
     {
-        Debug.Log("WindPower down");
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log("WindPower down");
+            PhotonNetwork.Destroy(gameObject);
+        } 
     }
 
 }

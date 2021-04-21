@@ -55,14 +55,44 @@ public class ARSelect : MonoBehaviour
                 selectedCard = theObj;
             }
 
-            bool isRoad = (theObj.name == "ForestRoad" || theObj.name == "HighwayRoad" || theObj.name == "MountainRoad");   
-            if (isRoad) {
-                if (selectedCard) {
-                    Card cardScript = (Card) selectedCard.GetComponent(typeof(Card));
+            bool isRoad = (theObj.name == "ForestRoad" || theObj.name == "HighwayRoad" || theObj.name == "MountainRoad");
+            bool isPlatform = (theObj.name == "WindPlatform" || theObj.name == "SunPlatform" || theObj.name == "OilPlatform");
+            //if(selectedCard && type == "Tank")
+
+            //if (isRoad) {
+            //    if (selectedCard) {
+            //        Card cardScript = (Card) selectedCard.GetComponent(typeof(Card));
+            //        if(cardScript.type == "Tank")
+            //        {
+            //            string lane = theObj.name.Split(new string[] { "Road" }, System.StringSplitOptions.None)[0];
+            //            cardScript.Spawn(lane);
+            //        }
+            //        else if(cardScript.type == "EnergySource")
+            //        {
+            //            string source = theObj.name.Split(new string[] { "Platform" }, System.StringSplitOptions.None)[0];
+            //            cardScript.Spawn(source);
+            //        }
+            //    }
+            //}
+
+            if(selectedCard)
+            {
+                Card cardScript = (Card)selectedCard.GetComponent(typeof(Card));
+
+                if (isRoad && cardScript.type == "Tank")
+                {
                     string lane = theObj.name.Split(new string[] { "Road" }, System.StringSplitOptions.None)[0];
                     cardScript.Spawn(lane);
                 }
+                else if(isPlatform && cardScript.type == "EnergySource" && theObj.transform.parent.name == PlayerInfo.PI.mySelectedTeam.ToString())
+                {
+                    Transform pos = theObj.transform;
+                    cardScript.Spawn(pos);
+                }
+                
             }
+            
+
 
         }
     }

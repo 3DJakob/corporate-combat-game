@@ -188,7 +188,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     {
         Debug.Log("button clicked...");
         //SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Highway");
-        SpawnEnergySource( 1, 20f, "WindPower", "");
+        SpawnEnergySource( 1, 20f, "WindPower", GameObject.Find("WindPlatform").transform);
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn, string lane) {
@@ -201,12 +201,12 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         }
     }
 
-    public void SpawnEnergySource(int generationRate, float lifetime, string nameOfObjectToSpawn, string lane)
+    public void SpawnEnergySource(int generationRate, float lifetime, string nameOfObjectToSpawn, Transform pos)
     {
         if (PV.IsMine)
         {
             Debug.Log("Spawns EnergySource");
-            PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, generationRate, lifetime, nameOfObjectToSpawn);
+            PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, generationRate, lifetime, pos, nameOfObjectToSpawn);
         }
     }
 
@@ -249,15 +249,16 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     }
     
     [PunRPC]
-    void RPC_SpawnEnergySource(int team, int generationRate, float lifetime, string nameOfObjectToSpawn)
+    void RPC_SpawnEnergySource(int team, int generationRate, float lifetime, Transform transform, string nameOfObjectToSpawn)
     {
-        Transform temp = GameSetup.GS.windPointsT2[1].transform;
+        //Transform temp = GameSetup.GS.windPointsT2[1].transform;
+        Debug.Log(transform);
         
-        GameObject ES = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), temp.localPosition, temp.localRotation, 0);
+        GameObject ES = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), transform.localPosition, transform.localRotation, 0);
         ES.GetComponent<EnergyGeneration>().rate = generationRate;
         ES.GetComponent<EnergyGeneration>().team = team;
+
         ES.GetComponent<DestoryAfterLifetime>().lifetime = lifetime;
-        Debug.Log("Lifetime set to" + ES.GetComponent<DestoryAfterLifetime>().lifetime);
         ES.GetComponent<DestoryAfterLifetime>().enabled = true;
 
     }
