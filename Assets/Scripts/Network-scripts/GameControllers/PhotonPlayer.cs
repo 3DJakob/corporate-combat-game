@@ -139,11 +139,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 if(PhotonNetwork.IsMasterClient){
                     Debug.Log("im here?");
 
-                    PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "RED FACTORY"), new Vector3(0.002134264f, 0.3164462f, 1.763784f), Quaternion.identity , 0);
-                    PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "BLUE FACTORY"),  new Vector3(0.00170175f,0.3164462f,-1.763591f), Quaternion.identity, 0);
+                    PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "RedTarget"), new Vector3(0, 0, 0.001f), Quaternion.identity, 0);
+                    PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", "BlueTarget"),new Vector3(0, 0, 0.001f), Quaternion.identity, 0);
                 }
-
-
             }
             if (eventCode == ENDGAME)
             {
@@ -152,7 +150,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 string data = (string)photonEvent.CustomData;
 
                 winPanel.SetActive(true);
-                if (data == "Player_1")
+                if (data == "Player_2")
                     winText.GetComponent<Text>().text += "\n\n RED TEAM";
                 else
                     winText.GetComponent<Text>().text += "\n\n BLUE TEAM";

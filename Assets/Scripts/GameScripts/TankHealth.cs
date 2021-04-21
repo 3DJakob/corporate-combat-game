@@ -1,5 +1,9 @@
-﻿using UnityEngine;
+﻿using ExitGames.Client.Photon;
 using Photon.Pun;
+using Photon.Realtime;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class TankHealth : MonoBehaviour
@@ -66,7 +70,9 @@ public class TankHealth : MonoBehaviour
        
         m_CurrentHealth  -= amount;
         Debug.Log("I am taking damage!");
-        SetHealthUI();
+        
+        if(m_Slider != null)
+            SetHealthUI();
     }
 
 
@@ -87,10 +93,20 @@ public class TankHealth : MonoBehaviour
     {
         // Play the effects for the death of the tank and deactivate it.
         m_Dead = true;
-
         //m_ExplosionParticles.transform.position = transform.position;
         //m_ExplosionParticles.gameObject.SetActive(true);
-
+        if (gameObject.tag == "Finish")
+        {
+            //Send event to photonPlayer and attach this.gameObject.layer
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Debug.Log("Calling event");
+                Debug.Log("Layer is " + LayerMask.LayerToName(this.gameObject.layer));
+                byte eventId = 2;
+                RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+                PhotonNetwork.RaiseEvent(eventId, LayerMask.LayerToName(this.gameObject.layer), raiseEventOptions, SendOptions.SendReliable);
+            }
+        }
         //m_ExplosionParticles.Play();
 
         //m_ExplosionAudio.Play();
