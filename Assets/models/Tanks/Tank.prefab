@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 2657830141248654745}
   - component: {fileID: 2657830141248654744}
   - component: {fileID: 2657830141248654751}
-  - component: {fileID: 2657830141248654820}
   - component: {fileID: 2657830141248654749}
   - component: {fileID: 8333256216567594359}
-  - component: {fileID: 2657830141248654750}
+  - component: {fileID: 382717863120512201}
   m_Layer: 6
   m_Name: Tank
   m_TagString: Tank
@@ -85,28 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!195 &2657830141248654820
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2657830141248654748}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 3
-  m_Speed: 25
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!65 &2657830141248654749
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -145,10 +122,10 @@ MonoBehaviour:
   ignoreRaycast:
     serializedVersion: 2
     m_Bits: 0
-  navtank: {fileID: 0}
   smoke: {fileID: 0}
   visibleTargets: []
---- !u!114 &2657830141248654750
+  found: 0
+--- !u!114 &382717863120512201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,9 +134,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2657830141248654748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f4a7c54c2600a64cb03ec2d8576846a, type: 3}
+  m_Script: {fileID: 11500000, guid: d93e6b50df813c248bc5621f6fd620c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankHealth: 50
-  destination: {fileID: -8679921383154817045, guid: d4437c003055e2c4d82f71b6fed0b091,
-    type: 3}
+  line: {fileID: 0}
+  speed: 0.05
+  team: 0
