@@ -75,7 +75,7 @@ public class ARSelect : MonoBehaviour
                     string lane = theObj.name.Split(new string[] { "Road" }, System.StringSplitOptions.None)[0];
                     cardScript.Spawn(lane);
                 }
-                else if(isPlatform && cardScript.type == "EnergySource" && theObj.transform.parent.name == PlayerInfo.PI.mySelectedTeam.ToString())
+                else if(isPlatform && cardScript.type == "EnergySource" && theObj.transform.parent.name == PlayerInfo.PI.mySelectedTeam.ToString() && selectedCard.layer == theObj.layer)
                 {
                     Transform pos = theObj.transform;
                     cardScript.Spawn(pos);

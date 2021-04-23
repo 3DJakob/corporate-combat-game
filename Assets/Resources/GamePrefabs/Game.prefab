@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77140663363754539}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 1.2607, y: 0.1504, z: 1.8422999}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalPosition: {x: 1.18, y: 0.1504, z: 1.912}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
   m_RootOrder: 0
@@ -122,8 +122,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424295781086194986}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.3112999, y: 0.2646, z: 1.7212999}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalPosition: {x: -1.391, y: 0.2646, z: 1.856}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
   m_RootOrder: 3
@@ -217,7 +217,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539837988686661879}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3914, y: 0.1504, z: -1.8372991}
+  m_LocalPosition: {x: 1.424, y: 0.1504, z: -1.881}
   m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547526128753265729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3145, y: 0.1504, z: -1.707499}
+  m_LocalPosition: {x: 1.378, y: 0.1504, z: -1.636}
   m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 3587532548879259656}
   m_Layer: 10
   m_Name: OilPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,7 +407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816789865892183372}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.3053999, y: 0.2662, z: -1.7744998}
+  m_LocalPosition: {x: -1.349, y: 0.2662, z: -1.843}
   m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
@@ -502,8 +502,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070283810507565421}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.2343999, y: 0.2646, z: 1.5914998}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalPosition: {x: -1.269, y: 0.2646, z: 1.574}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
   m_RootOrder: 5
@@ -598,7 +598,7 @@ Transform:
   m_GameObject: {fileID: 1440391377962691806}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: -0.42199993, y: 0.1491, z: 0.8805}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
   m_RootOrder: 8
@@ -882,8 +882,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677927994804008572}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 1.4169999, y: 0.1504, z: 1.8828999}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalPosition: {x: 1.4169999, y: 0.1504, z: 1.895}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
   m_RootOrder: 1
@@ -964,7 +964,7 @@ GameObject:
   - component: {fileID: 3810667321326487195}
   m_Layer: 11
   m_Name: SunPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1430,7 +1430,7 @@ Transform:
   m_GameObject: {fileID: 2448976173686999273}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0.31300002, y: 0.1491, z: 0.57299995}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
   m_RootOrder: 7
@@ -1524,8 +1524,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2526637991710780949}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.1550001, y: 0.2646, z: 1.7618998}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalPosition: {x: -1.135, y: 0.2646, z: 1.825}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
   m_RootOrder: 4
@@ -1606,7 +1606,7 @@ GameObject:
   - component: {fileID: 2854460750205419549}
   m_Layer: 11
   m_Name: SunPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2218,7 +2218,7 @@ GameObject:
   - component: {fileID: 3002434413417396314}
   m_Layer: 11
   m_Name: SunPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2440,7 +2440,7 @@ GameObject:
   - component: {fileID: 8227508065198973636}
   m_Layer: 10
   m_Name: OilPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2453,7 +2453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5016405794521887507}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.2260001, y: 0.2662, z: -1.6041}
+  m_LocalPosition: {x: -1.219, y: 0.2662, z: -1.626}
   m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
@@ -2549,7 +2549,7 @@ Transform:
   m_GameObject: {fileID: 6056343389314644328}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: -0.26899993, y: 0.1491, z: 1.109}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
   m_RootOrder: 6
@@ -2738,7 +2738,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6768156423952072840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2351, y: 0.1504, z: -1.8778992}
+  m_LocalPosition: {x: 1.221, y: 0.1504, z: -1.896}
   m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
@@ -3211,7 +3211,7 @@ GameObject:
   - component: {fileID: 4958205987738220193}
   m_Layer: 10
   m_Name: OilPlatform
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3224,7 +3224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8048641250323586825}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.3822999, y: 0.2662, z: -1.6446998}
+  m_LocalPosition: {x: -1.406, y: 0.2662, z: -1.573}
   m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3886546512629340638}
@@ -3687,8 +3687,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8820948656708341083}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 1.3375999, y: 0.1504, z: 1.7124999}
-  m_LocalScale: {x: 0.049999993, y: 0.005, z: 0.049999993}
+  m_LocalPosition: {x: 1.417, y: 0.1504, z: 1.565}
+  m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
   m_RootOrder: 2
