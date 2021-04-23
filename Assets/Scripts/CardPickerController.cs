@@ -144,7 +144,11 @@ public class CardPickerController : MonoBehaviour, IOnEventCallback
             }   
             
             if (PhotonNetwork.IsMasterClient && teamsDone[0] && teamsDone[1])
-                allDoneButton.SetActive(true); 
+            {
+                allDoneButton.SetActive(true);
+                infoText.SetActive(false);
+            }
+                
         } 
         
     }
