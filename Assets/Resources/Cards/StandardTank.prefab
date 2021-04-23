@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2364391216036272834}
   - component: {fileID: 3472787392822959545}
   m_Layer: 8
-  m_Name: FastTank
+  m_Name: StandardTank
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d9138ab7867d35e4886e60bfe957f565, type: 2}
+  - {fileID: 2100000, guid: 70a99d62ea9e75e4bb410a2ce3547292, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,15 +110,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90593a8ea907476bb4a4e5caac9fb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 10
-  damage: 4
-  speed: 5
+  fireRate: 4
+  damage: 5
+  speed: 3
   range: 30
   hp: 0
-  generationRate: 0
-  lifetime: 0
+  generationRate: 1
+  lifetime: 10
   cost: 40
-  nameOfObjectToSpawn: FastTank
+  nameOfObjectToSpawn: StandardTank
   type: Tank
 --- !u!114 &3472787392822959545
 MonoBehaviour:
