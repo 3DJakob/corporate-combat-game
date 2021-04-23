@@ -70,13 +70,9 @@ public class TankNav : MonoBehaviour
 
             if (!GetComponent<FOV>().found)
             {
-                
                 moveSpeed += speed / Vector3.Distance(prevPosition, nextPosition);
                 this.transform.localPosition = Vector3.Lerp(prevPosition, nextPosition, moveSpeed - stepMove);
-                
                 this.transform.localRotation = Quaternion.RotateTowards (this.transform.localRotation, Quaternion.LookRotation(nextPosition - this.transform.localPosition), Time.deltaTime * 40 );
-
-
             }
             if (this.transform.localPosition == nextPosition)
             {

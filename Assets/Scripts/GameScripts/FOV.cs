@@ -23,7 +23,7 @@ public class FOV : MonoBehaviour
     public List<Transform> visibleTargets = new List<Transform>();
     public bool found = false;
     bool foundTank = false;
-
+    public Transform barrel;
     private float nextTimeToFire = 0f;
     public void Start()
     {
@@ -50,15 +50,15 @@ public class FOV : MonoBehaviour
             // Om den inte ser sig sj�lv eller sin fabrik
             if ((targetsInView[i].gameObject != this.gameObject) || (targetsInView[i].tag == "Finish" && targetsInView[i].GetComponent<TankHealth>().team != this.gameObject.GetComponent<TankHealth>().team))
             {
-                
+
                 Transform target = targetsInView[i].transform;
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
                 if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
                 {
-                    
+
                     foundTank = true;
                     float disToTargets = Vector3.Distance(transform.position, target.position);
-                    if ( (!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && targetsInView[i].GetComponent<TankHealth>().team != this.gameObject.GetComponent<TankHealth>().team))
+                    if ((!Physics.Raycast(transform.position, dirToTarget, disToTargets, obstacleMask) && targetsInView[i].GetComponent<TankHealth>().team != this.gameObject.GetComponent<TankHealth>().team))
                     {
                         visibleTargets.Add(target);
                         if (Time.time >= nextTimeToFire)
@@ -88,28 +88,31 @@ public class FOV : MonoBehaviour
 
     void shoot(Vector3 direction, Transform target)
     {
-        
         //smoke.Play();
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, direction, out hit))
+
+
+        if (Physics.Raycast(barrel.position, direction, out hit))
         {
-            TankHealth enemyTank = hit.transform.GetComponent<TankHealth>();
-            TankNav tankNav = GetComponent<TankNav>();
-            
-            tankNav.SetRotation(hit.transform);
-            Debug.Log("Hit: " + hit.collider.name);
-            Debug.Log("Enemy: " + enemyTank.name);
-
-            if (enemyTank != null)
+            if (hit.collider.gameObject != gameObject)
             {
-                nextTimeToFire = Time.time + 1f / fireRate;
-                if (enemyTank.TakeDamage(damage)){
-                    found = false;
-                    tankNav.SetRotation();
-                } //if the enemy is dead
-                    
+                TankHealth enemyTank = hit.transform.GetComponent<TankHealth>();
+                TankNav tankNav = GetComponent<TankNav>();
 
-                //Debug.Log("Damaged: " + hit.transform.name);
+                tankNav.SetRotation(hit.transform);
+                Debug.Log("Hit: " + hit.collider.name);
+                Debug.Log("Enemy: " + enemyTank.name);
+
+                if (enemyTank != null)
+                {
+                    nextTimeToFire = Time.time + 1f / fireRate;
+                    if (enemyTank.TakeDamage(damage))
+                    {
+                        found = false;
+                        tankNav.SetRotation();
+                    } //if the enemy is dead
+                    //Debug.Log("Damaged: " + hit.transform.name);
+                }
             }
         }
     }
