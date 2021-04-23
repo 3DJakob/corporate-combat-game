@@ -201,13 +201,19 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, lane, fireRate, damage, speed, range, nameOfObjectToSpawn);
         }
     }
-
     public void SpawnEnergySource(int generationRate, float lifetime, string nameOfObjectToSpawn, Transform pos)
     {
         if (PV.IsMine)
         {
             Debug.Log("Spawns EnergySource");
             PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, generationRate, lifetime, pos, nameOfObjectToSpawn);
+        }
+    }
+    public void SpawnTurret(float fireRate, float damage, Transform transform, float range, string nameOfObjectToSpawn){
+        if (PV.IsMine)
+        {
+            Debug.Log("Spawns Turret");
+            PV.RPC("RPC_SpawnTurret", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, transform, fireRate, damage, range, nameOfObjectToSpawn);
         }
     }
 
@@ -219,7 +225,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             //PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, team, generationRate, lifetime, nameOfObjectToSpawn);
         }
     }
-
 
     //RPC Function that instatiates a tank in the multiplayer room. Use RpcTarget.MasterClient when calling.
     [PunRPC]
@@ -240,6 +245,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         fov.fireRate = fireRate;
         fov.viewRadius = range*scale*0.01f; //scale range after host scale;
         
+
+        Tank.GetComponent<TankHealth>().team = team;
+
         //TankNav
         nav.team = team;
         nav.lineName = lane + "Line"; //Put line name here
@@ -263,6 +271,25 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         ES.GetComponent<DestoryAfterLifetime>().enabled = true;
 
     }
+    //RPC Function that instatiates a turret in the multiplayer room. Use RpcTarget.MasterClient when calling.
+    [PunRPC]
+    void RPC_SpawnTurret(int team,  float fireRate, float damage, Transform transform, float range, string nameOfObjectToSpawn)
+    {
+        Debug.Log("TurretSpawned");
+        Debug.Log(nameOfObjectToSpawn);
+      
+        GameObject Turret = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), transform.localPosition, transform.localRotation, 0);
+        float scale = GameSetup.GS.instanceOfMap.transform.localScale.x;
+
+        //FOV
+        FOV fov = Turret.GetComponent<FOV>();
+        fov.damage = damage;
+        fov.fireRate = fireRate;
+        fov.viewRadius = range*scale*0.01f; //scale range after host scale;
+        Turret.GetComponent<TankHealth>().team = team;
+
+    }
+
     [PunRPC]
     void RPC_updateEnergy(int team, int changeAmount){
         if(PlayerInfo.PI.mySelectedTeam == team){

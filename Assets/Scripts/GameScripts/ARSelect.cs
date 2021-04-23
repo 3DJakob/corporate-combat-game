@@ -47,7 +47,6 @@ public class ARSelect : MonoBehaviour
             }
         }
     }
-
     public void Select() {
         RaycastHit hit;
 
@@ -65,6 +64,7 @@ public class ARSelect : MonoBehaviour
 
             bool isRoad = (theObj.name == "ForestRoad" || theObj.name == "HighwayRoad" || theObj.name == "MountainRoad");
             bool isPlatform = (theObj.name == "WindPlatform" || theObj.name == "SunPlatform" || theObj.name == "OilPlatform");
+            bool isTurretPlatform = (theObj.name == "TurretPlatform");
 
             if(selectedCard)
             {
@@ -76,6 +76,11 @@ public class ARSelect : MonoBehaviour
                     cardScript.Spawn(lane);
                 }
                 else if(isPlatform && cardScript.type == "EnergySource" && theObj.transform.parent.name == PlayerInfo.PI.mySelectedTeam.ToString())
+                {
+                    Transform pos = theObj.transform;
+                    cardScript.Spawn(pos);
+                }
+                else if(isTurretPlatform && cardScript.type == "Turret" && theObj.transform.parent.name == PlayerInfo.PI.mySelectedTeam.ToString())
                 {
                     Transform pos = theObj.transform;
                     cardScript.Spawn(pos);

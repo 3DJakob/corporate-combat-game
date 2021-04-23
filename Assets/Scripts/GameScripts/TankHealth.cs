@@ -25,9 +25,7 @@ public class TankHealth : MonoBehaviour
     private bool m_Dead;    
     public int team;
 
-    void Start(){
-        team = GetComponent<TankNav>().team;
-    }
+    void Start(){}
 
     private void Awake()
     {
@@ -80,9 +78,7 @@ public class TankHealth : MonoBehaviour
     {
         // Adjust the value and colour of the slider.
         m_Slider.value = m_CurrentHealth;
-
         Debug.Log(this.name + m_Slider.value);
-
         m_FillImage.color = Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, m_CurrentHealth / m_StartingHealth);
     }
 

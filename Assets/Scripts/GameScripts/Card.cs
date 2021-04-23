@@ -5,7 +5,8 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.IO;
 
-public class Card : MonoBehaviour {
+public class Card : MonoBehaviour
+{
 
     //TankProperties
     public float fireRate = 1.0f;
@@ -23,10 +24,12 @@ public class Card : MonoBehaviour {
     public string nameOfObjectToSpawn;
     public string type;
 
-    public void Spawn (string lane) {
+    public void Spawn(string lane)
+    {
         Debug.Log("trying to get money...");
 
-        if (GameObject.Find("EnergyController").GetComponent<EnergyController>().Buy(cost)) {
+        if (GameObject.Find("EnergyController").GetComponent<EnergyController>().Buy(cost))
+        {
 
             GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnTank(fireRate, damage, speed, range, nameOfObjectToSpawn, lane);
         }
@@ -34,22 +37,30 @@ public class Card : MonoBehaviour {
     public void Spawn(Transform pos)
     {
         Debug.Log("trying to get money...");
-
         if (GameObject.Find("EnergyController").GetComponent<EnergyController>().Buy(cost))
         {
-            GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnEnergySource(generationRate, lifetime, nameOfObjectToSpawn, pos);
+            if (type == "EnergySource")
+            {
+                GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnEnergySource(generationRate, lifetime, nameOfObjectToSpawn, pos);
+            }
+            else if (type == "Turret")
+            {
+                GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnTurret(fireRate, damage, pos, range, nameOfObjectToSpawn);
+            }
         }
     }
 
     // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
         //Debug.Log("getting photonview...");
 
         //Debug.Log(PV);
     }
 
     // Update is called once per frame
-    void Update() {
-        
+    void Update()
+    {
+
     }
 }
