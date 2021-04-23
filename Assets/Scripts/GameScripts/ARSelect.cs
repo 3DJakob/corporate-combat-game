@@ -53,7 +53,6 @@ public class ARSelect : MonoBehaviour
         if (Physics.Raycast(arCamera.transform.position, arCamera.transform.forward, out hit)) {
             GameObject theObj = hit.transform.gameObject;
 
-            
             Card card = (Card) theObj.GetComponent(typeof(Card));
             if (card) {
                 ColorObject(selectedCard, Color.white);

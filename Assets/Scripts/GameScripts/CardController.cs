@@ -11,7 +11,8 @@ public class CardController : MonoBehaviour {
     }
 
     public void initiate(Transform placement, string[] CardNames) {
-        Debug.Log("Im initiated!");
+        
+        Debug.Log(CardNames[0] +" "+ CardNames[1]+" "+ CardNames[2] +" "+CardNames[3]);
         Debug.Log(placement.position);
 
         GameObject Empty = new GameObject();
@@ -24,6 +25,9 @@ public class CardController : MonoBehaviour {
 
         foreach (string prefabName in CardNames) {
             var prefabInstance = Resources.Load(pathOfPrefabDirectory + prefabName) as GameObject;
+
+            Debug.Log("Prefab instance: "+ prefabInstance);
+
             GameObject theObj = GameObject.Instantiate(prefabInstance, theParent.transform, false);
             theObj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f); // ITS HUGE!
             theObj.transform.localPosition = new Vector3(theObj.transform.localPosition.x  + 0.1f * place, 0, 0);
