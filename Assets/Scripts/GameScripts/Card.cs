@@ -41,11 +41,11 @@ public class Card : MonoBehaviour
         {
             if (type == "EnergySource")
             {
-                GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnEnergySource(generationRate, lifetime, nameOfObjectToSpawn, pos.localPosition);
+                GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnEnergySource(generationRate, lifetime, nameOfObjectToSpawn, pos.localPosition, nameOfPlatform);
             }
             else if (type == "Turret")
             {
-                GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnTurret(fireRate, damage, pos.localPosition, range, nameOfObjectToSpawn);
+                GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnTurret(fireRate, damage, pos.localPosition, range, nameOfObjectToSpawn, nameOfPlatform);
             }
         }
     }

@@ -191,7 +191,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Forest");
         //SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, 1, 20.0f, "WindPower");
         //Debug.Log(GameObject.Find("WindPlatform").transform);
-        SpawnTurret(2.0f, 2.0f, GameObject.Find("WindPlatform").transform.localPosition, 45.0f, "WeakTurret");
+        //SpawnTurret(2.0f, 2.0f, GameObject.Find("WindPlatform").transform.localPosition, 45.0f, "WeakTurret");
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn, string lane) {
