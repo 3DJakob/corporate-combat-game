@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6591587820847863077}
   - component: {fileID: 3280619139301960775}
   - component: {fileID: 2378967342085718388}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: WeakTurret
   m_TagString: Selectable
   m_Icon: {fileID: 0}

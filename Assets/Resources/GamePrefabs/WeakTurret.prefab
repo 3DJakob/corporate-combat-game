@@ -52,8 +52,9 @@ GameObject:
   - component: {fileID: 1985414327803336652}
   - component: {fileID: 1332308927647713261}
   - component: {fileID: 746685848070730624}
+  - component: {fileID: 3797113266083342109}
   m_Layer: 0
-  m_Name: Turret
+  m_Name: WeakTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +171,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4719457852099369778}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
   m_Name: 
@@ -192,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 45
-  viewAngle: 45
+  viewAngle: 360
   damage: 10
   fireRate: 1
   targetMask:
@@ -226,6 +227,18 @@ MonoBehaviour:
   m_ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   m_CurrentHealth: 0
   team: 0
+--- !u!114 &3797113266083342109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719457852099369778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca28a78d6a2dd2a4d9ce025ac0368549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5307968778540718629
 GameObject:
   m_ObjectHideFlags: 0

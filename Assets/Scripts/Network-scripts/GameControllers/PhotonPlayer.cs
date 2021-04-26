@@ -188,8 +188,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         Debug.Log("button clicked...");
         //SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Highway");
         //SpawnEnergySource( 1, 20f, "WindPower", GameObject.Find("WindPlatform").transform);
-        SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Highway");
+        SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Forest");
         //SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, 1, 20.0f, "WindPower");
+        SpawnTurret(2.0f, 2.0f, GameObject.Find("WindPlatform").transform, 45.0f, "WeakTurret");
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn, string lane) {
@@ -213,7 +214,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         if (PV.IsMine)
         {
             Debug.Log("Spawns Turret");
-            PV.RPC("RPC_SpawnTurret", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, transform, fireRate, damage, range, nameOfObjectToSpawn);
+            PV.RPC("RPC_SpawnTurret", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, fireRate, damage, transform, range, nameOfObjectToSpawn);
         }
     }
 
@@ -279,6 +280,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         Debug.Log(nameOfObjectToSpawn);
       
         GameObject Turret = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), transform.localPosition, transform.localRotation, 0);
+        
         float scale = GameSetup.GS.instanceOfMap.transform.localScale.x;
 
         //FOV
@@ -287,7 +289,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         fov.fireRate = fireRate;
         fov.viewRadius = range*scale*0.01f; //scale range after host scale;
         Turret.GetComponent<TankHealth>().team = team;
-
     }
 
     [PunRPC]
