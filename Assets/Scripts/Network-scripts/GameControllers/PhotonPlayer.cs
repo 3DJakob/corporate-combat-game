@@ -190,7 +190,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         //SpawnEnergySource( 1, 20f, "WindPower", GameObject.Find("WindPlatform").transform);
         SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Forest");
         //SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, 1, 20.0f, "WindPower");
-        SpawnTurret(2.0f, 2.0f, GameObject.Find("WindPlatform").transform, 45.0f, "WeakTurret");
+        //Debug.Log(GameObject.Find("WindPlatform").transform);
+        SpawnTurret(2.0f, 2.0f, GameObject.Find("WindPlatform").transform.localPosition, 45.0f, "WeakTurret");
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn, string lane) {
@@ -202,7 +203,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, lane, fireRate, damage, speed, range, nameOfObjectToSpawn);
         }
     }
-    public void SpawnEnergySource(int generationRate, float lifetime, string nameOfObjectToSpawn, Transform pos)
+    public void SpawnEnergySource(int generationRate, float lifetime, string nameOfObjectToSpawn, Vector3 pos)
     {
         if (PV.IsMine)
         {
@@ -210,11 +211,11 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, generationRate, lifetime, pos, nameOfObjectToSpawn);
         }
     }
-    public void SpawnTurret(float fireRate, float damage, Transform transform, float range, string nameOfObjectToSpawn){
+    public void SpawnTurret(float fireRate, float damage, Vector3 pos, float range, string nameOfObjectToSpawn){
         if (PV.IsMine)
         {
             Debug.Log("Spawns Turret");
-            PV.RPC("RPC_SpawnTurret", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, fireRate, damage, transform, range, nameOfObjectToSpawn);
+            PV.RPC("RPC_SpawnTurret", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, fireRate, damage, pos, range, nameOfObjectToSpawn);
         }
     }
 
@@ -259,12 +260,12 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     }
     
     [PunRPC]
-    void RPC_SpawnEnergySource(int team, int generationRate, float lifetime, Transform transform, string nameOfObjectToSpawn)
+    void RPC_SpawnEnergySource(int team, int generationRate, float lifetime, Vector3 pos, string nameOfObjectToSpawn)
     {
         //Transform temp = GameSetup.GS.windPointsT2[1].transform;
-        Debug.Log(transform);
+        //Debug.Log(transform);
         
-        GameObject ES = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), transform.localPosition, transform.localRotation, 0);
+        GameObject ES = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), pos, new Quaternion(0,0,0,0), 0);
         ES.GetComponent<EnergyGeneration>().rate = generationRate;
         ES.GetComponent<EnergyGeneration>().team = team;
 
@@ -274,12 +275,13 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     }
     //RPC Function that instatiates a turret in the multiplayer room. Use RpcTarget.MasterClient when calling.
     [PunRPC]
-    void RPC_SpawnTurret(int team,  float fireRate, float damage, Transform transform, float range, string nameOfObjectToSpawn)
+    void RPC_SpawnTurret(int team,  float fireRate, float damage, Vector3 pos, float range, string nameOfObjectToSpawn)
     {
         Debug.Log("TurretSpawned");
+        //Debug.Log(transform);
         Debug.Log(nameOfObjectToSpawn);
       
-        GameObject Turret = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), transform.localPosition, transform.localRotation, 0);
+        GameObject Turret = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), pos, new Quaternion(0,0,0,0), 0);
         
         float scale = GameSetup.GS.instanceOfMap.transform.localScale.x;
 
