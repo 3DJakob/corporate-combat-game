@@ -24,7 +24,7 @@ public class FOV : MonoBehaviour
     public bool found = false;
     bool foundTank = false;
     public Transform barrel;
-    private float nextTimeToFire = 0f;
+    private float nextTimeToFire = 0.0f;
     public void Start()
     {
         StartCoroutine("FindTargetWithDelay", .2f);
@@ -99,7 +99,8 @@ public class FOV : MonoBehaviour
                 TankHealth enemyTank = hit.transform.GetComponent<TankHealth>();
                 TankNav tankNav = GetComponent<TankNav>();
 
-                tankNav.SetRotation(hit.transform);
+                
+                this.transform.LookAt(hit.transform);
                 Debug.Log("Hit: " + hit.collider.name);
                 Debug.Log("Enemy: " + enemyTank.name);
 
@@ -109,7 +110,9 @@ public class FOV : MonoBehaviour
                     if (enemyTank.TakeDamage(damage))
                     {
                         found = false;
-                        tankNav.SetRotation();
+                        if(tankNav != null)  
+                            tankNav.SetRotation();
+                        
                     } //if the enemy is dead
                     //Debug.Log("Damaged: " + hit.transform.name);
                 }
