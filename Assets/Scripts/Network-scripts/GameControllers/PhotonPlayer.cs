@@ -292,7 +292,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         Debug.Log(nameOfObjectToSpawn);
 
         PlatformUsed platform = GameSetup.GS.instanceOfMap.transform.Find(team.ToString()).Find(nameOfPlatform).GetComponent<PlatformUsed>();
-        if(!platform.isUsed){
+        if(platform.isUsed){
             Debug.Log("Spot already taken!");
             return;
         }
