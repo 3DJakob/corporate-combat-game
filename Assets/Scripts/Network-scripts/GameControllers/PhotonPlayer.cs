@@ -203,19 +203,19 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, lane, fireRate, damage, speed, range, nameOfObjectToSpawn);
         }
     }
-    public void SpawnEnergySource(int generationRate, float lifetime, string nameOfObjectToSpawn, Vector3 pos)
+    public void SpawnEnergySource(int generationRate, float lifetime, string nameOfObjectToSpawn, Vector3 pos, string nameOfPlatform)
     {
         if (PV.IsMine)
         {
             Debug.Log("Spawns EnergySource");
-            PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, generationRate, lifetime, pos, nameOfObjectToSpawn);
+            PV.RPC("RPC_SpawnEnergySource", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, generationRate, lifetime, pos, nameOfObjectToSpawn, nameOfPlatform);
         }
     }
-    public void SpawnTurret(float fireRate, float damage, Vector3 pos, float range, string nameOfObjectToSpawn){
+    public void SpawnTurret(float fireRate, float damage, Vector3 pos, float range, string nameOfObjectToSpawn, string nameOfPlatform){
         if (PV.IsMine)
         {
             Debug.Log("Spawns Turret");
-            PV.RPC("RPC_SpawnTurret", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, fireRate, damage, pos, range, nameOfObjectToSpawn);
+            PV.RPC("RPC_SpawnTurret", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, fireRate, damage, pos, range, nameOfObjectToSpawn, nameOfPlatform);
         }
     }
 
@@ -260,27 +260,44 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     }
     
     [PunRPC]
-    void RPC_SpawnEnergySource(int team, int generationRate, float lifetime, Vector3 pos, string nameOfObjectToSpawn)
+    void RPC_SpawnEnergySource(int team, int generationRate, float lifetime, Vector3 pos, string nameOfObjectToSpawn, string nameOfPlatform)
     {
         //Transform temp = GameSetup.GS.windPointsT2[1].transform;
         //Debug.Log(transform);
+
+        PlatformUsed platform = GameSetup.GS.instanceOfMap.transform.Find(team.ToString()).Find(nameOfPlatform).GetComponent<PlatformUsed>();
+        if(platform.isUsed){
+            Debug.Log("Spot already taken!");
+            return;
+        }
+        platform.isUsed = true;
         
         GameObject ES = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), pos, new Quaternion(0,0,0,0), 0);
-        ES.GetComponent<EnergyGeneration>().rate = generationRate;
-        ES.GetComponent<EnergyGeneration>().team = team;
-
-        ES.GetComponent<DestoryAfterLifetime>().lifetime = lifetime;
-        ES.GetComponent<DestoryAfterLifetime>().enabled = true;
+        
+        EnergyGeneration EG = ES.GetComponent<EnergyGeneration>();
+        EG.rate = generationRate;
+        EG.team = team;
+        
+        DestoryAfterLifetime DAL = ES.GetComponent<DestoryAfterLifetime>();
+        DAL.lifetime = lifetime;
+        DAL.platform = platform;
+        DAL.enabled = true;
 
     }
     //RPC Function that instatiates a turret in the multiplayer room. Use RpcTarget.MasterClient when calling.
     [PunRPC]
-    void RPC_SpawnTurret(int team,  float fireRate, float damage, Vector3 pos, float range, string nameOfObjectToSpawn)
+    void RPC_SpawnTurret(int team,  float fireRate, float damage, Vector3 pos, float range, string nameOfObjectToSpawn, string nameOfPlatform)
     {
         Debug.Log("TurretSpawned");
-        //Debug.Log(transform);
         Debug.Log(nameOfObjectToSpawn);
-      
+
+        PlatformUsed platform = GameSetup.GS.instanceOfMap.transform.Find(team.ToString()).Find(nameOfPlatform).GetComponent<PlatformUsed>();
+        if(!platform.isUsed){
+            Debug.Log("Spot already taken!");
+            return;
+        }
+        platform.isUsed = true;
+
         GameObject Turret = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), pos, new Quaternion(0,0,0,0), 0);
         
         float scale = GameSetup.GS.instanceOfMap.transform.localScale.x;

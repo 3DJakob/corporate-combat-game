@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 7218363960003526890}
   - component: {fileID: 8455630042245132643}
   - component: {fileID: 4518398876206673338}
+  - component: {fileID: 6139972004332364143}
   m_Layer: 13
-  m_Name: WindPlatform
+  m_Name: Platform1
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77140663363754539}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 1.18, y: 0.1504, z: 1.912}
+  m_LocalPosition: {x: 1.1700001, y: 0.1504, z: 1.89}
   m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
@@ -95,6 +96,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6139972004332364143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77140663363754539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &424295781086194986
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,8 +121,9 @@ GameObject:
   - component: {fileID: 7965585796542299474}
   - component: {fileID: 8814143850837281942}
   - component: {fileID: 4140854090989045962}
+  - component: {fileID: 123100183964440508}
   m_Layer: 13
-  m_Name: OilPlatform
+  m_Name: Platform4
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,6 +205,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &123100183964440508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424295781086194986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &539837988686661879
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,8 +230,9 @@ GameObject:
   - component: {fileID: 8955215213968311813}
   - component: {fileID: 3435921317394891430}
   - component: {fileID: 1802592812381541591}
+  - component: {fileID: 1997570352749282757}
   m_Layer: 13
-  m_Name: WindPlatform
+  m_Name: Platform1
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -285,6 +314,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1997570352749282757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539837988686661879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &547526128753265729
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,8 +339,9 @@ GameObject:
   - component: {fileID: 2330725893451596247}
   - component: {fileID: 6459526906309995945}
   - component: {fileID: 2928083763118549521}
+  - component: {fileID: 6275598870792706022}
   m_Layer: 13
-  m_Name: WindPlatform
+  m_Name: Platform3
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -380,6 +423,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6275598870792706022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547526128753265729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &816789865892183372
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,8 +448,9 @@ GameObject:
   - component: {fileID: 3878927388860346883}
   - component: {fileID: 1702949540529893873}
   - component: {fileID: 3587532548879259656}
+  - component: {fileID: 2339516756945002024}
   m_Layer: 13
-  m_Name: OilPlatform
+  m_Name: Platform6
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -475,6 +532,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2339516756945002024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816789865892183372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &1070283810507565421
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,8 +557,9 @@ GameObject:
   - component: {fileID: 7912467808240339865}
   - component: {fileID: 1423905459786411724}
   - component: {fileID: 3225757188813179600}
+  - component: {fileID: 6464010385615174159}
   m_Layer: 13
-  m_Name: OilPlatform
+  m_Name: Platform6
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,7 +573,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070283810507565421}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.269, y: 0.2646, z: 1.574}
+  m_LocalPosition: {x: -1.269, y: 0.2646, z: 1.5300001}
   m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
@@ -570,6 +641,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6464010385615174159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070283810507565421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &1440391377962691806
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,8 +666,9 @@ GameObject:
   - component: {fileID: 6644500228587581444}
   - component: {fileID: 3762259053740698992}
   - component: {fileID: 9214952903227846655}
+  - component: {fileID: 5284682343458676615}
   m_Layer: 13
-  m_Name: SunPlatform
+  m_Name: Platform9
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -665,6 +750,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5284682343458676615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440391377962691806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &1573032685448368846
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,8 +965,9 @@ GameObject:
   - component: {fileID: 8701286076239347431}
   - component: {fileID: 7074058624702204645}
   - component: {fileID: 2627278913416597871}
+  - component: {fileID: 7403725506989091252}
   m_Layer: 13
-  m_Name: WindPlatform
+  m_Name: Platform2
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -882,7 +981,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677927994804008572}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 1.4169999, y: 0.1504, z: 1.895}
+  m_LocalPosition: {x: 1.39, y: 0.1504, z: 1.84}
   m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
@@ -950,6 +1049,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7403725506989091252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677927994804008572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &1694110942746507516
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,8 +1074,9 @@ GameObject:
   - component: {fileID: 8231170322750745967}
   - component: {fileID: 594752187235790558}
   - component: {fileID: 3810667321326487195}
+  - component: {fileID: 7882434373315272487}
   m_Layer: 13
-  m_Name: SunPlatform
+  m_Name: Platform7
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1045,6 +1158,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7882434373315272487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694110942746507516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &1697746899520964383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,8 +1540,9 @@ GameObject:
   - component: {fileID: 6301995534432493707}
   - component: {fileID: 7887387993055666443}
   - component: {fileID: 6139781441107801765}
+  - component: {fileID: 7721550210319383849}
   m_Layer: 13
-  m_Name: SunPlatform
+  m_Name: Platform8
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1497,6 +1624,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7721550210319383849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448976173686999273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &2526637991710780949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,8 +1649,9 @@ GameObject:
   - component: {fileID: 648313725524774698}
   - component: {fileID: 2139507649881390222}
   - component: {fileID: 5461632902566009660}
+  - component: {fileID: 1817110534971794808}
   m_Layer: 13
-  m_Name: OilPlatform
+  m_Name: Platform5
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1524,7 +1665,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2526637991710780949}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.135, y: 0.2646, z: 1.825}
+  m_LocalPosition: {x: -1.1, y: 0.2646, z: 1.825}
   m_LocalScale: {x: 0.1, y: 0.005, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1906743904112220028}
@@ -1592,6 +1733,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1817110534971794808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2526637991710780949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &2542871040819030164
 GameObject:
   m_ObjectHideFlags: 0
@@ -1604,8 +1758,9 @@ GameObject:
   - component: {fileID: 387054779886215602}
   - component: {fileID: 8430456455600906967}
   - component: {fileID: 2854460750205419549}
+  - component: {fileID: 3437104155336945988}
   m_Layer: 13
-  m_Name: SunPlatform
+  m_Name: Platform8
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1687,6 +1842,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3437104155336945988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2542871040819030164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &2737260983859664476
 GameObject:
   m_ObjectHideFlags: 0
@@ -2216,8 +2384,9 @@ GameObject:
   - component: {fileID: 631161747834338253}
   - component: {fileID: 7895703258172285524}
   - component: {fileID: 3002434413417396314}
+  - component: {fileID: 543781327502172621}
   m_Layer: 13
-  m_Name: SunPlatform
+  m_Name: Platform9
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2299,6 +2468,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &543781327502172621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4777248701037960165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &4833278765257715352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2438,8 +2620,9 @@ GameObject:
   - component: {fileID: 5857956350798413266}
   - component: {fileID: 8237265502931005656}
   - component: {fileID: 8227508065198973636}
+  - component: {fileID: 709290915553284271}
   m_Layer: 13
-  m_Name: OilPlatform
+  m_Name: Platform5
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2521,6 +2704,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &709290915553284271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5016405794521887507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &6056343389314644328
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,8 +2729,9 @@ GameObject:
   - component: {fileID: 492700656854461480}
   - component: {fileID: 1045872577333279069}
   - component: {fileID: 7621063646739717182}
+  - component: {fileID: 1114622886432910831}
   m_Layer: 13
-  m_Name: SunPlatform
+  m_Name: Platform7
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2616,6 +2813,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1114622886432910831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6056343389314644328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &6217630888825244663
 GameObject:
   m_ObjectHideFlags: 0
@@ -2723,8 +2933,9 @@ GameObject:
   - component: {fileID: 891451371246302735}
   - component: {fileID: 1077197640697277903}
   - component: {fileID: 8223522503689243047}
+  - component: {fileID: 5014463462444591348}
   m_Layer: 13
-  m_Name: WindPlatform
+  m_Name: Platform2
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2806,6 +3017,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5014463462444591348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6768156423952072840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &7080065274571579502
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,8 +3434,9 @@ GameObject:
   - component: {fileID: 558521781527981311}
   - component: {fileID: 6006962199253120563}
   - component: {fileID: 4958205987738220193}
+  - component: {fileID: 1480129226061630237}
   m_Layer: 13
-  m_Name: OilPlatform
+  m_Name: Platform4
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3293,6 +3518,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1480129226061630237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8048641250323586825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &8210361485867670226
 GameObject:
   m_ObjectHideFlags: 0
@@ -3673,8 +3911,9 @@ GameObject:
   - component: {fileID: 3058013541594221213}
   - component: {fileID: 4843928576756691702}
   - component: {fileID: 9066141748367720679}
+  - component: {fileID: 4852984286696885218}
   m_Layer: 13
-  m_Name: WindPlatform
+  m_Name: Platform3
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3756,6 +3995,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4852984286696885218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820948656708341083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec218b7bf8a09de4183904f8271eb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsed: 0
 --- !u!1 &9128743063349254541
 GameObject:
   m_ObjectHideFlags: 0

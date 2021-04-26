@@ -34,7 +34,7 @@ public class Card : MonoBehaviour
             GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnTank(fireRate, damage, speed, range, nameOfObjectToSpawn, lane);
         }
     }
-    public void Spawn(Transform pos)
+    public void Spawn(Transform pos, string nameOfPlatform)
     {
         Debug.Log("trying to get money...");
         if (GameObject.Find("EnergyController").GetComponent<EnergyController>().Buy(cost))

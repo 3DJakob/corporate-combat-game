@@ -6,6 +6,7 @@ using UnityEngine;
 public class DestoryAfterLifetime : MonoBehaviour
 {
     public float lifetime;
+    public PlatformUsed platform;
     private void Start()
     {
         Debug.Log(lifetime);
@@ -17,6 +18,7 @@ public class DestoryAfterLifetime : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             Debug.Log("WindPower down");
+            platform.isUsed = false;
             PhotonNetwork.Destroy(gameObject);
         } 
     }

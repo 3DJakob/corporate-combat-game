@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6584047fc7d8a4a51aa5b6dd2b146d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 45
+  viewRadius: 1
   viewAngle: 360
   damage: 10
   fireRate: 1
