@@ -122,6 +122,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             if (eventCode == STARTGAME)
             {
                 //string[] selectedCards = { "FastTank", "FastTank", "FastTank", "FastTank", "FastTank" }; // TODO set from card rooster
+                GameSetup.GS.player = this;
                 CardController.GetComponent<CardController>().initiate(GameSetup.GS.cardPoints[PlayerInfo.PI.mySelectedTeam], PlayerInfo.PI.selectedCards);
                 Debug.Log("Enabling UI");
                 canvasGame.enabled = true;
@@ -133,6 +134,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
 
                 GameSetup.GS.instanceOfMap.SetActive(true);
+                
                 
                 EnergyController.EC.energy = 200;
                 
@@ -264,13 +266,12 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     {
         //Transform temp = GameSetup.GS.windPointsT2[1].transform;
         //Debug.Log(transform);
-
         PlatformUsed platform = GameSetup.GS.instanceOfMap.transform.Find(team.ToString()).Find(nameOfPlatform).GetComponent<PlatformUsed>();
         if(platform.isUsed){
             Debug.Log("Spot already taken!");
             return;
         }
-        platform.isUsed = true;
+        PV.RPC("RPC_UpdatePlatform", RpcTarget.All, team, nameOfPlatform, true);
         
         GameObject ES = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), pos, new Quaternion(0,0,0,0), 0);
         
@@ -284,6 +285,12 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         DAL.enabled = true;
 
     }
+
+    public void UpdatePlatform(int team, string nameOfPlatform, bool isUsed){
+        PV.RPC("RPC_UpdatePlatform", RpcTarget.All, team, nameOfPlatform, isUsed);
+    }
+
+
     //RPC Function that instatiates a turret in the multiplayer room. Use RpcTarget.MasterClient when calling.
     [PunRPC]
     void RPC_SpawnTurret(int team,  float fireRate, float damage, Vector3 pos, float range, string nameOfObjectToSpawn, string nameOfPlatform)
@@ -296,7 +303,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             Debug.Log("Spot already taken!");
             return;
         }
-        platform.isUsed = true;
+        PV.RPC("RPC_UpdatePlatform", RpcTarget.All, team, nameOfPlatform, true);
 
         GameObject Turret = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), pos, new Quaternion(0,0,0,0), 0);
         
@@ -311,12 +318,17 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     }
 
     [PunRPC]
+    void RPC_UpdatePlatform(int team, string nameOfPlatform, bool isUsed){
+        PlatformUsed platform = GameSetup.GS.instanceOfMap.transform.Find(team.ToString()).Find(nameOfPlatform).GetComponent<PlatformUsed>();
+        platform.isUsed = isUsed;
+    }
+
+    [PunRPC]
     void RPC_updateEnergy(int team, int changeAmount){
         if(PlayerInfo.PI.mySelectedTeam == team){
             EnergyController.EC.updateEnergy(changeAmount);
         }
     }
-
 
     [PunRPC]
     void RPC_UpdateReady()

@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 0
+  platform: {fileID: 0}
 --- !u!1001 &4550375641832971226
 PrefabInstance:
   m_ObjectHideFlags: 0

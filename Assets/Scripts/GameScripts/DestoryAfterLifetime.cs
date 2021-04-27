@@ -12,13 +12,12 @@ public class DestoryAfterLifetime : MonoBehaviour
         Debug.Log(lifetime);
         Destroy(gameObject, lifetime);
     }
-
     private void OnDestroy()
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("WindPower down");
-            platform.isUsed = false;
+            Debug.Log("Power Down");
+            GameSetup.GS.player.UpdatePlatform(this.GetComponent<EnergyGeneration>().team, platform.name, false);
             PhotonNetwork.Destroy(gameObject);
         } 
     }

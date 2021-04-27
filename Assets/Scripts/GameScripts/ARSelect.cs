@@ -62,6 +62,7 @@ public class ARSelect : MonoBehaviour
             }
 
             bool isRoad = (theObj.name == "ForestRoad" || theObj.name == "HighwayRoad" || theObj.name == "MountainRoad");
+            
             //bool isPlatform = (theObj.name == "WindPlatform" || theObj.name == "SunPlatform" || theObj.name == "OilPlatform");
             //bool isTurretPlatform = (theObj.name == "TurretPlatform");
 
@@ -74,7 +75,7 @@ public class ARSelect : MonoBehaviour
                     string lane = theObj.name.Split(new string[] { "Road" }, System.StringSplitOptions.None)[0];
                     cardScript.Spawn(lane);
                 }
-                else if((cardScript.type == "EnergySource" || cardScript.type == "Turret") && theObj.transform.parent.name == PlayerInfo.PI.mySelectedTeam.ToString() && selectedCard.layer == theObj.layer)
+                else if((cardScript.type == "EnergySource" || cardScript.type == "Turret") && !theObj.GetComponent<PlatformUsed>().isUsed && theObj.transform.parent.name == PlayerInfo.PI.mySelectedTeam.ToString() && selectedCard.layer == theObj.layer)
                 {
                     
                     Transform pos = theObj.transform;
