@@ -255,7 +255,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         TankNav nav = Tank.GetComponent<TankNav>();
         nav.team = team;
         nav.lineName = lane + "Line"; //Put line name here
-        nav.speed = speed / 1000; // good speed!
+        nav.speed = speed / 10000; // good speed!
 
         //Initialize TankNav
         nav.InitiateTank();
