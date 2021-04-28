@@ -77,7 +77,6 @@ public class ARSelect : MonoBehaviour
                 }
                 else if((cardScript.type == "EnergySource" || cardScript.type == "Turret") && !theObj.GetComponent<PlatformUsed>().isUsed && theObj.transform.parent.name == PlayerInfo.PI.mySelectedTeam.ToString() && selectedCard.layer == theObj.layer)
                 {
-                    
                     Transform pos = theObj.transform;
                     cardScript.Spawn(pos, theObj.name);
                 }

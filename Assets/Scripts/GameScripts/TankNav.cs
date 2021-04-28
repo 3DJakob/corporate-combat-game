@@ -42,11 +42,11 @@ public class TankNav : MonoBehaviour
         prevPosition = line.GetPosition(i) + lineOffset;
         this.transform.localPosition = prevPosition;
         tankInitiated = true;
+        SetRotation();
         Debug.Log(line.positionCount);
 
         //StartCoroutine("GetNextPositionDelay", .2f);
     }
-
 
     public void SetRotation(){
         this.transform.LookAt(GameSetup.GS.instanceOfMap.transform.TransformPoint(nextPosition));

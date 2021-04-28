@@ -16,6 +16,7 @@ public class FOV : MonoBehaviour
     public LayerMask obstacleMask;
     public LayerMask ignoreRaycast;
 
+    public ParticleSystem muzzle;
     //public TankNav navtank;
     //public ParticleSystem smoke;
 
@@ -88,9 +89,8 @@ public class FOV : MonoBehaviour
 
     void shoot(Vector3 direction, Transform target)
     {
-        //smoke.Play();
+        //muzzle.Play();
         RaycastHit hit;
-
 
         if (Physics.Raycast(barrel.position, direction, out hit))
         {
@@ -99,7 +99,6 @@ public class FOV : MonoBehaviour
                 TankHealth enemyTank = hit.transform.GetComponent<TankHealth>();
                 TankNav tankNav = GetComponent<TankNav>();
 
-                
                 this.transform.LookAt(hit.transform);
                 Debug.Log("Hit: " + hit.collider.name);
                 Debug.Log("Enemy: " + enemyTank.name);

@@ -239,7 +239,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         Debug.Log(speed / 1000);
 
         GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
-        TankNav nav = Tank.GetComponent<TankNav>();
+        
 
         float scale = GameSetup.GS.instanceOfMap.transform.localScale.x;
 
@@ -249,10 +249,10 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         fov.fireRate = fireRate;
         fov.viewRadius = range*scale*0.01f; //scale range after host scale;
         
-
         Tank.GetComponent<TankHealth>().team = team;
 
         //TankNav
+        TankNav nav = Tank.GetComponent<TankNav>();
         nav.team = team;
         nav.lineName = lane + "Line"; //Put line name here
         nav.speed = speed / 1000; // good speed!
@@ -264,8 +264,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     [PunRPC]
     void RPC_SpawnEnergySource(int team, int generationRate, float lifetime, Vector3 pos, string nameOfObjectToSpawn, string nameOfPlatform)
     {
-        //Transform temp = GameSetup.GS.windPointsT2[1].transform;
-        //Debug.Log(transform);
         PlatformUsed platform = GameSetup.GS.instanceOfMap.transform.Find(team.ToString()).Find(nameOfPlatform).GetComponent<PlatformUsed>();
         if(platform.isUsed){
             Debug.Log("Spot already taken!");
