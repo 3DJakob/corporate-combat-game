@@ -10,4 +10,12 @@ public class PlatformUsed : MonoBehaviour
     private void Start() {
         //PP = GameSetup.GS.player;
     }
+
+    public void ToggleVisablity()
+    {
+        if (isUsed)
+            gameObject.SetActive(false);
+        else
+            gameObject.SetActive(true);
+    }
 }
