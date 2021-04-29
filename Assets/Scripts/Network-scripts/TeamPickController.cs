@@ -44,7 +44,7 @@ public class TeamPickController : MonoBehaviourPunCallbacks, IInRoomCallbacks
         {
             if (MenuScript.menu.teamButtons[i].GetComponentInChildren<Text>().text.Equals(otherPlayer.NickName))
             {
-                PV.RPC("RPC_SetName", RpcTarget.AllBuffered, ">>", i, -1);
+                PV.RPC("RPC_SetName", RpcTarget.AllBuffered, "empty", i, -1);
                 MenuScript.menu.teamButtons[i].GetComponent<Button>().interactable = true;
                 break;
             }
@@ -74,7 +74,7 @@ public class TeamPickController : MonoBehaviourPunCallbacks, IInRoomCallbacks
         if(oldField != -1)
         {
             MenuScript.menu.teamButtons[oldField].GetComponent<Button>().interactable = true;
-            MenuScript.menu.teamButtons[oldField].GetComponentInChildren<Text>().text = ">>";
+            MenuScript.menu.teamButtons[oldField].GetComponentInChildren<Text>().text = "empty";
         }
         
     }
