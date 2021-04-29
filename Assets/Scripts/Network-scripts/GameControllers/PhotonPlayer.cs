@@ -319,6 +319,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     void RPC_UpdatePlatform(int team, string nameOfPlatform, bool isUsed){
         PlatformUsed platform = GameSetup.GS.instanceOfMap.transform.Find(team.ToString()).Find(nameOfPlatform).GetComponent<PlatformUsed>();
         platform.isUsed = isUsed;
+        platform.ToggleVisablity();
     }
 
     [PunRPC]
