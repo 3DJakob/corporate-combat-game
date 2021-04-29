@@ -28,7 +28,6 @@ public class ARSelect : MonoBehaviour
         if (Physics.Raycast(arCamera.transform.position, arCamera.transform.forward, out hit)) {
             if (hit.transform.CompareTag(selectableTag)) {
                 ColorObject(lastHovered, Color.white);
-
                 lastHovered = hit.transform.gameObject;
 
                 //Check if card type is the same as layer of the gameobject or if the hovered gameobject is of type card
