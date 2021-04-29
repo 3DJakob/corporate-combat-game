@@ -1521,9 +1521,9 @@ GameObject:
   - component: {fileID: 7645120922628256501}
   - component: {fileID: 7048116692298296219}
   - component: {fileID: 6826060251255836320}
-  m_Layer: 0
-  m_Name: AMountainRoad
-  m_TagString: Untagged
+  m_Layer: 8
+  m_Name: MountainRoad
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1790,9 +1790,9 @@ GameObject:
   - component: {fileID: 2562989399768377438}
   - component: {fileID: 4784830137035772835}
   - component: {fileID: 7480799038126357096}
-  m_Layer: 0
-  m_Name: Plane.040
-  m_TagString: Untagged
+  m_Layer: 8
+  m_Name: ForestRoad
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5357,9 +5357,9 @@ GameObject:
   - component: {fileID: 1435697823761334285}
   - component: {fileID: 1320351502055043910}
   - component: {fileID: 5165572684767128159}
-  m_Layer: 0
-  m_Name: Plane.035
-  m_TagString: Untagged
+  m_Layer: 8
+  m_Name: HighwayRoad
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
