@@ -64,7 +64,6 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             readyButton = GameObject.Find("Ready").GetComponent<Button>();
             winPanel = GameObject.Find("WinState");
             winText = GameObject.Find("Winner");
-            
 
             EnergyController.EC.PP = this;
 
@@ -148,9 +147,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             if (eventCode == ENDGAME)
             {
                 Debug.Log("Event 2 is called");
-                
+
                 string data = (string)photonEvent.CustomData;
-                GameObject.Find("WinSound").GetComponent<AudioSource>().Play();
+
                 winPanel.SetActive(true);
                 if (data == "Player_2")
                     winText.GetComponent<Text>().text += "\n\n RED TEAM";
@@ -191,7 +190,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         Debug.Log("button clicked...");
         //SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Highway");
         //SpawnEnergySource( 1, 20f, "WindPower", GameObject.Find("WindPlatform").transform);
-        SpawnTank(2.0f, 10.0f, 4.0f, 45.0f, "SlowTank", "Forest");
+        SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Forest");
         //SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, 1, 20.0f, "WindPower");
         //Debug.Log(GameObject.Find("WindPlatform").transform);
         //SpawnTurret(2.0f, 2.0f, GameObject.Find("WindPlatform").transform.localPosition, 45.0f, "WeakTurret");

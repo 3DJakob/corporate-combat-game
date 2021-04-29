@@ -7,23 +7,11 @@ ModelImporter:
       74: 3668844931122048522
     second: Cube.004|Cube.002Action
   - first:
-      74: 8122066950640983009
-    second: Cube.004|Cube.002Action.001
-  - first:
-      74: -5755876124362903034
-    second: Cube.004|Cube.004Action
-  - first:
       74: -312195316171472361
     second: Cube.004|Cube.004Action.001
   - first:
       74: -698813439186103093
     second: Cube.004|Cube.008Action
-  - first:
-      74: 5594467141232651918
-    second: Cube.004|Cube.008Action.001
-  - first:
-      74: -7616663143054422598
-    second: Cube.004|Cube.009Action
   - first:
       74: 7207959425424228313
     second: Cube.004|Cube.009Action.005
@@ -31,35 +19,14 @@ ModelImporter:
       74: -2456197923809098228
     second: Cube.004|Cube.010Action
   - first:
-      74: -6546215132805539680
-    second: Cube.004|Cube.010Action.001
-  - first:
-      74: 8997525632193978556
-    second: Cube.004|Cube.023Action
-  - first:
       74: 8701923788930663047
     second: Cube.004|Cube.025Action
-  - first:
-      74: 3330132484111106398
-    second: Cube.004|Cube.025Action.001
   - first:
       74: -3499959377225368687
     second: Cube.004|Cube.027Action
   - first:
-      74: 5352695689620500710
-    second: Cube.004|Cube.027Action.001
-  - first:
-      74: 7706077460594568338
-    second: Cube.004|Cube.029Action
-  - first:
       74: -8217919248969513376
     second: Cube.008|Cube.002Action
-  - first:
-      74: 4613127965263515399
-    second: Cube.008|Cube.002Action.001
-  - first:
-      74: -8266179829759560840
-    second: Cube.008|Cube.004Action
   - first:
       74: -9063558595141061661
     second: Cube.008|Cube.004Action.001
@@ -67,38 +34,17 @@ ModelImporter:
       74: 6072364172226014548
     second: Cube.008|Cube.008Action
   - first:
-      74: 7962866621399933342
-    second: Cube.008|Cube.008Action.001
-  - first:
-      74: -2993339041312084149
-    second: Cube.008|Cube.009Action
-  - first:
       74: -9157247181197516315
     second: Cube.008|Cube.009Action.005
   - first:
       74: -1834647542889229022
     second: Cube.008|Cube.010Action
   - first:
-      74: -5443602588107813659
-    second: Cube.008|Cube.010Action.001
-  - first:
-      74: 6450987376496922322
-    second: Cube.008|Cube.023Action
-  - first:
       74: -8853906934870757970
     second: Cube.008|Cube.025Action
   - first:
-      74: -2178347406211010686
-    second: Cube.008|Cube.025Action.001
-  - first:
       74: -5121047680844232052
     second: Cube.008|Cube.027Action
-  - first:
-      74: -68033054006862950
-    second: Cube.008|Cube.027Action.001
-  - first:
-      74: 4144292553357773357
-    second: Cube.008|Cube.029Action
   externalObjects: {}
   materials:
     materialImportMode: 2

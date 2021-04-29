@@ -43,7 +43,7 @@ public class TankNav : MonoBehaviour
         this.transform.localPosition = prevPosition;
         tankInitiated = true;
         SetRotation();
-        //Debug.Log(line.positionCount);
+        Debug.Log(line.positionCount);
 
         //StartCoroutine("GetNextPositionDelay", .2f);
     }

@@ -13,9 +13,6 @@ ModelImporter:
       74: -3780777928013146523
     second: Cube.009|Cube.008Action
   - first:
-      74: -8412717499102621030
-    second: Cube.009|Cube.009Action
-  - first:
       74: 4567769106789093455
     second: Cube.009|Cube.009Action.005
   - first:
@@ -25,14 +22,8 @@ ModelImporter:
       74: 4323569778879006247
     second: Cube.009|Cube.025Action
   - first:
-      74: -8019799104032367484
-    second: Cube.009|Cube.025Action.001
-  - first:
       74: -2310545436645161821
     second: Cube.009|Cube.027Action
-  - first:
-      74: -3653946408004502574
-    second: Cube.009|Cube.027Action.001
   - first:
       74: 9149400043214320581
     second: Cube.025|Cube.002Action
@@ -43,9 +34,6 @@ ModelImporter:
       74: 8477531699915716629
     second: Cube.025|Cube.008Action
   - first:
-      74: -991482981470253444
-    second: Cube.025|Cube.009Action
-  - first:
       74: 46072022807293962
     second: Cube.025|Cube.009Action.005
   - first:
@@ -55,14 +43,8 @@ ModelImporter:
       74: -6383328197486646211
     second: Cube.025|Cube.025Action
   - first:
-      74: -4720845718397584735
-    second: Cube.025|Cube.025Action.001
-  - first:
       74: 6984228720932807727
     second: Cube.025|Cube.027Action
-  - first:
-      74: -2685422455867136779
-    second: Cube.025|Cube.027Action.001
   - first:
       74: -6395913525728158067
     second: Cube.027|Cube.002Action
@@ -73,9 +55,6 @@ ModelImporter:
       74: -5851501412108833878
     second: Cube.027|Cube.008Action
   - first:
-      74: 7922510663222297902
-    second: Cube.027|Cube.009Action
-  - first:
       74: 76083357517336097
     second: Cube.027|Cube.009Action.005
   - first:
@@ -85,14 +64,8 @@ ModelImporter:
       74: -7711647391723567025
     second: Cube.027|Cube.025Action
   - first:
-      74: -7647487609352125425
-    second: Cube.027|Cube.025Action.001
-  - first:
       74: -4746638609237926521
     second: Cube.027|Cube.027Action
-  - first:
-      74: 5140451350173408488
-    second: Cube.027|Cube.027Action.001
   externalObjects: {}
   materials:
     materialImportMode: 2
