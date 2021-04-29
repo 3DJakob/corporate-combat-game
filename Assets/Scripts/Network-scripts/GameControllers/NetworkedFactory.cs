@@ -17,7 +17,7 @@ public class NetworkedFactory :  MonoBehaviour
 
         PV = GetComponent<PhotonView>();
         GetComponent<Transform>().SetParent(GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").Find(factory).transform, false);
-        GetComponent<Transform>().localEulerAngles = new Vector3(-90, 0, 0);
+        GetComponent<Transform>().localEulerAngles = new Vector3(-90, 90, 0);
     }
     // Update is called once per frame
     void Update()
