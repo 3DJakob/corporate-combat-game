@@ -89,8 +89,8 @@ public class FOV : MonoBehaviour
 
     void shoot(Vector3 direction, Transform target)
     {
-        //barrel.GetComponent<AudioSource>().Play();
-        //muzzle.Play();
+        barrel.GetComponent<AudioSource>().Play();
+        muzzle.Play();
         RaycastHit hit;
 
         if (Physics.Raycast(barrel.transform.position, direction, out hit))
