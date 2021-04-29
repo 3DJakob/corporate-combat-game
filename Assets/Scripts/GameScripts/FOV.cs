@@ -24,7 +24,7 @@ public class FOV : MonoBehaviour
     public List<Transform> visibleTargets = new List<Transform>();
     public bool found = false;
     bool foundTank = false;
-    public Transform barrel;
+    public GameObject barrel;
     private float nextTimeToFire = 0.0f;
     public void Start()
     {
@@ -89,10 +89,11 @@ public class FOV : MonoBehaviour
 
     void shoot(Vector3 direction, Transform target)
     {
+        //barrel.GetComponent<AudioSource>().Play();
         //muzzle.Play();
         RaycastHit hit;
 
-        if (Physics.Raycast(barrel.position, direction, out hit))
+        if (Physics.Raycast(barrel.transform.position, direction, out hit))
         {
             if (hit.collider.gameObject != gameObject)
             {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -795,7 +795,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 396ceb8c463734710852477664b72325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PP: {fileID: 0}
   textObject: {fileID: 1027391134}
+  rate: 1
+  energy: 200
 --- !u!4 &277512314
 Transform:
   m_ObjectHideFlags: 0
@@ -1620,6 +1623,7 @@ GameObject:
   - component: {fileID: 916504270}
   - component: {fileID: 916504269}
   - component: {fileID: 916504268}
+  - component: {fileID: 916504272}
   m_Layer: 0
   m_Name: AR Camera( DO NOT TOUCH FFS EVERYTHING WILL DIE IF U DO)
   m_TagString: Untagged
@@ -1733,6 +1737,14 @@ Transform:
   m_Father: {fileID: 81357335}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &916504272
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916504266}
+  m_Enabled: 1
 --- !u!1 &1027391133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,6 +1874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f17836f62c554d6e9c13ada5593c54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectableTag: Selectable
   arCamera: {fileID: 916504266}
 --- !u!114 &1209877370
 MonoBehaviour:
@@ -3147,30 +3160,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   cardPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  windPointsT1:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  oilPointsT1:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  sunPointsT1:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  windPointsT2:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  oilPointsT2:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  sunPointsT2:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   player: {fileID: 0}

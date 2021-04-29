@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: 6a73e3767a13d11409e583addf3c0d5a
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      74: 8146441504786978710
+    second: Abigtank|Abigtank.001Action.001
+  - first:
+      74: 2731162372269987527
+    second: Abigtank|Abigtank.002Action
+  - first:
+      74: -4467620215571718344
+    second: Abigtank|AbigtankAction
+  - first:
+      74: 8670759414781663512
+    second: Abigtank|Amediumtank.001Action.002
+  - first:
+      74: -8725313147996976280
+    second: Abigtank|Amediumtank.002Action.003
+  - first:
+      74: -1260043679512300591
+    second: Abigtank|Amediumtank.004Action.001
+  - first:
+      74: 6993087080013391590
+    second: Abigtank|AmediumtankAction
+  - first:
+      74: 5166003386035177382
+    second: Abigtank|Asmalltank.001Action
+  - first:
+      74: 4451168435181699994
+    second: Abigtank|AsmalltankAction
+  - first:
+      74: -4293912093878513331
+    second: Abigtank.001|Abigtank.001Action.001
+  - first:
+      74: -1221502010780431106
+    second: Abigtank.001|Abigtank.002Action
+  - first:
+      74: -737044552361032074
+    second: Abigtank.001|AbigtankAction
+  - first:
+      74: 7719558812633706118
+    second: Abigtank.001|Amediumtank.001Action.002
+  - first:
+      74: -1417779905261219265
+    second: Abigtank.001|Amediumtank.002Action.003
+  - first:
+      74: -4682368484587908391
+    second: Abigtank.001|Amediumtank.004Action.001
+  - first:
+      74: 3756950037597868960
+    second: Abigtank.001|AmediumtankAction
+  - first:
+      74: 6961614176322231199
+    second: Abigtank.001|Asmalltank.001Action
+  - first:
+      74: -1680690998930456505
+    second: Abigtank.001|AsmalltankAction
+  - first:
+      74: -887685053695637076
+    second: Abigtank.002|Abigtank.001Action.001
+  - first:
+      74: 8489928525435943257
+    second: Abigtank.002|Abigtank.002Action
+  - first:
+      74: -8008497160973049993
+    second: Abigtank.002|AbigtankAction
+  - first:
+      74: 2910506330535252527
+    second: Abigtank.002|Amediumtank.001Action.002
+  - first:
+      74: 1739153085016223856
+    second: Abigtank.002|Amediumtank.002Action.003
+  - first:
+      74: 5822438099573994814
+    second: Abigtank.002|Amediumtank.004Action.001
+  - first:
+      74: 5024498866069197537
+    second: Abigtank.002|AmediumtankAction
+  - first:
+      74: 6101112840717380699
+    second: Abigtank.002|Asmalltank.001Action
+  - first:
+      74: 657699558985574919
+    second: Abigtank.002|AsmalltankAction
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
