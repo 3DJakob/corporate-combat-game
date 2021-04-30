@@ -306,7 +306,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         float scale = GameSetup.GS.instanceOfMap.transform.localScale.x;
 
         //FOV
-        FOV fov = Turret.transform.Find("TankTop").GetComponent<FOV>();
+        FOV fov = Turret.transform.Find("TurretTop").GetComponent<FOV>();
         fov.damage = damage;
         fov.fireRate = fireRate;
         fov.viewRadius = range*scale*0.01f; //scale range after host scale;
