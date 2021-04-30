@@ -209,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 3060938655966847350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children:
   - {fileID: 2166310610881414538}
   - {fileID: 1761544250702696515}
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 3937867587974396594}
   - component: {fileID: 5395251459406061740}
   m_Layer: 0
-  m_Name: Cube.024
+  m_Name: TurretTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
