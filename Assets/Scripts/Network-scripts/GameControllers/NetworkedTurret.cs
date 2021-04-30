@@ -12,7 +12,6 @@ public class NetworkedTurret : MonoBehaviour, IPunObservable
     void Start()
     {
         PV = GetComponent<PhotonView>();
-        transform.SetParent(GameSetup.GS.instanceOfMap.transform, false);
     }
     
      //Updates every NetworkUpdate that occurs ~10 times/second
