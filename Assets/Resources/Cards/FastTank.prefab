@@ -110,10 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90593a8ea907476bb4a4e5caac9fb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 3
+  fireRate: 2
   damage: 5
-  speed: 1.5
-  range: 40
+  speed: 2
+  range: 30
   hp: 100
   generationRate: 0
   lifetime: 0
