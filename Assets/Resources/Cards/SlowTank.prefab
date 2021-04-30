@@ -111,9 +111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.3
-  damage: 10
+  damage: 30
   speed: 0.9
-  range: 50
+  range: 55
   hp: 250
   generationRate: 0
   lifetime: 0
