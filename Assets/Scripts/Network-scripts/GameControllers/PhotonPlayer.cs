@@ -190,7 +190,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     public void OnTankSpawnButtonClicked()
     {
         Debug.Log("button clicked...");
-        SpawnTank(2.0f, 10.0f, 4.0f, 45.0f, "SlowTank", "Forest");
+        SpawnTank(2.0f, 10.0f, 0.4f, 45.0f, "SlowTank", "Forest");
+        SpawnTurret(2.0f, 10.0f, new Vector3(0,0,0) , 45.0f, "MediumTurret", "Platform1" );
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn, string lane) {
@@ -305,7 +306,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         float scale = GameSetup.GS.instanceOfMap.transform.localScale.x;
 
         //FOV
-        FOV fov = Turret.GetComponent<FOV>();
+        FOV fov = Turret.transform.Find("TankTop").GetComponent<FOV>();
         fov.damage = damage;
         fov.fireRate = fireRate;
         fov.viewRadius = range*scale*0.01f; //scale range after host scale;
