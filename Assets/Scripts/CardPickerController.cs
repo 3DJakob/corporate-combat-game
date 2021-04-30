@@ -104,12 +104,11 @@ public class CardPickerController : MonoBehaviour, IOnEventCallback
     //The events for cardScene are handled here
     public void OnEvent(EventData photonEvent)
     {
-        Debug.Log("Event called");
         byte eventCode = photonEvent.Code;
 
         if (eventCode == SELECTEDCARD)
         {
-            Debug.Log("Event 3 is called");
+            
             int[] data = (int[])photonEvent.CustomData; //data[0] is the team that sent the event //data[1] is which card is effected
 
             if (data[0] == PlayerInfo.PI.mySelectedTeam && !teamsDone[data[0]])
@@ -120,7 +119,7 @@ public class CardPickerController : MonoBehaviour, IOnEventCallback
         }
         if(eventCode == TEAMDONE)
         {
-            Debug.Log("Event 4 is called");
+            
             int data = (int)photonEvent.CustomData; //data is the team that sent the event 
             teamsDone[data] = true;
 
