@@ -364,7 +364,7 @@ MonoBehaviour:
     m_Bits: 0
   ignoreRaycast:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   muzzle: {fileID: 5269570219631328850}
   visibleTargets: []
   found: 0

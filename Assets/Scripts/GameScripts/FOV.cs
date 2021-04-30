@@ -91,17 +91,20 @@ public class FOV : MonoBehaviour
     {
         barrel.GetComponent<AudioSource>().Play();
         muzzle.Play();
-        RaycastHit hit;
+        
+        //Deprecated raycast system
+        //RaycastHit hit;
 
-        if (Physics.Raycast(barrel.transform.position, direction, out hit))
-        {
-            if (hit.collider.gameObject != gameObject)
+        //if (Physics.Raycast(barrel.transform.position, target, out hit))
+        //{
+            
+            if (target != gameObject)
             {
-                TankHealth enemyTank = hit.transform.GetComponent<TankHealth>();
+                TankHealth enemyTank = target.GetComponent<TankHealth>();
                 TankNav tankNav = GetComponent<TankNav>();
 
-                this.transform.LookAt(hit.transform);
-                Debug.Log("Hit: " + hit.collider.name);
+                this.transform.LookAt(target.transform);
+                Debug.Log("Hit: " + target.name);
                 Debug.Log("Enemy: " + enemyTank.name);
 
                 if (enemyTank != null)
@@ -114,9 +117,9 @@ public class FOV : MonoBehaviour
                             tankNav.SetRotation();
                         
                     } //if the enemy is dead
-                    //Debug.Log("Damaged: " + hit.transform.name);
+                    Debug.Log("Damaged: " + target.name);
                 }
             }
-        }
+        //}
     }
 }
