@@ -138,6 +138,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
                 
                 
                 EnergyController.EC.energy = 200;
+                EnergyController.EC.textObject.gameObject.SetActive(true);
                 
                 if(PhotonNetwork.IsMasterClient){
                     Debug.Log("im here?");
@@ -189,12 +190,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     public void OnTankSpawnButtonClicked()
     {
         Debug.Log("button clicked...");
-        //SpawnTank(2.0f, 10.0f, 0.3f, 45.0f, "Tank", "Highway");
-        //SpawnEnergySource( 1, 20f, "WindPower", GameObject.Find("WindPlatform").transform);
         SpawnTank(2.0f, 10.0f, 4.0f, 45.0f, "SlowTank", "Forest");
-        //SpawnEnergySource(PlayerInfo.PI.mySelectedTeam, 1, 20.0f, "WindPower");
-        //Debug.Log(GameObject.Find("WindPlatform").transform);
-        //SpawnTurret(2.0f, 2.0f, GameObject.Find("WindPlatform").transform.localPosition, 45.0f, "WeakTurret");
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn, string lane) {
@@ -235,9 +231,9 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     [PunRPC]
     void RPC_SpawnTank(int team, string lane, float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn)
     {
-        Debug.Log("HERE IS THE SPEED");
-        Debug.Log(nameOfObjectToSpawn);
-        Debug.Log(speed / 1000);
+        //Debug.Log("HERE IS THE SPEED");
+        //Debug.Log(nameOfObjectToSpawn);
+        //Debug.Log(speed / 1000);
 
         GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
         
@@ -256,7 +252,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         TankNav nav = Tank.GetComponent<TankNav>();
         nav.team = team;
         nav.lineName = lane + "Line"; //Put line name here
-        nav.speed = speed / 10000; // good speed!
+        nav.speed = speed / 1000; // good speed!
 
         //Initialize TankNav
         nav.InitiateTank();

@@ -539,7 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f7b45ebd977ba47a67f3c6179fa823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StartingHealth: 100
+  m_StartingHealth: 150
   m_Slider: {fileID: 6400596243204389431}
   m_FillImage: {fileID: 1421703887739222946}
   m_FullHealthColor: {r: 0, g: 1, b: 0, a: 1}
