@@ -191,7 +191,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     {
         Debug.Log("button clicked...");
         SpawnTank(2.0f, 10.0f, 0.4f, 45.0f, "SlowTank", "Forest");
-        SpawnTurret(2.0f, 10.0f, new Vector3(0,0,0) , 45.0f, "MediumTurret", "Platform1" );
+        //SpawnTurret(2.0f, 10.0f, new Vector3(0,0,0) , 45.0f, "MediumTurret", "Platform1" );
     }
 
     public void SpawnTank(float fireRate, float damage, float speed, float range, string nameOfObjectToSpawn, string lane) {
@@ -201,6 +201,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
             Debug.Log("Spawns Tank");
             PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, lane, fireRate, damage, speed, range, nameOfObjectToSpawn);
+            PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, 1, lane, fireRate, damage, speed, range, nameOfObjectToSpawn);
         }
     }
     public void SpawnEnergySource(int generationRate, float lifetime, string nameOfObjectToSpawn, Vector3 pos, string nameOfPlatform)
@@ -236,7 +237,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         //Debug.Log(nameOfObjectToSpawn);
         //Debug.Log(speed / 1000);
 
-        GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
+        GameObject Tank = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs","Units", nameOfObjectToSpawn+team.ToString()), GameSetup.GS.spawnPoints[team].localPosition, GameSetup.GS.spawnPoints[team].localRotation, 0);
         
 
         float scale = GameSetup.GS.instanceOfMap.transform.localScale.x;
@@ -301,7 +302,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         }
         PV.RPC("RPC_UpdatePlatform", RpcTarget.All, team, nameOfPlatform, true);
 
-        GameObject Turret = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs", nameOfObjectToSpawn), pos, new Quaternion(0,0,0,0), 0);
+        GameObject Turret = PhotonNetwork.InstantiateRoomObject(Path.Combine("GamePrefabs","Units", nameOfObjectToSpawn+team.ToString()), pos, new Quaternion(0,0,0,0), 0);
         
         float scale = GameSetup.GS.instanceOfMap.transform.localScale.x;
 

@@ -10,6 +10,7 @@ public class PlayerInfo : MonoBehaviour
     public int mySelectedTeam;
     public string[] selectedCards;
 
+    public Material redColor;
     public Transform T;
     public int[] teams;
 
