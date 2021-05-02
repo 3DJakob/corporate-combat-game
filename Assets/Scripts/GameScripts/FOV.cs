@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class FOV : MonoBehaviour
 {
+    PhotonView PV;
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
@@ -28,6 +30,7 @@ public class FOV : MonoBehaviour
     private float nextTimeToFire = 0.0f;
     public void Start()
     {
+        PV = GetComponent<PhotonView>();
         StartCoroutine("FindTargetWithDelay", .2f);
     }
 
@@ -89,9 +92,10 @@ public class FOV : MonoBehaviour
 
     void shoot(Vector3 direction, Transform target)
     {
-        barrel.GetComponent<AudioSource>().Play();
-        muzzle.Play();
-        
+        //barrel.GetComponent<AudioSource>().Play();
+        //muzzle.Play();
+        PV.RPC("RPC_PlayShootEffects", RpcTarget.All);
+
         //Deprecated raycast system
         //RaycastHit hit;
 
@@ -122,4 +126,12 @@ public class FOV : MonoBehaviour
             }
         //}
     }
+
+    [PunRPC]
+    public void RPC_PlayShootEffects(){
+        Debug.Log("Playing Effects after RPC call");
+        barrel.GetComponent<AudioSource>().Play();
+        muzzle.Play();
+    }
+
 }

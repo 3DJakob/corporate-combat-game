@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-
+/*
 [CustomEditor(typeof(FOV))]
 public class FOVEditor : Editor
 {
@@ -25,3 +25,4 @@ public class FOVEditor : Editor
     }
 
 }
+*/
