@@ -316,7 +316,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         fov.damage = damage;
         fov.fireRate = fireRate;
         fov.viewRadius = range*scale*0.01f; //scale range after host scale;
-        Turret.GetComponent<TankHealth>().team = team;
+        Turret.transform.Find("TurretTop").GetComponent<TankHealth>().team = team;
     }
 
     [PunRPC]
