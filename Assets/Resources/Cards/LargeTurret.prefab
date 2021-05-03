@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 798ddfd2be00328479673752811cb49e, type: 2}
+  - {fileID: 2100000, guid: 28fcaf9bd0e3d5345888c5848502781a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,13 +111,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 4
-  damage: 5
+  damage: 4
   speed: 0
-  range: 30
-  hp: 10
+  range: 50
+  hp: 0
   generationRate: 0
   lifetime: 0
-  cost: 40
+  cost: 160
   nameOfObjectToSpawn: LargeTurret
   type: Turret
 --- !u!114 &2378967342085718388
