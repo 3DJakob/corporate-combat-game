@@ -26,7 +26,9 @@ public class CardController : MonoBehaviour {
         foreach (string prefabName in CardNames) {
             var prefabInstance = Resources.Load(pathOfPrefabDirectory + prefabName) as GameObject;
 
-            Debug.Log("Prefab instance: "+ prefabInstance);
+            int cost = prefabInstance.GetComponent<Card>().cost;
+            
+            prefabInstance.transform.Find("text").GetComponent<TextMesh>().text = cost.ToString();
 
             GameObject theObj = GameObject.Instantiate(prefabInstance, theParent.transform, false);
             theObj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f); // ITS HUGE!
