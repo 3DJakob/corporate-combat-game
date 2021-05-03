@@ -138,8 +138,8 @@ MonoBehaviour:
   speed: 0
   range: 0
   hp: 0
-  generationRate: 12
+  generationRate: 10
   lifetime: 25
-  cost: 80
+  cost: 270
   nameOfObjectToSpawn: OilPower
   type: EnergySource

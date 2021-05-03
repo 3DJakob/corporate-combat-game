@@ -113,11 +113,11 @@ MonoBehaviour:
   fireRate: 0.3
   damage: 30
   speed: 1.1
-  range: 55
+  range: 30
   hp: 250
   generationRate: 0
   lifetime: 0
-  cost: 120
+  cost: 200
   nameOfObjectToSpawn: SlowTank
   type: Tank
 --- !u!114 &3472787392822959545
