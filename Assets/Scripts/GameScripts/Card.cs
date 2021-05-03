@@ -30,8 +30,8 @@ public class Card : MonoBehaviour
 
         if (GameObject.Find("EnergyController").GetComponent<EnergyController>().Buy(cost))
         {
-
             GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().SpawnTank(fireRate, damage, speed, range, nameOfObjectToSpawn, lane);
+            GameObject.Find("PhotonNetworkPlayer(Clone)").GetComponent<PhotonPlayer>().UpdateLaneCooldown(lane, true);
         }
     }
     public void Spawn(Transform pos, string nameOfPlatform)

@@ -69,7 +69,7 @@ public class ARSelect : MonoBehaviour
             {
                 Card cardScript = (Card)selectedCard.GetComponent(typeof(Card));
 
-                if (isRoad && cardScript.type == "Tank")
+                if (isRoad && theObj.tag != "Untagged" && cardScript.type == "Tank")
                 {
                     string lane = theObj.name.Split(new string[] { "Road" }, System.StringSplitOptions.None)[0];
                     cardScript.Spawn(lane);

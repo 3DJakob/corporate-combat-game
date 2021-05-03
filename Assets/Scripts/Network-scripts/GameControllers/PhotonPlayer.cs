@@ -286,6 +286,12 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         PV.RPC("RPC_UpdatePlatform", RpcTarget.All, team, nameOfPlatform, isUsed);
     }
 
+    public void UpdateLaneCooldown(string nameOfLane, bool isUsed) {
+        if (PV.IsMine) {
+            PV.RPC("RPC_UpdateLaneCooldown", RpcTarget.All, PlayerInfo.PI.mySelectedTeam, nameOfLane + "Road", isUsed);
+        }
+    }
+
 
     //RPC Function that instatiates a turret in the multiplayer room. Use RpcTarget.MasterClient when calling.
     [PunRPC]
@@ -318,6 +324,25 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         PlatformUsed platform = GameSetup.GS.instanceOfMap.transform.Find(team.ToString()).Find(nameOfPlatform).GetComponent<PlatformUsed>();
         platform.isUsed = isUsed;
         platform.ToggleVisablity();
+    }
+
+    [PunRPC]
+    void RPC_UpdateLaneCooldown(int team, string nameOfLane, bool isUsed){
+        if (PV.IsMine) {
+            if (team == PlayerInfo.PI.mySelectedTeam) {
+                GameObject lane = GameSetup.GS.instanceOfMap.transform.Find("Spelplan 1").Find(nameOfLane).gameObject;
+                lane.tag = isUsed ? "Untagged" : "Selectable";
+                if (isUsed) {
+                    StartCoroutine(waitAndResetCooldown(team, nameOfLane));
+                }
+            }
+        }
+    }
+
+    IEnumerator waitAndResetCooldown(int team, string nameOfLane) {
+        yield return new WaitForSeconds(4.0f);
+        Debug.Log("done cooldown! done cooldown! done cooldown! done cooldown! done cooldown! done cooldown! done cooldown!" + nameOfLane);
+        PV.RPC("RPC_UpdateLaneCooldown", RpcTarget.All, team, nameOfLane, false);
     }
 
     [PunRPC]
