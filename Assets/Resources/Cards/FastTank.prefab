@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 2
   damage: 5
-  speed: 2
+  speed: 2.2
   range: 55
   hp: 100
   generationRate: 0

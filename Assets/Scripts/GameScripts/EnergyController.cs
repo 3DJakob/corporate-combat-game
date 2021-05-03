@@ -13,7 +13,7 @@ public class EnergyController : MonoBehaviour
     public PhotonPlayer PP;
     public Text textObject;
     float timeAlive = 0;
-    public int rate = 1;
+    public int rate = 3;
     public int energy = 200;
 
     // Start is called before the first frame update
