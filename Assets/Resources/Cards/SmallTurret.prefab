@@ -209,7 +209,7 @@ MonoBehaviour:
   fireRate: 2
   damage: 6
   speed: 0
-  range: 55
+  range: 50
   hp: 0
   generationRate: 0
   lifetime: 0

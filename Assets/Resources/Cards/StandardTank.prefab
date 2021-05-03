@@ -111,14 +111,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90593a8ea907476bb4a4e5caac9fb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
+  fireRate: 0.9
   damage: 10
   speed: 1.4
   range: 45
   hp: 150
   generationRate: 0
   lifetime: 0
-  cost: 70
+  cost: 100
   nameOfObjectToSpawn: StandardTank
   type: Tank
 --- !u!114 &3472787392822959545
