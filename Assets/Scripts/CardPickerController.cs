@@ -20,7 +20,7 @@ public class CardPickerController : MonoBehaviour, IOnEventCallback
     private bool[] picked;
     private int[] cardsLeft;
     private bool[] teamsDone;
-    public const int cardLimit = 4;
+    public const int cardLimit = 5;
 
     private const int SELECTEDCARD = 3;
     private const int TEAMDONE = 4;
