@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 1777358221541755450, guid: c071dc6dad26fad449cae887b1861871,
         type: 3}
       propertyPath: m_Name
-      value: FastTank0
+      value: FastTank1
       objectReference: {fileID: 0}
     - target: {fileID: 1898999744465226459, guid: c071dc6dad26fad449cae887b1861871,
         type: 3}
