@@ -62,7 +62,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 
     public void OnRoomCodeEntered()
     {
-        string input = MenuScript.menu.inputFieldRoom.GetComponent<InputField>().text;
+        string input = MenuScript.menu.inputFieldRoom.GetComponent<InputField>().text.ToLower();
         Debug.Log("Searching for game with name: " + input);
         PhotonNetwork.JoinRoom(input);
     }
