@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5636,6 +5636,7 @@ MonoBehaviour:
   - FastTank
   - OilPower
   - WindPower
+  - SmallTurret
   - SmallTurret
   redColor: {fileID: 2100000, guid: 98781059c0ca28c43b4d41c4ddfc1d02, type: 2}
   T: {fileID: 0}
