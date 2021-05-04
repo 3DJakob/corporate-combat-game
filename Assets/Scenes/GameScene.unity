@@ -796,7 +796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PP: {fileID: 0}
   textObject: {fileID: 1027391134}
-  rate: 1
+  rate: 3
   energy: 200
 --- !u!4 &277512314
 Transform:

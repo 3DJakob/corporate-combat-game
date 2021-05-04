@@ -139,8 +139,8 @@ MonoBehaviour:
   speed: 0
   range: 0
   hp: 0
-  generationRate: 4
-  lifetime: 60
+  generationRate: 5
+  lifetime: 55
   cost: 210
   nameOfObjectToSpawn: WindPower
   type: EnergySource
