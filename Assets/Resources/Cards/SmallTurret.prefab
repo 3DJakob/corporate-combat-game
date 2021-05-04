@@ -206,14 +206,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90593a8ea907476bb4a4e5caac9fb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 2
-  damage: 6
+  fireRate: 1
+  damage: 3
   speed: 0
   range: 50
   hp: 0
   generationRate: 0
   lifetime: 0
-  cost: 120
+  cost: 110
   nameOfObjectToSpawn: SmallTurret
   type: Turret
 --- !u!114 &2378967342085718388

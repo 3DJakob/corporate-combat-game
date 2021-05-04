@@ -77,9 +77,8 @@ public class GameSetup : MonoBehaviour
         GameSetup.GS.cardPoints[0] = temp.Find("CardPoint t1");
         GameSetup.GS.cardPoints[1] = temp.Find("CardPoint t2");
 
-        
-
-        
+        instanceOfMap.SetActive(false);
+ 
     }
 
     private void Update()
