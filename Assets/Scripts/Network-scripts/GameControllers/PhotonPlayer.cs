@@ -131,8 +131,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
 
                 GameSetup.GS.ARSetup = false;
 
-                tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
-                tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
+                //tankSpawnButton = GameObject.Find("Spawn cube").GetComponent<Button>();
+                //tankSpawnButton.onClick.AddListener(OnTankSpawnButtonClicked);
 
                 GameSetup.GS.instanceOfMap.SetActive(true);
                 
