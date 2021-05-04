@@ -20,6 +20,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     public Button readyButton;
     public Button tankSpawnButton;
 
+    public GameObject slider;
+
     //public Button rightButton;
     //public Button leftButton;
     public GameObject winPanel;
@@ -64,7 +66,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
             readyButton = GameObject.Find("Ready").GetComponent<Button>();
             winPanel = GameObject.Find("WinState");
             winText = GameObject.Find("Winner");
-            
+            slider = GameObject.Find("Slider");
 
             EnergyController.EC.PP = this;
 
@@ -83,6 +85,8 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
     public void OnReadyButtonClicked()
     {
         GameSetup.GS.ARSetup = false;
+        slider.SetActive(false);
+
         if (PV.IsMine)
         {
             if (PhotonNetwork.IsMasterClient)
