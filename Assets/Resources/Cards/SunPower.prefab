@@ -234,8 +234,8 @@ MonoBehaviour:
   speed: 0
   range: 0
   hp: 0
-  generationRate: 3
-  lifetime: 90
+  generationRate: 4
+  lifetime: 130
   cost: 350
   nameOfObjectToSpawn: SunPower
   type: EnergySource
