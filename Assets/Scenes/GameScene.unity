@@ -2245,7 +2245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -74.150024, y: 46}
+  m_AnchoredPosition: {x: -74.15015, y: 46}
   m_SizeDelta: {x: 122.3, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1280653945
@@ -3025,8 +3025,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.6, y: 1.8}
-  m_SizeDelta: {x: 253.6307, y: 95.1124}
+  m_AnchoredPosition: {x: 2.6, y: -17.9985}
+  m_SizeDelta: {x: 253.6307, y: 134.7094}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1685591337
 MonoBehaviour:
@@ -3062,6 +3062,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'THE WINNER IS...
+
 
 '
 --- !u!222 &1685591338
