@@ -204,7 +204,7 @@ public class PhotonPlayer : MonoBehaviour, IOnEventCallback
         {
             //GameObject tank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[PlayerInfo.PI.mySelectedTeam].position, localT.rotation, 0);
             Debug.Log("Spawns Tank");
-            PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, lane, fireRate, damage, speed, range, nameOfObjectToSpawn);
+            PV.RPC("RPC_SpawnTank", RpcTarget.MasterClient, PlayerInfo.PI.mySelectedTeam, lane, fireRate, damage, speed * 1.5f, range, nameOfObjectToSpawn);
         }
     }
     public void SpawnEnergySource(int generationRate, float lifetime, string nameOfObjectToSpawn, Vector3 pos, string nameOfPlatform)
